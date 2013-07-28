@@ -1,0 +1,24 @@
+#!/usr/bin/python                                                                                                                                                                  
+
+import os
+
+PathToFiles = '/afs/cern.ch/user/i/ideal/eos/atlas/atlascerngroupdisk/phys-higgs/HSG4/VHtautau/commonNtuple/lephad/'
+dirs = os.listdir(PathToFiles)
+#print dirs                                                                                                                                                                        
+f  = open("samples.txt") #files to not include                                                                                                                                     
+output = open(cwd + '/Samples.py', 'w')
+for BG in dirs:	  #loop over lephad folders                                                                                                                                          
+    #print group                                                                                                                                                                   
+    dirslist = os.listdir(PathToFiles+BG) #dirslist contains indiv files                                                                                                           
+    for sample in dirslist:    #loop over samples in dirslist                                                                                                                      
+        part = groupnew.split('.') #split the sample name                                                                                                                          
+        print '    ', s[0]     #print the first part of sample name                                                                                                                
+
+line = f.readlines()
+lines =	[]
+for line in lines:
+    lines.append(line.rstrip('\n'))
+    if line == '                                                                                                                                                                   
+if not                                                                                                                                                                             
+sampleName = part.partition('.')[0]                                                                                                                                                
+                                          
