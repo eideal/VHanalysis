@@ -1,16 +1,16 @@
-1;2c#############################################
+import palette
+
+#############################################
 class PlottingInfo:
     """
     Constructor
     """
     def __init__(self,
-                 product,
                  color,
                  style,
                  legendLabel,
                  stack):
 
-        self.product = product
         self.color = color
         self.style = style
         self.legendLabel = legendLabel
@@ -25,7 +25,7 @@ class Group:
     def __init__(self,
                  name = '',
                  samples = [],
-                 product = 1,
+                 factor = 1,
                  color = palette.black,
                  style = 'line',
                  legendLabel = 'label',
@@ -34,7 +34,7 @@ class Group:
                  ):
 
         self.name = name
-        self.product = product
+        self.factor = factor
         self.samples = samples
         self.plotting = PlottingInfo(color,
                                      style,
