@@ -133,6 +133,8 @@ class Component:
 
         self.shapesys = []
 
+        self.event_yield = self.nominal.GetSumOfWeights()
+
 
     ## -------------------------------------------- ##
     def fill(self, value, weight=1.0, sys='', sys_direction='UP'):
@@ -211,7 +213,6 @@ class Component:
             self.nominal.SetBinError(i, bin_error/bin_width)
             
         
-
         
 
 ##################################################
@@ -220,13 +221,14 @@ class Component:
 class Histogram:
 
     ## -------------------------------------------- ##
-    def __init__(self, name, label, binning, lo=0, hi=1):
+    def __init__(self, name, label, binning, lo=0, hi=1, factor = 1):
         """
         Constructor
         """
 
         self.name  = name
         self.label = label
+        self.factor = factor
 
         self.xlog = False
         self.ylog = False

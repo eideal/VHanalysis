@@ -196,7 +196,7 @@ Top = Group('Top',
             )
 
 WH = Group('WH',
-           [test_WH125_VHtautau_hh_ntuple],
+           [test_WH125_VHtautau_lh_ntuple],
            factor = 1.0,
            color = palette.red,
            style = 'line',
