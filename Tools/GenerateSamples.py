@@ -21,16 +21,16 @@ output.write('from Sample import Sample \n\n')
 
 
 for BG in dirs: #loop over lephad folders
-#    print BG
+    print BG
     dirslist = os.listdir(PathToFiles+BG) #dirslist contains indiv files
     for sample in dirslist:    #loop over samples in dirslist
         part = sample.split('.') #split the sample name
         if part[0] in lines: continue
         
-#        print '    ', part[0]     #print the first part of sample name
- #       print '   ', PathToFiles + BG + '/' + sample
+        print '    ', part[0]     #print the first part of sample name
+        #print '   ', PathToFiles + BG + '/' + sample
  
-        print '%s,' % part[0]
+        #print '%s,' % part[0]
 
         sampleName = part[0]
         samplePath = PathToFiles + BG + '/' + sample
@@ -40,7 +40,5 @@ for BG in dirs: #loop over lephad folders
         output.write('\n')
         #print sampleName
         
-
-
 output.close()
 

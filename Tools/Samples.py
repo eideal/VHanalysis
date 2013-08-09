@@ -14,7 +14,6 @@ ZeeNp2Excl_Mll10to60 = Sample(
 
 ZeeNp3Excl_Mll10to60 = Sample(
     name = 'ZeeNp3Excl_Mll10to60',
-    
     path = '/afs/cern.ch/user/i/ideal/eos/atlas/atlascerngroupdisk/phys-higgs/HSG4/VHtautau/commonNtuple/lephad/DYZ+Jets/ZeeNp3Excl_Mll10to60.e1254_s1469_s1470_r3542_r3549_p1344.root')
 
 ZeeNp4Excl_Mll10to60 = Sample(

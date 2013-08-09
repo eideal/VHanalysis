@@ -8,6 +8,7 @@ A class to keep track of plot information
 class Plotinfo:
     def __init__(self,
                  variable,
+                 testing,#testing if I can append something to .png name
                  nbins,
                  binlow,
                  binhigh,
@@ -15,6 +16,7 @@ class Plotinfo:
                  factor,
                  logplot):
         self.variable = variable
+        self.testing = testing
         self.nbins = nbins
         self.binlow = binlow
         self.binhigh = binhigh
@@ -25,6 +27,7 @@ class Plotinfo:
         ## PLaceholder for histogram, because you want to keep the histogram along with the other
         ## plotinfo parameters
         self.histogram = Histogram(self.variable,
+                                   self.testing,
                                    self.axislabel,
                                    self.nbins,
                                    self.binlow,
@@ -38,8 +41,8 @@ A class to keep track of variable distributions and each's plot information
 
 class plotinfo_container(list):
                 
-    def Add(self, variable, nbins, binlow, binhigh, axislabel, factor, logplot ):
-        self.append(Plotinfo(variable, nbins, binlow, binhigh, axislabel, factor, logplot))
+    def Add(self, variable, testing, nbins, binlow, binhigh, axislabel, factor, logplot ):
+        self.append(Plotinfo(variable, testing, nbins, binlow, binhigh, axislabel, factor, logplot))
     
                  
                  

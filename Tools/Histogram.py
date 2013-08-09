@@ -221,12 +221,13 @@ class Component:
 class Histogram:
 
     ## -------------------------------------------- ##
-    def __init__(self, name, label, binning, lo=0, hi=1, factor = 1):
+    def __init__(self, name, testing, label, binning, lo=0, hi=1, factor = 1):
         """
         Constructor
         """
 
         self.name  = name
+        self.testing = testing
         self.label = label
         self.factor = factor
 
@@ -455,7 +456,10 @@ class Histogram:
                                          '',
                                          'LP')
 
-        self.legend.AddEntry(self.error, '', 'F')
+        try:
+            self.legend.AddEntry(self.error, '', 'F')
+        except AttributeError:
+            pass
                 
         return
 
@@ -558,12 +562,15 @@ class Histogram:
             self.canvas.cd()
             
         ## Prepare the error histogram
+        has_error = False
+        
         for component in self.components:
             if component.stack:
                 self.error = ROOT.TH1F('%s_error' % self.name,
                                        'stat. + sys.',
                                        component.nbins,
                                        array.array('d', component.plot_binning))
+                has_error = True
                 break
 
         ## First, draw the stack
@@ -593,14 +600,18 @@ class Histogram:
 
                     
         ## Then draw the error
-        style.style1D['error'].apply(self.error)
-        self.error.SetFillColor(ROOT.TColor.GetColor(palette.darkred))
-        self.error.Draw('SAME %s' % style.style1D['error'].draw_options)
+        if has_error:
+            style.style1D['error'].apply(self.error)
+            self.error.SetFillColor(ROOT.TColor.GetColor(palette.darkred))
+            self.error.Draw('SAME %s' % style.style1D['error'].draw_options)
 
+        bin_max = -1
+        maximum = -1
         
-        ## Find the plot maximum
-        bin_max = self.error.GetMaximumBin()
-        maximum = self.error.GetBinContent(bin_max) + self.error.GetBinError(bin_max)
+        ## Find the plot maximum (if there are any stacked histograms)
+        if has_error:
+            bin_max = self.error.GetMaximumBin()
+            maximum = self.error.GetBinContent(bin_max) + self.error.GetBinError(bin_max)
 
         
         ## Then draw non-stacked histograms
@@ -667,4 +678,4 @@ class Histogram:
                 
         
         ## Print to file
-        self.canvas.Print('%s.png' % self.name)
+        self.canvas.Print('%s%s.png' % (self.name, self.testing))
