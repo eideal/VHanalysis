@@ -5,7 +5,8 @@ import glob
 import sys
 from Sample import Sample
 
-PathToFiles = '/afs/cern.ch/user/i/ideal/eos/atlas/atlascerngroupdisk/phys-higgs/HSG4/VHtautau/commonNtuple/lephad/'
+#PathToFiles = '/afs/cern.ch/user/i/ideal/eos/atlas/atlascerngroupdisk/phys-higgs/HSG4/VHtautau/commonNtuple/lephad/'
+PathToFiles = '/group/atlas/data/D3PD/ideal/VH/CommonNtuples/'
 dirs = os.listdir(PathToFiles)
 #print dirs
 f  = open("samples.txt") #files to not include

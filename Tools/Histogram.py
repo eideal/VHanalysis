@@ -603,7 +603,7 @@ class Histogram:
         if has_error:
             style.style1D['error'].apply(self.error)
             self.error.SetFillColor(ROOT.TColor.GetColor(palette.darkred))
-            self.error.Draw('SAME %s' % style.style1D['error'].draw_options)
+            #self.error.Draw('SAME %s' % style.style1D['error'].draw_options) ###EMMA: EDITED OUT OF PLOTTING FOR NOW
 
         bin_max = -1
         maximum = -1
@@ -611,7 +611,7 @@ class Histogram:
         ## Find the plot maximum (if there are any stacked histograms)
         if has_error:
             bin_max = self.error.GetMaximumBin()
-            maximum = self.error.GetBinContent(bin_max) + self.error.GetBinError(bin_max)
+            maximum = self.error.GetBinContent(bin_max) #+ self.error.GetBinError(bin_max)
 
         
         ## Then draw non-stacked histograms
@@ -619,7 +619,7 @@ class Histogram:
             if component.stack: continue
 
             bin_max = component.nominal.GetMaximumBin()
-            this_maximum = component.nominal.GetBinContent(bin_max) + component.nominal.GetBinError(bin_max)
+            this_maximum = component.nominal.GetBinContent(bin_max) #+ component.nominal.GetBinError(bin_max)
             if this_maximum > maximum:
                 maximum = this_maximum
 
