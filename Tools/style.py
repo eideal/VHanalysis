@@ -132,9 +132,9 @@ ratio_positioning.x_label_size = 0.06
 ratio_positioning.x_title_size = 0.03
 ratio_positioning.x_title_offset = 0.6
 
-ratio_positioning.legend_spacing = 0.05
-ratio_positioning.legend_xmax    = 0.90
-ratio_positioning.legend_ymax    = 0.82
+ratio_positioning.legend_spacing = 0.03
+ratio_positioning.legend_xmax    = 0.87
+ratio_positioning.legend_ymax    = 0.79
 
 
 def normal_label_offset(x,y):
@@ -156,6 +156,6 @@ normal_positioning.x_title_offset = 0.9
 normal_positioning.plot_label_offset = normal_label_offset
 normal_positioning.plot_label_size   = normal_label_size
 
-normal_positioning.legend_spacing = 0.07
+normal_positioning.legend_spacing = 0.03
 normal_positioning.legend_xmax    = 1.00
 normal_positioning.legend_ymax    = 0.73

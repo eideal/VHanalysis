@@ -417,7 +417,7 @@ class Histogram:
         """
 
         self.legend = ROOT.TLegend(0.65,
-                                   self.positioning.legend_ymax - self.n*self.positioning.legend_spacing,
+                                   self.positioning.legend_ymax - (self.n+1)*self.positioning.legend_spacing,
                                    self.positioning.legend_xmax,
                                    self.positioning.legend_ymax)
         self.legend.SetFillColor(0)
@@ -482,9 +482,9 @@ class Histogram:
         ## Figure out the ratio content and errors
         for i in range(1, numerator.nbins+1):
             num_content = numerator.nominal.GetBinContent(i)
-            num_error   = numerator.nominal.GetBinError(i)
+            num_error   = numerator.nominal.GetBinError(i) #EMMA
             den_content = denominator.GetBinContent(i)
-            den_error   = denominator.GetBinError(i)
+            den_error   = denominator.GetBinError(i) #EMMA
             
             ## Skip bins with empty denominator
             if den_content == 0:
@@ -493,10 +493,10 @@ class Histogram:
                 continue
             
             ratio_content = num_content/den_content
-            ratio_error   = math.sqrt((num_error/den_content)**2 + ((num_content*den_error)/(den_content**2))**2)
+            ratio_error   = math.sqrt((num_error/den_content)**2 + ((num_content*den_error)/(den_content**2))**2) #EMMA
 
             self.ratio.SetBinContent(i, ratio_content)
-            self.ratio.SetBinError(i, ratio_error)
+            self.ratio.SetBinError(i, ratio_error) # EMMA
             
         ## Apply style to ratio plot
         style.style1D['points'].apply(self.ratio)
@@ -518,6 +518,7 @@ class Histogram:
         xaxis.SetTickLength(0.055)
         
         yaxis.SetTitle('Data/Model')
+        #yaxis.SetTitle('FS/AFII')
         yaxis.SetTitleOffset(0.5)
         yaxis.SetTitleSize(0.125)
         yaxis.SetLabelSize(0.12)
@@ -596,6 +597,7 @@ class Histogram:
                     first_component = component_i
                     first = False
                 else:
+                    #               component_i.nominal.Draw('SAME %s' % component_i.style.draw_ratoptions)
                     component_i.nominal.Draw('SAME %s' % component_i.style.draw_options)
 
                     
@@ -603,7 +605,7 @@ class Histogram:
         if has_error:
             style.style1D['error'].apply(self.error)
             self.error.SetFillColor(ROOT.TColor.GetColor(palette.darkred))
-            #self.error.Draw('SAME %s' % style.style1D['error'].draw_options) ###EMMA: EDITED OUT OF PLOTTING FOR NOW
+            self.error.Draw('SAME %s' % style.style1D['error'].draw_options) ###EMMA: EDITED OUT OF PLOTTING FOR NOW
 
         bin_max = -1
         maximum = -1

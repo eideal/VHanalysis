@@ -36,6 +36,7 @@ class Group:
         self.name = name
         self.factor = factor
         self.samples = samples
+        self.classification = classification
         self.plotting = PlottingInfo(color,
                                      style,
                                      legendLabel,

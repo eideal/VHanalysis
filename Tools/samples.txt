@@ -1,6 +1,3 @@
-MadGraph_lnuee_lt7
-MadGraph_lnumumu_lt7
-MadGraph_lnutautau_lt7
 VBFH100
 VBFH105
 VBFH110
