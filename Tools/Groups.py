@@ -23,7 +23,7 @@ DataSSS = Group('DataSSS',
                  style = 'fill',
                  legendLabel = 'DataSSS',
                  stack = True,
-                 classification = 'BG'
+                 classification = 'DATA'
                  )
 """
 WJets = Group('WJets',

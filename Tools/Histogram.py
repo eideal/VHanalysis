@@ -416,14 +416,16 @@ class Histogram:
         Makes a legend
         """
 
-        self.legend = ROOT.TLegend(0.65,
+        self.legend = ROOT.TLegend(0.5,###EAI from 0.65
                                    self.positioning.legend_ymax - (self.n+1)*self.positioning.legend_spacing,
                                    self.positioning.legend_xmax,
                                    self.positioning.legend_ymax)
+        
         self.legend.SetFillColor(0)
         self.legend.SetFillStyle(0)
         self.legend.SetBorderSize(0)
-        self.legend.SetTextSize(0.03)
+        self.legend.SetTextSize(0.015)##EAI from 0.03
+        self.legend.SetNColumns(2)### EAI ADD
 
         for component in self.components:
             ## Exclude empty histograms from the legend
@@ -455,7 +457,7 @@ class Histogram:
                     self.legend.AddEntry(component.nominal,
                                          '',
                                          'LP')
-
+        
         try:
             self.legend.AddEntry(self.error, '', 'F')
         except AttributeError:

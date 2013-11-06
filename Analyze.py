@@ -138,7 +138,7 @@ for group in list_of_groups:
             chain.Draw('%s*%f>>%s' % ('evtsel_tau1_et', entry.factor, th1f_name_tem1), cut3)
             th1f.Scale(group.factor)
             print 'Weighted Nentries of taus passing BDTL is %.3f' % th1f.GetSumOfWeights()
-
+		
             
         
         if entry.variable == 'evtsel_dR':
@@ -165,7 +165,7 @@ for group in list_of_groups:
             th1f_error = math.sqrt(sum2errors)
             print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
             print 'th1f error is %.3f' % th1f_error
-           """ 
+        """  
 	
 	
             
@@ -203,10 +203,14 @@ for group in list_of_groups:
             chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut3ex)
             th1f.Scale(group.factor)
             print 'Weight Nentries in SSS is %.3f' % th1f.GetSumOfWeights()
-        if (group.name=='WeJets' or group.name=='WmJets' or group.name == 'WtJets' or group.name =='ZeeJets' or group.name =='ZmmJets' or group.name =='ZttJets' or group.name =='tt' or group.name =='SingleTop' or group.name =='WW' or group.name =='WZ' or group.name =='ZZ' or group.name =='WGamma' or group.name=='Data'):
+            th1f_error = th1f.GetBinError(1)
+            print 'th1f error is %.3f' % th1f_error
+        else:
             chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut3)
             th1f.Scale(group.factor)
             print 'Weight Nentries in OS is %.3f' % th1f.GetSumOfWeights()
+            th1f_error = th1f.GetBinError(1)
+            print 'th1f error is %.3f' % th1f_error
 
         """
         if group.name != 'DataSSS':

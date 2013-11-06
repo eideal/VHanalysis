@@ -156,6 +156,6 @@ normal_positioning.x_title_offset = 0.9
 normal_positioning.plot_label_offset = normal_label_offset
 normal_positioning.plot_label_size   = normal_label_size
 
-normal_positioning.legend_spacing = 0.03
+normal_positioning.legend_spacing = 0.03 ####From 0.03 to 0.01
 normal_positioning.legend_xmax    = 1.00
 normal_positioning.legend_ymax    = 0.73
