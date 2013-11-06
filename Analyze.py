@@ -27,25 +27,38 @@ if not root_functions.Contains('ATLASLabel'):
     #ZleplepJets,
     #Ztautau,
     #ZtautauJets,
-    WH,
+    #WH,
     #ZH,
     #ZJets,
     #WJets,
     WeJets,
+	SSSWeJets,
     WmJets,
+	SSSWmJets,
     WtJets,
+	SSSWtJets,
 	ZeeJets,
+	SSSZeeJets,
     ZmmJets,
+	SSSZmmJets,
     ZttJets,
+	SSSZttJets,
     #WJetsAFII,
     #ZJetsAFII,
     #WJetsMedID,
     tt,
+	SSStt,
     SingleTop,
+	SSSSingleTop,
     ZZ,
+	SSSZZ,
     WW,
+	SSSWW,
     WGamma,
+	SSSWGamma,
     WZ,
+	SSSWZ,
+	DataSSS,
     #AllBG,
     #ggF,
     #ZH,
@@ -70,14 +83,38 @@ for group in list_of_groups:
     # th1f_name_tem2 = 'den'
     # th1f_num = ROOT.TH1F(th1f_name_tem1,group.plotting.legendLabel,30,0,300)
     # th1f_den = ROOT.TH1F(th1f_name_tem2,group.plotting.legendLabel,30,0,300)
+	#th1f_name_tem1 = 'OSMC'
+	#th1f_name_tem2 = 'SSSMC'
+	#th1f_OSMC = ROOT.TH1F(th1f_name_tem1, group.plotting.legendLabel,30,0,300)
+	#th1f_SSSMC = ROOT.TH1F(th1f_name_tem2, group.plotting.legendLabel,30,0,300)
 
 
     for entry in plots:
         th1f_name = '%s_%s' % (entry.variable,	group.name)
         th1f = ROOT.TH1F(th1f_name, group.plotting.legendLabel, entry.nbins, entry.binlow, entry.binhigh)
-        th1f.Sumw2() # TO USE WHEN NORMALIZING PLOTS TO 1
+        th1f.Sumw2() 
         #th1f_den.Sumw2()
 
+               
+        ####
+        ### ttbar CR
+        ####
+        """
+        cut1 = 'evtsel_weight*0.02'
+        if group.classification == 'DATA':
+            cut1 = 'evtsel_weight'
+        cut2 = cut1 + '*(evtsel_is_tau && evtsel_jets_num>=2 && evtsel_MET>30000 && TMath::Sqrt(2*evtsel_MET*evtsel_lep1_pt*(1-TMath::Cos(TVector2::Phi_mpi_pi((evtsel_MET_phi-evtsel_lep1_phi)))))>50000 && evtsel_nLeptons>0 && ( ((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000)) && evtsel_vlep1_etcone20/evtsel_vlep1_pt<0.06 && evtsel_vlep1_ptcone40/evtsel_vlep1_pt<0.06 && !(evtsel_passes_bjet_veto) )'
+        """
+        
+        ####
+        ### Z+Jets CR
+        ####
+        """
+        cut1 = 'evtsel_weight*0.02'
+        if group.classification == 'DATA':
+            cut1 = 'evtsel_weight'
+        cut2 = cut1 + '*(evtsel_is_tau && evtsel_nLeptons==2 && evtsel_passes_bjet_veto && TMath::Sqrt(2*evtsel_MET*evtsel_lep1_pt*(1-TMath::Cos(TVector2::Phi_mpi_pi((evtsel_MET_phi-evtsel_lep1_phi)))))<60000 && evtsel_Zll_mass<120000 && evtsel_Zll_mass>60000 && evtsel_vlep1_etcone20/evtsel_vlep1_pt<0.06 && evtsel_vlep1_ptcone40/evtsel_vlep1_pt<0.06 && ( ((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000)) )'
+        """
         #####
         ### W+Jets CR 
         #####
@@ -85,48 +122,50 @@ for group in list_of_groups:
         cut1 = 'evtsel_weight*0.02'
         if group.classification == 'DATA':
             cut1 = 'evtsel_weight'
-        cut2 = cut1 + '*(!evtsel_is_tau && TMath::Sqrt(2*evtsel_MET*evtsel_lep1_pt*(1-TMath::Cos(TVector2::Phi_mpi_pi((evtsel_MET_phi-evtsel_lep1_phi)))))>60000 && evtsel_nLeptons==2)'
-			#cut2 = cut1 + '*( !(evtsel_is_tau) && TMath::Sqrt(2*evtsel_MET*evtsel_lep1_pt*(1-TMath::Cos(TVector2::Phi_mpi_pi((evtsel_MET_phi-evtsel_lep1_phi)))))>60000 && evtsel_passes_bjet_veto && evtsel_vlep1_etcone20/evtsel_vlep1_pt<0.06 && evtsel_vlep1_ptcone40/evtsel_vlep1_pt<0.06 && evtsel_nLeptons==1 && ( ((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000)))' #SLT
-        cut3 = cut1 + '*(evtsel_is_tau && (!(evtsel_tau1_is_medium)) && TMath::Sqrt(2*evtsel_MET*evtsel_lep1_pt*(1-TMath::Cos(TVector2::Phi_mpi_pi((evtsel_MET_phi-evtsel_lep1_phi)))))>60000 && evtsel_passes_bjet_veto && evtsel_vlep1_etcone20/evtsel_vlep1_pt<0.06 && evtsel_vlep1_ptcone40/evtsel_vlep1_pt<0.06 && evtsel_nLeptons==1 && ( ((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000)))' #SLT
+        cut2 = cut1 + '*(evtsel_is_tau && TMath::Sqrt(2*evtsel_MET*evtsel_lep1_pt*(1-TMath::Cos(TVector2::Phi_mpi_pi((evtsel_MET_phi-evtsel_lep1_phi)))))>60000 && evtsel_nLeptons==1 && evtsel_passes_bjet_veto && evtsel_vlep1_etcone20/evtsel_vlep1_pt<0.06 && evtsel_vlep1_ptcone40/evtsel_vlep1_pt<0.06 && ( ((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000))  )'
+            #cut2 = cut1 + '*(!evtsel_is_tau && TMath::Sqrt(2*evtsel_MET*evtsel_lep1_pt*(1-TMath::Cos(TVector2::Phi_mpi_pi((evtsel_MET_phi-evtsel_lep1_phi)))))>60000 && evtsel_nLeptons==2)'
+            #cut2 = cut1 + '*( !(evtsel_is_tau) && TMath::Sqrt(2*evtsel_MET*evtsel_lep1_pt*(1-TMath::Cos(TVector2::Phi_mpi_pi((evtsel_MET_phi-evtsel_lep1_phi)))))>60000 && evtsel_passes_bjet_veto && evtsel_vlep1_etcone20/evtsel_vlep1_pt<0.06 && evtsel_vlep1_ptcone40/evtsel_vlep1_pt<0.06 && evtsel_nLeptons==1 && ( ((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000)))' #SLT
+            #cut3 = cut1 + '*(evtsel_is_tau && (!(evtsel_tau1_is_medium)) && TMath::Sqrt(2*evtsel_MET*evtsel_lep1_pt*(1-TMath::Cos(TVector2::Phi_mpi_pi((evtsel_MET_phi-evtsel_lep1_phi)))))>60000 && evtsel_passes_bjet_veto && evtsel_vlep1_etcone20/evtsel_vlep1_pt<0.06 && evtsel_vlep1_ptcone40/evtsel_vlep1_pt<0.06 && evtsel_nLeptons==1 && ( ((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000)))' #SLT
+        
 
         if entry.variable == 'evtsel_tau1_et_failL':
             chain.Draw('%s*%f>>%s' % ('evtsel_tau1_et', entry.factor, th1f_name), cut2)
-            chain.Draw('%s*%f>>%s' % ('evtsel_tau1_et', entry.factor, th1f_name_tem1), cut2)
+            chain.Draw('%s*%f>>%s' % ('evtsel_tau1_et', entry.factor, th1f_name_tem2), cut2)
             th1f.Scale(group.factor)
             print 'Weighted Nentries of taus failing BDTL is %.3f' % th1f.GetSumOfWeights()
         if entry.variable == 'evtsel_tau1_et_passL':
             chain.Draw('%s*%f>>%s' % ('evtsel_tau1_et', entry.factor, th1f_name), cut3)
-            chain.Draw('%s*%f>>%s' % ('evtsel_tau1_et', entry.factor, th1f_name_tem2), cut3)
+            chain.Draw('%s*%f>>%s' % ('evtsel_tau1_et', entry.factor, th1f_name_tem1), cut3)
             th1f.Scale(group.factor)
             print 'Weighted Nentries of taus passing BDTL is %.3f' % th1f.GetSumOfWeights()
-            
+
             
         
-        # if entry.variable == 'evtsel_dR':
-        #     chain.Draw('TMath::Sqrt(TMath::Power((evtsel_tau1_eta-evtsel_tau2_eta),2) + TMath::Power(TVector2::Phi_mpi_pi((evtsel_tau1_phi-evtsel_tau2_phi)),2))>>%s' % th1f_name, cut2)
-        #     th1f.Scale(group.factor)
-        #     print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
-        # if entry.variable == 'evtsel_transmass_lep1MET':
-        #     chain.Draw('%s*%f>>%s' % ('TMath::Sqrt(2*evtsel_MET*evtsel_lep1_pt*(1-TMath::Cos(TVector2::Phi_mpi_pi((evtsel_MET_phi-evtsel_lep1_phi)))))', entry.factor, th1f_name), cut2)
-        #     th1f.Scale(group.factor)
-        #     nbins = th1f.GetNbinsX()
-        #     sum2errors = 0
-        #     for i in range(1,nbins+1):
-        #         sum2errors += th1f.GetBinError(i)**2
-        #     th1f_error = math.sqrt(sum2errors)
-        #     print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
-        #     print 'th1f error is %.3f' % th1f_error
-        # else:
-        #     chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut2)
-        #     th1f.Scale(group.factor)
-        #     nbins = th1f.GetNbinsX()
-        #     sum2errors = 0
-        #     for i in range(1,nbins+1):
-        #         sum2errors += th1f.GetBinError(i)**2
-        #     th1f_error = math.sqrt(sum2errors)
-        #     print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
-        #     print 'th1f error is %.3f' % th1f_error
-        """
+        if entry.variable == 'evtsel_dR':
+            chain.Draw('TMath::Sqrt(TMath::Power((evtsel_tau1_eta-evtsel_tau2_eta),2) + TMath::Power(TVector2::Phi_mpi_pi((evtsel_tau1_phi-evtsel_tau2_phi)),2))>>%s' % th1f_name, cut2)
+            th1f.Scale(group.factor)
+            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
+        if entry.variable == 'evtsel_transmass_lep1MET':
+            chain.Draw('%s*%f>>%s' % ('TMath::Sqrt(2*evtsel_MET*evtsel_lep1_pt*(1-TMath::Cos(TVector2::Phi_mpi_pi((evtsel_MET_phi-evtsel_lep1_phi)))))', entry.factor, th1f_name), cut2)
+            th1f.Scale(group.factor)
+            nbins = th1f.GetNbinsX()
+            sum2errors = 0
+            for i in range(1,nbins+1):
+                sum2errors += th1f.GetBinError(i)**2
+            th1f_error = math.sqrt(sum2errors)
+            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
+            print 'th1f error is %.3f' % th1f_error
+        else:
+            chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut2)
+            th1f.Scale(group.factor)
+            nbins = th1f.GetNbinsX()
+            sum2errors = 0
+            for i in range(1,nbins+1):
+                sum2errors += th1f.GetBinError(i)**2
+            th1f_error = math.sqrt(sum2errors)
+            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
+            print 'th1f error is %.3f' % th1f_error
+           """ 
 	
 	
             
@@ -137,14 +176,15 @@ for group in list_of_groups:
         cut1 = 'evtsel_weight*0.02'
         if group.classification == 'DATA':
 			cut1 = 'evtsel_weight'
-        cut2 = cut1 + '*(evtsel_is_tau && evtsel_is_WHhadhad)'
-        #cut3 = cut2.strip(')') + ' && ( (evtsel_EF_tau20_medium1_mu15 && evtsel_tau1_et > 25000 && (evtsel_hlep1_pt > 17000 || evtsel_vlep1_pt > 17000 || evtsel_vlep2_pt > 17000) && (evtsel_hlep1_pt > 5000 || evtsel_vlep1_pt > 5000 || evtsel_vlep2_pt > 5000)) || (evtsel_EF_tau20Ti_medium1_e18vh_medium1 && evtsel_tau1_et > 25000 && (evtsel_hlep1_pt > 20000 || evtsel_vlep1_pt > 20000 || evtsel_vlep2_pt > 20000) && (evtsel_hlep1_pt > 5000 || evtsel_vlep1_pt > 5000 || evtsel_vlep2_pt > 5000)) || (evtsel_EF_2mu13 && (evtsel_hlep1_pt > 15000 || evtsel_vlep1_pt > 15000 || evtsel_vlep2_pt > 15000) && (evtsel_hlep1_pt > 15000 || evtsel_vlep1_pt > 15000 || evtsel_vlep2_pt > 15000)) || (evtsel_EF_2e12Tvh_loose1 && (evtsel_hlep1_pt > 14000 || evtsel_vlep1_pt > 14000 || evtsel_vlep2_pt > 14000) && (evtsel_hlep1_pt > 14000 || evtsel_vlep1_pt > 14000 || evtsel_vlep2_pt > 14000)) || (evtsel_EF_mu18_tight_mu8_EFFS &&  (evtsel_hlep1_pt > 20000 || evtsel_vlep1_pt > 20000 || evtsel_vlep2_pt > 20000) && (evtsel_hlep1_pt > 10000 || evtsel_vlep1_pt > 10000 || evtsel_vlep2_pt > 10000)) || (evtsel_EF_e24vh_medium1_e7_medium1 && (evtsel_hlep1_pt > 26000 || evtsel_vlep1_pt > 26000 || evtsel_vlep2_pt > 26000) && (evtsel_hlep1_pt > 9000 || evtsel_vlep1_pt > 9000 || evtsel_vlep2_pt > 9000)) || (evtsel_EF_e12Tvh_medium1_mu6_topo_medium && (evtsel_hlep1_pt > 14000 || evtsel_vlep1_pt > 14000 || evtsel_vlep2_pt > 14000) && (evtsel_hlep1_pt > 8000 || evtsel_vlep1_pt > 8000 || evtsel_vlep2_pt > 8000)) || ((evtsel_EF_mu24i_tight && (evtsel_hlep1_pt > 26000 || evtsel_vlep1_pt > 26000 || evtsel_vlep2_pt > 26000)) || (evtsel_EF_mu36_tight && (evtsel_hlep1_pt > 38000 || evtsel_vlep1_pt > 38000 || evtsel_vlep2_pt > 38000))) || ((evtsel_EF_e60_medium1 && (evtsel_hlep1_pt > 62000 || evtsel_vlep1_pt > 62000 || evtsel_vlep2_pt > 62000)) || (evtsel_EF_e24vhi_medium1 && (evtsel_hlep1_pt > 26000 || evtsel_vlep1_pt > 26000 || evtsel_vlep2_pt > 26000))) ))'
-
-        #        cut3 = cut2.strip(')') + ' && ' + mutau_trigstring + '||' + etau_trigstring '||' + mumu_simtrigstring '||' + ee_simtrigstring '||' +mumu_difftrigstring '||' + ee_difftrigstring '||' + emu_trigstring '||' + singlemu_trigstring '||' + singlee_trigstring +')'
+        cut2 = cut1 + '*(evtsel_is_tau && evtsel_is_WHhadhad && evtsel_tau1_charge*evtsel_tau2_charge==-1)'
+        cut2ex = cut1 + '*(evtsel_is_tau && evtsel_is_WHhadhad && evtsel_tau1_charge==evtsel_tau2_charge && evtsel_tau2_charge==evtsel_vlep1_charge)'
+        #cut3 = cut2.strip(')') + '&& (((evtsel_EF_tau29Ti_medium1_tau20Ti_medium1))))'
+        #cut3 = cut2.strip(')') + ' && ' + mutau_trigstring + '||' + etau_trigstring '||' + mumu_simtrigstring '||' + ee_simtrigstring '||' +mumu_difftrigstring '||' + ee_difftrigstring '||' + emu_trigstring '||' + singlemu_trigstring '||' + singlee_trigstring +')'
         #cut3 = cut2.strip(')') + ' && (((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>26000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>26000) || (evtsel_EF_tau20_medium1_mu15 && evtsel_tau1_et>25000 && evtsel_lep1_flavour==13 && evtsel_lep1_pt>17000) || (evtsel_EF_tau20Ti_medium1_e18vh_medium1 && evtsel_lep1_pt>20000 && evtsel_tau1_et>25000)))' #LEPHAD TRIG
-        cut3 = cut2.strip(')') + ' && (((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000) || (evtsel_EF_tau29Ti_medium1_tau20Ti_medium1 && evtsel_tau1_et>40000 && evtsel_tau2_et>25000)))' #HADHAD TRIG
+        #cut3 = cut2.strip(')') + ' && (((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000) || (evtsel_EF_tau29Ti_medium1_tau20Ti_medium1 && evtsel_tau1_et>40000 && evtsel_tau2_et>25000)))' #HADHAD TRIG
+        cut3 = cut2.strip(')') + ' && (((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_tau29Ti_medium1_tau20Ti_medium1)))' #HH NO PT THRESHOLDS
+        cut3ex = cut2ex.strip(')') + ' && (((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_tau29Ti_medium1_tau20Ti_medium1)))'
         #cut3 = cut2.strip(')') + ' && (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000))'#CHECKS ON SINGLE TRIGGERS
-        #cut3 = cut2.strip(')') + ' && (((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000) || (evtsel_EF_tau29Ti_medium1_tau20Ti_medium1 && evtsel_tau1_et>40000 && evtsel_tau2_et>25000) || (evtsel_EF_tau20_medium1_mu15 && evtsel_lep1_flavour==13 && evtsel_lep1_pt>17000 && evtsel_tau1_et>25000) || (evtsel_EF_tau20Ti_medium1_e18vh_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>20000 && evtsel_tau1_et>25000)))' # ALL TRIGGERS LEPHAD +HADHAD
         cut4 = cut3.strip(')))') + ')) && (evtsel_nLooseTaus==2))'
         cut5 = cut4.strip('2))') + '2) && (evtsel_nMediumTaus==2))'
         cut6 = cut5.strip('mTaus==2))') + 'umTaus==2) && (evtsel_tau1_charge*evtsel_tau2_charge==-1))'
@@ -154,66 +194,80 @@ for group in list_of_groups:
         cut10 = cut9.strip('70000))') + '70000) && (evtsel_transmass_lep1MET>20000))'
         ####cut11---rewrite cuts again because need to apply the evtsel_bjet_weight
         cut11 = 'evtsel_weight*0.02*(evtsel_is_WHhadhad && evtsel_is_tau && (evtsel_nLooseTaus==2) && (((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000) || (evtsel_EF_tau29Ti_medium1_tau20Ti_medium1 && evtsel_tau1_et>40000 && evtsel_tau2_et>25000)) && (evtsel_nMediumTaus==2) && (evtsel_tau1_charge*evtsel_tau2_charge==-1) && (evtsel_nLeptons==1) && (evtsel_vlep1_etcone20/evtsel_vlep1_pt<0.06 && evtsel_vlep1_ptcone40/evtsel_vlep1_pt<0.06) && (evtsel_sum_tau_pt>70000) && (evtsel_transmass_lep1MET>20000) && evtsel_passes_bjet_veto)'
+        #cut11 = 'evtsel_weight*0.02*(evtsel_is_WHhadhad && evtsel_is_tau && (evtsel_nLooseTaus==2) && (((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000) || (evtsel_EF_tau29Ti_medium1_tau20Ti_medium1 && evtsel_tau1_et>40000 && evtsel_tau2_et>25000)) && (evtsel_nMediumTaus==2) && (evtsel_tau1_charge*evtsel_tau2_charge==1) && (evtsel_nLeptons==1) && (evtsel_vlep1_etcone20/evtsel_vlep1_pt<0.06 && evtsel_vlep1_ptcone40/evtsel_vlep1_pt<0.06) && (evtsel_sum_tau_pt>70000) && (evtsel_transmass_lep1MET>20000) && evtsel_passes_bjet_veto)' #### SAME SIGN MC
         if group.classification == 'DATA':
-            cut11 = 'evtsel_weight*(evtsel_is_WHhadhad && evtsel_is_tau && (evtsel_nLooseTaus==2) && (((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000) || (evtsel_EF_tau29Ti_medium1_tau20Ti_medium1 && evtsel_tau1_et>40000 && evtsel_tau2_et>25000)) && (evtsel_nMediumTaus==2) && (evtsel_tau1_charge*evtsel_tau2_charge==-1) && (evtsel_nLeptons==1) && (evtsel_vlep1_etcone20/evtsel_vlep1_pt<0.06 && evtsel_vlep1_ptcone40/evtsel_vlep1_pt<0.06) && (evtsel_sum_tau_pt>70000) && (evtsel_transmass_lep1MET>20000) && evtsel_passes_bjet_veto)'
+            cut11 = 'evtsel_weight*(evtsel_is_WHhadhad && evtsel_is_tau && evtsel_tau1_matched==0 && evtsel_tau2_matched==0 && (evtsel_nLooseTaus==2) && (((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000) || (evtsel_EF_tau29Ti_medium1_tau20Ti_medium1 && evtsel_tau1_et>40000 && evtsel_tau2_et>25000)) && (evtsel_nMediumTaus==2) && (evtsel_tau1_charge*evtsel_tau2_charge==-1) && (evtsel_nLeptons==1) && (evtsel_vlep1_etcone20/evtsel_vlep1_pt<0.06 && evtsel_vlep1_ptcone40/evtsel_vlep1_pt<0.06) && (evtsel_sum_tau_pt>70000) && (evtsel_transmass_lep1MET>20000) && evtsel_passes_bjet_veto)'
+            #cut11 = 'evtsel_weight*(evtsel_is_WHhadhad && evtsel_is_tau && (evtsel_nLooseTaus==2) && (((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000) || (evtsel_EF_tau29Ti_medium1_tau20Ti_medium1 && evtsel_tau1_et>40000 && evtsel_tau2_et>25000)) && (evtsel_nMediumTaus==2) && (evtsel_tau1_charge*evtsel_tau2_charge==1) && (evtsel_nLeptons==1) && (evtsel_vlep1_etcone20/evtsel_vlep1_pt<0.06 && evtsel_vlep1_ptcone40/evtsel_vlep1_pt<0.06) && (evtsel_sum_tau_pt>70000) && (evtsel_transmass_lep1MET>20000) && evtsel_passes_bjet_veto)'####SAME SIGN DATA
 
-
-        #chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut1)
-        #print 'Weighted Nentries to start is %.3f' % th1f.GetSumOfWeights()
-        #th1f.Scale(1.0/th1f.GetSumOfWeights())
-        #chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut2)
-        #print 'Weighted Nentries after WHhh flag is %.3f' % th1f.GetSumOfWeights()
-        #th1f.Scale(1.0/th1f.GetSumOfWeights())
-        #chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut3)
-
-        if entry.variable == 'evtsel_MET1':
-            chain.Draw('sqrt(pow(evtsel_met_etx, 2) + pow(evtsel_met_ety,2))>>%s' % th1f_name, cut11)
+        if (group.name=='SSSWeJets' or group.name=='SSSWmJets' or group.name == 'SSSWtJets' or group.name =='SSSZeeJets' or group.name =='SSSZmmJets' or group.name =='SSSZttJets' or group.name =='SSStt' or group.name =='SSSSingleTop' or group.name =='SSSWW' or group.name =='SSSWZ' or group.name =='SSSZZ' or group.name =='SSSWGamma' or group.name=='DataSSS'):
+            chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut3ex)
             th1f.Scale(group.factor)
-            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
-        if entry.variable == 'evtsel_dR':
-            chain.Draw('TMath::Sqrt(TMath::Power((evtsel_tau1_eta-evtsel_tau2_eta),2) + TMath::Power(TVector2::Phi_mpi_pi((evtsel_tau1_phi-evtsel_tau2_phi)),2))>>%s' % th1f_name, cut11)
+            print 'Weight Nentries in SSS is %.3f' % th1f.GetSumOfWeights()
+        if (group.name=='WeJets' or group.name=='WmJets' or group.name == 'WtJets' or group.name =='ZeeJets' or group.name =='ZmmJets' or group.name =='ZttJets' or group.name =='tt' or group.name =='SingleTop' or group.name =='WW' or group.name =='WZ' or group.name =='ZZ' or group.name =='WGamma' or group.name=='Data'):
+            chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut3)
             th1f.Scale(group.factor)
-            nbins = th1f.GetNbinsX()
-            sum2errors = 0
-            for i in range(1,nbins+1):
-                sum2errors += th1f.GetBinError(i)**2
-            th1f_error = math.sqrt(sum2errors)
-            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
-            print 'th1f error is %.3f' % th1f_error
-            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
-        else:
-            chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut11)
-            th1f.Scale(group.factor)
-            nbins = th1f.GetNbinsX()
-            sum2errors = 0
-            for i in range(1,nbins+1):
-                sum2errors += th1f.GetBinError(i)**2
-            th1f_error = math.sqrt(sum2errors)
-            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
-            print 'th1f error is %.3f' % th1f_error
-    
+            print 'Weight Nentries in OS is %.3f' % th1f.GetSumOfWeights()
 
-            
-        #th1f.Scale(1.0/th1f.GetSumOfWeights())
-        #chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut4)
-        #th1f.Scale(group.factor)
-        #print 'Weighted Nentries after 2 Loose Taus is %.3f' % th1f.GetSumOfWeights()
-        # chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut5)
-        # print 'Weighted Nentries after 2 Medium Taus is %.3f' % th1f.GetSumOfWeights()
-        #chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut6)
-        #print 'Weighted Nentries after tau OS charge cut %.3f' % th1f.GetSumOfWeights()
-        # chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut7)
-        # print 'Weighted Nentries after nLeptons==1 cut %.3f' % th1f.GetSumOfWeights()
-        # chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut8)
-        # print 'Weighted Nentries after leading lep isolation %.3f' % th1f.GetSumOfWeights()
-        # chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut9)
-        # print 'Weighted Nentries after sum taupt is %.3f' % th1f.GetSumOfWeights()
-        #chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut10)
-        #print 'Weighted Nentries after transmass lep1MET is %.3f' % th1f.GetSumOfWeights()
-        #chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut11)
-        #print 'Weighted Nentries after b-jet veto is %.3f' % th1f.GetSumOfWeights()
+        """
+        if group.name != 'DataSSS':
+            if entry.testing== '_OSMC':
+                chain.Draw('evtsel_MET*%f>>%s' % (entry.factor, th1f_name), cut3)
+				th1f.Scale(group.factor)
+                print 'Weight Nentries in OS plot is %.3f' % th1f.GetSumOfWeights()
+        if group.name=='DataSSS':
+            if entry.testing=='_SSSdata':
+                chain.Draw('%s*%f>>%s' % ('evtsel_MET', entry.factor, th1f_name), cut3ex)
+                th1f.Scale(group.factor)
+                print 'Weight Nentries in SSS data plot is %.3f' % th1f.GetSumOfWeights()
+        if (group.name != 'DataSSS' and group.name != 'Data'):
+            if entry.testing=='_SSSMC':
+                chain.Draw('evtsel_MET*%f>>%s' % (entry.factor, th1f_name), cut3ex)
+                th1f.Scale(group.factor)
+                print 'Weight Nentries in SSS MC plot is %.3f' % th1f.GetSumOfWeights()
         
 
+
+                #th1f.Scale(1.0/th1f.GetSumOfWeights()) ## TO SCALE HISTO TO UNITY
+    
+        if entry.variable == 'evtsel_MET1':
+            chain.Draw('sqrt(pow(evtsel_met_etx, 2) + pow(evtsel_met_ety,2))>>%s' % th1f_name, cut3)
+            th1f.Scale(group.factor)
+            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
+        elif entry.variable == 'evtsel_dphi':
+            chain.Draw('TVector2::Phi_mpi_pi((evtsel_tau1_phi-evtsel_tau2_phi))>>%s' % th1f_name, cut3)
+            th1f.Scale(group.factor)
+            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
+        elif entry.variable == 'evtsel_deta':
+            chain.Draw('(evtsel_tau1_eta-evtsel_tau2_eta)>>%s' % th1f_name, cut3)
+            th1f.Scale(group.factor)
+            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
+        elif entry.variable == 'evtsel_dR':
+            chain.Draw('TMath::Sqrt(TMath::Power((evtsel_tau1_eta-evtsel_tau2_eta),2) + TMath::Power(TVector2::Phi_mpi_pi((evtsel_tau1_phi-evtsel_tau2_phi)),2))>>%s' % th1f_name, cut3)
+            th1f.Scale(group.factor)
+            nbins = th1f.GetNbinsX()
+            sum2errors = 0
+            for i in range(1,nbins+1):
+                sum2errors += th1f.GetBinError(i)**2
+            th1f_error = math.sqrt(sum2errors)
+            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
+            print 'th1f error is %.3f' % th1f_error
+            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
+        elif entry.variable == 'evtsel_transmass_lep1MET':
+            chain.Draw('%s*%f>>%s' % ('TMath::Sqrt(2*evtsel_MET*evtsel_lep1_pt*(1-TMath::Cos(TVector2::Phi_mpi_pi((evtsel_MET_phi-evtsel_lep1_phi)))))', entry.factor, th1f_name), cut3)
+            th1f.Scale(group.factor)
+        else:
+            chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut3)
+            th1f.Scale(group.factor)
+            nbins = th1f.GetNbinsX()
+            sum2errors = 0
+            for i in range(1,nbins+1):
+                sum2errors += th1f.GetBinError(i)**2
+            th1f_error = math.sqrt(sum2errors)
+            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
+            print 'th1f error is %.3f' % th1f_error
+		"""
+
+            
         #####
         ##ACCEPTANCE CHALLENGE: ZH125 HADHAD
         #####
@@ -233,8 +287,11 @@ for group in list_of_groups:
         cut9 = cut8.strip('6))') + '6) && (evtsel_vlep1_charge*evtsel_vlep2_charge == -1))'
         cut10  = 'evtsel_weight*0.02*(evtsel_is_ZHhadhad*evtsel_is_tau*((((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000))) && (evtsel_nLooseTaus==2) && (evtsel_tau2_is_medium==1) && (evtsel_tau1_charge*evtsel_tau2_charge==-1) && (evtsel_nLeptons==2) && (evtsel_vlep1_etcone20/evtsel_vlep1_pt<0.06 && evtsel_vlep1_ptcone40/evtsel_vlep1_pt<0.06) && (evtsel_vlep2_etcone20/evtsel_vlep2_pt<0.06 && evtsel_vlep2_ptcone40/evtsel_vlep2_pt<0.06) && (evtsel_vlep1_charge*evtsel_vlep2_charge==-1) && (evtsel_vlep1_flavour == evtsel_vlep2_flavour))'
         cut11 = cut10.strip('our))') + 'our) && (evtsel_Zll_mass<120000) && (evtsel_Zll_mass>60000))'
-        cut12 = cut11.strip('ss>60000))') + 'ss>60000) && (evtsel_sum_tau_pt >70))'
-        cut13 = 'evtsel_weight*0.02*evtsel_bjet_weight*(evtsel_is_ZHhadhad*evtsel_is_tau*((((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000))) && (evtsel_nLooseTaus==2) && (evtsel_tau2_is_medium==1) && (evtsel_tau1_charge*evtsel_tau2_charge==-1) && (evtsel_nLeptons==2) && (evtsel_vlep1_charge*evtsel_vlep2_charge == -1) && (evtsel_vlep1_flavour == evtsel_vlep2_flavour) && (evtsel_vlep1_etcone20/evtsel_vlep1_pt<0.06 && evtsel_vlep1_ptcone40/evtsel_vlep1_pt<0.06) && (evtsel_vlep2_etcone20/evtsel_vlep2_pt<0.06 && evtsel_vlep2_ptcone40/evtsel_vlep2_pt<0.06) && (evtsel_Zll_mass<120000) && (evtsel_Zll_mass>60000) && (evtsel_sum_tau_pt>70) && (evtsel_passes_bjet_veto))'
+        cut12 = cut11.strip('ss>60000))') + 'ss>60000) && (evtsel_sum_tau_pt >70000))'
+        if group.classification=='DATA':
+            cut13 = 'evtsel_weight*(evtsel_is_ZHhadhad*evtsel_is_tau*((((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000))) && (evtsel_nLooseTaus==2) && (evtsel_tau2_is_medium==1) && (evtsel_tau1_charge*evtsel_tau2_charge==-1) && (evtsel_nLeptons==2) && (evtsel_vlep1_charge*evtsel_vlep2_charge == -1) && (evtsel_vlep1_flavour == evtsel_vlep2_flavour) && (evtsel_vlep1_etcone20/evtsel_vlep1_pt<0.06 && evtsel_vlep1_ptcone40/evtsel_vlep1_pt<0.06) && (evtsel_vlep2_etcone20/evtsel_vlep2_pt<0.06 && evtsel_vlep2_ptcone40/evtsel_vlep2_pt<0.06) && (evtsel_Zll_mass<120000) && (evtsel_Zll_mass>60000) && (evtsel_sum_tau_pt>70000) && (evtsel_passes_bjet_veto))'
+        else:            
+            cut13 = 'evtsel_weight*0.02*(evtsel_is_ZHhadhad*evtsel_is_tau*((((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13 && evtsel_lep1_pt>25000) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11 && evtsel_lep1_pt>25000) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11 && (evtsel_lep1_pt*cosh(evtsel_lep1_eta))>60000))) && (evtsel_nLooseTaus==2) && (evtsel_tau2_is_medium==1) && (evtsel_tau1_charge*evtsel_tau2_charge==-1) && (evtsel_nLeptons==2) && (evtsel_vlep1_charge*evtsel_vlep2_charge == -1) && (evtsel_vlep1_flavour == evtsel_vlep2_flavour) && (evtsel_vlep1_etcone20/evtsel_vlep1_pt<0.06 && evtsel_vlep1_ptcone40/evtsel_vlep1_pt<0.06) && (evtsel_vlep2_etcone20/evtsel_vlep2_pt<0.06 && evtsel_vlep2_ptcone40/evtsel_vlep2_pt<0.06) && (evtsel_Zll_mass<120000) && (evtsel_Zll_mass>60000) && (evtsel_sum_tau_pt>70000) && (evtsel_passes_bjet_veto))'
 
 
         #chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut1)
@@ -247,6 +304,28 @@ for group in list_of_groups:
             chain.Draw('sqrt(pow(evtsel_met_etx, 2) + pow(evtsel_met_ety,2))>>%s' % th1f_name, cut3)
             th1f.Scale(group.factor)
             print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
+        elif entry.variable == 'evtsel_dphi':
+            chain.Draw('TVector2::Phi_mpi_pi((evtsel_tau1_phi-evtsel_tau2_phi))>>%s' % th1f_name, cut3)
+            th1f.Scale(group.factor)
+            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
+        elif entry.variable == 'evtsel_deta':
+            chain.Draw('(evtsel_tau1_eta-evtsel_tau2_eta)>>%s' % th1f_name, cut3)
+            th1f.Scale(group.factor)
+            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
+        elif entry.variable == 'evtsel_dR':
+            chain.Draw('TMath::Sqrt(TMath::Power((evtsel_tau1_eta-evtsel_tau2_eta),2) + TMath::Power(TVector2::Phi_mpi_pi((evtsel_tau1_phi-evtsel_tau2_phi)),2))>>%s' % th1f_name, cut3)
+            th1f.Scale(group.factor)
+            nbins = th1f.GetNbinsX()
+            sum2errors = 0
+            for i in range(1,nbins+1):
+                sum2errors += th1f.GetBinError(i)**2
+            th1f_error = math.sqrt(sum2errors)
+            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
+            print 'th1f error is %.3f' % th1f_error
+            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
+        elif entry.variable == 'evtsel_transmass_lep1MET':
+            chain.Draw('%s*%f>>%s' % ('TMath::Sqrt(2*evtsel_MET*evtsel_lep1_pt*(1-TMath::Cos(TVector2::Phi_mpi_pi((evtsel_MET_phi-evtsel_lep1_phi)))))', entry.factor, th1f_name), cut3)
+            th1f.Scale(group.factor)
         else:
             chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut3)
             th1f.Scale(group.factor)
@@ -254,36 +333,10 @@ for group in list_of_groups:
             sum2errors = 0
             for i in range(1,nbins+1):
                 sum2errors += th1f.GetBinError(i)**2
-                #print sum2errors
             th1f_error = math.sqrt(sum2errors)
-            #print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
-            #print 'th1f error is %.3f' % th1f_error
-            
-        #chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut3)
-        #print 'Weighted Nentries with Trigger+ptcut is %.3f' % th1f.GetSumOfWeights()
-        #th1f.Scale(1.0/th1f.GetSumOfWeights())
-        #chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut4)
-        #print 'Weighted Nentries with 2 Loose Taus is %.3f' % th1f.GetSumOfWeights()
-        #th1f.Scale(1.0/th1f.GetSumOfWeights())
-        # chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut5)
-        # print 'Weighted Nentries with lead tau BDTL and subtau BDTM is %.3f' % th1f.GetSumOfWeights()
-        # chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut6)
-        # print 'Weighted Nentries with OS taus is %.3f' % th1f.GetSumOfWeights()
-        # chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut7)
-        # print 'Weighted Nentries with 2 Leptons is %.3f' % th1f.GetSumOfWeights()
-        # chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut8)
-        # print 'Weighted Nentries with lep isolation is %.3f' % th1f.GetSumOfWeights()
-        # chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut9)
-        # print 'Weighted Nentries with OS leptons is %.3f' % th1f.GetSumOfWeights()
-        # chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut10)
-        # print 'Weighted Nentries with SF leptons is %.3f' % th1f.GetSumOfWeights()
-        # chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut11)
-        # print 'Weighted Nentries with 60<Zll<120 is %.3f' % th1f.GetSumOfWeights()
-        # chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut12)
-        # print 'Weighted Nentries with sumtaupt>70GeV is %.3f' % th1f.GetSumOfWeights()
-        # chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut13)
-        # print 'Weighted Nentries passing bjet veto is %.3f' % th1f.GetSumOfWeights()
-        """
+            print 'Weighted Nentries after Triggers is %.3f' % th1f.GetSumOfWeights()
+            print 'th1f error is %.3f' % th1f_error
+		"""
        
        
         
@@ -294,16 +347,30 @@ for group in list_of_groups:
                                    group.plotting.style,
                                    group.plotting.stack)
 
+        #if entry.variable == 'evtsel_MET_SSSdata':
+		#	canvas = ROOT.TCanvas('histo_canvas','histo_canvas', 0,0,800,600)
+		#	canvas.cd()
+		#	finalhist1 = ROOT.TH1F.Add(th1f_OSMC, th1f_SSSMC, 1, -1)
+		#	finalhist2 = ROOT.TH1F.Add(finalhist1, th1f, 1, 1)
+		#	finalhist.Draw('')
+		#	canvas.Print('finalhist2.png')
         # if entry.variable == 'evtsel_tau1_et_passL':
         #     #effhist = ROOT.TGraphAsymmErrors(th1f, th1f_den)
         #                 #effhist = ROOT.TGraphAsymmErrors(th1f_num,th1f_den)
 
-        #         effhist = ROOT.TGraphAsymmErrors(th1f_num, th1f_den)
+        #                 #effhist = ROOT.TGraphAsymmErrors(th1f_num, th1f_den)
         #     canvas = ROOT.TCanvas('histo_canvas','histo_canvas',0,0,800,600)
+        #     #canvas2 = ROOT.TCanvas('histo_canvas2','histo_canvas2',0,0,800,600)
         #     canvas.cd()
-        #     effhist = ROOT.TGraphAsymmErrors(th1f, th1f_den)
-        #     effhist.Draw()
+        #     #effhist = ROOT.TGraphAsymmErrors(th1f, th1f_den)
+        #     #th1f.Draw()
+        #     #canvas2.cd()
+        #     #th1f_den.Draw()
+        #     th1f.Divide(th1f_den)
+        #     th1f.Draw('')
+        #     #effhist.Draw('AP')
         #     canvas.Print('effhist.png')
+        #     #canvas2.Print('effhist2.png')
             
             
 

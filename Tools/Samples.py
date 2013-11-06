@@ -256,6 +256,50 @@ ggH150_tautaulh = Sample(
     name = 'ggH150_tautaulh',
     path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_lh/ggH150_tautaulh.e1217_s1469_s1470_r3542_r3549_p1344.root')
 
+ggH100_tautaull = Sample(
+    name = 'ggH100_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH100_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+ggH105_tautaull = Sample(
+    name = 'ggH105_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH105_tautaull.e1222_s1469_s1470_r3752_r3549_p1344.root')
+
+ggH110_tautaull = Sample(
+    name = 'ggH110_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH110_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+ggH115_tautaull = Sample(
+    name = 'ggH115_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH115_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+ggH120_tautaull = Sample(
+    name = 'ggH120_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH120_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+ggH125_tautaull = Sample(
+    name = 'ggH125_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH125_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+ggH130_tautaull = Sample(
+    name = 'ggH130_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH130_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+ggH135_tautaull = Sample(
+    name = 'ggH135_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH135_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+ggH140_tautaull = Sample(
+    name = 'ggH140_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH140_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+ggH145_tautaull = Sample(
+    name = 'ggH145_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH145_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+ggH150_tautaull = Sample(
+    name = 'ggH150_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH150_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
 MadGraph_lnuee_lt7 = Sample(
     name = 'MadGraph_lnuee_lt7',
     path = '/afs/cern.ch/work/i/ideal/v00-07/HSG3Diboson/MadGraph_lnuee_lt7.e1275_s1469_s1470_r3752_r3549_p1344.root')
@@ -616,6 +660,50 @@ VBFH150_tautaulh = Sample(
     name = 'VBFH150_tautaulh',
     path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_lh/VBFH150_tautaulh.e1217_s1469_s1470_r3542_r3549_p1344.root')
 
+VBFH100_tautaull = Sample(
+    name = 'VBFH100_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH100_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+VBFH105_tautaull = Sample(
+    name = 'VBFH105_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH105_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+VBFH110_tautaull = Sample(
+    name = 'VBFH110_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH110_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+VBFH115_tautaull = Sample(
+    name = 'VBFH115_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH115_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+VBFH120_tautaull = Sample(
+    name = 'VBFH120_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH120_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+VBFH125_tautaull = Sample(
+    name = 'VBFH125_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH125_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+VBFH130_tautaull = Sample(
+    name = 'VBFH130_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH130_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+VBFH135_tautaull = Sample(
+    name = 'VBFH135_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH135_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+VBFH140_tautaull = Sample(
+    name = 'VBFH140_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH140_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+VBFH145_tautaull = Sample(
+    name = 'VBFH145_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH145_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
+VBFH150_tautaull = Sample(
+    name = 'VBFH150_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH150_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
+
 WH100_tautauhh = Sample(
     name = 'WH100_tautauhh',
     path = '/afs/cern.ch/work/i/ideal/v00-07/WH_hh/WH100_tautauhh.e1217_s1469_s1470_r3542_r3549_p1344.root')
@@ -703,6 +791,50 @@ WH145_tautaulh = Sample(
 WH150_tautaulh = Sample(
     name = 'WH150_tautaulh',
     path = '/afs/cern.ch/work/i/ideal/v00-07/WH_lh/WH150_tautaulh.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+WH100_tautaull = Sample(
+    name = 'WH100_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH100_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+WH105_tautaull = Sample(
+    name = 'WH105_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH105_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+WH110_tautaull = Sample(
+    name = 'WH110_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH110_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+WH115_tautaull = Sample(
+    name = 'WH115_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH115_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+WH120_tautaull = Sample(
+    name = 'WH120_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH120_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+WH125_tautaull = Sample(
+    name = 'WH125_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH125_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+WH130_tautaull = Sample(
+    name = 'WH130_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH130_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+WH135_tautaull = Sample(
+    name = 'WH135_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH135_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+WH140_tautaull = Sample(
+    name = 'WH140_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH140_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+WH145_tautaull = Sample(
+    name = 'WH145_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH145_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+WH150_tautaull = Sample(
+    name = 'WH150_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH150_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
 
 WenuNp0 = Sample(
     name = 'WenuNp0',
@@ -844,6 +976,78 @@ WtaunuNp5incl_Auto = Sample(
     name = 'WtaunuNp5incl_Auto',
     path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto/WtaunuNp5incl.e1881_s1581_s1586_r3658_r3549_p1344.root')
 
+WenuNp0_AFII = Sample(
+    name = 'WenuNp0_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WenuNp0.e1855_a188_a171_r3549_p1344.root')
+
+WenuNp1_AFII = Sample(
+    name = 'WenuNp1_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WenuNp1.e1855_a188_a171_r3549_p1344.root')
+
+WenuNp2_AFII = Sample(
+    name = 'WenuNp2_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WenuNp2.e1855_a188_a171_r3549_p1344.root')
+
+WenuNp3_AFII = Sample(
+    name = 'WenuNp3_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WenuNp3.e1855_a188_a171_r3549_p1344.root')
+
+WenuNp4_AFII = Sample(
+    name = 'WenuNp4_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WenuNp4.e1855_a188_a171_r3549_p1344.root')
+
+WenuNp5incl_AFII = Sample(
+    name = 'WenuNp5incl_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WenuNp5incl.e1855_a188_a171_r3549_p1344.root')
+
+WmunuNp0_AFII = Sample(
+    name = 'WmunuNp0_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WmunuNp0.e1856_a188_a171_r3549_p1344.root')
+
+WmunuNp1_AFII = Sample(
+    name = 'WmunuNp1_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WmunuNp1.e1856_a188_a171_r3549_p1344.root')
+
+WmunuNp2_AFII = Sample(
+    name = 'WmunuNp2_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WmunuNp2.e1856_a188_a171_r3549_p1344.root')
+
+WmunuNp3_AFII = Sample(
+    name = 'WmunuNp3_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WmunuNp3.e1856_a188_a171_r3549_p1344.root')
+
+WmunuNp4_AFII = Sample(
+    name = 'WmunuNp4_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WmunuNp4.e1856_a188_a171_r3549_p1344.root')
+
+WmunuNp5incl_AFII = Sample(
+    name = 'WmunuNp5incl_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WmunuNp5incl.e1856_a188_a171_r3549_p1344.root')
+
+WtaunuNp0_AFII = Sample(
+    name = 'WtaunuNp0_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WtaunuNp0.e1857_a188_a171_r3549_p1344.root')
+
+WtaunuNp1_AFII = Sample(
+    name = 'WtaunuNp1_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WtaunuNp1.e1857_a188_a171_r3549_p1344.root')
+
+WtaunuNp2_AFII = Sample(
+    name = 'WtaunuNp2_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WtaunuNp2.e1857_a188_a171_r3549_p1344.root')
+
+WtaunuNp3_AFII = Sample(
+    name = 'WtaunuNp3_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WtaunuNp3.e1857_a188_a171_r3549_p1344.root')
+
+WtaunuNp4_AFII = Sample(
+    name = 'WtaunuNp4_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WtaunuNp4.e1857_a188_a171_r3549_p1344.root')
+
+WtaunuNp5incl_AFII = Sample(
+    name = 'WtaunuNp5incl_AFII',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WtaunuNp5incl.e1857_a188_a171_r3549_p1344.root')
+
 ZH100_tautauhh = Sample(
     name = 'ZH100_tautauhh',
     path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_hh/ZH100_tautauhh.e1217_s1469_s1470_r3542_r3549_p1344.root')
@@ -931,6 +1135,50 @@ ZH145_tautaulh = Sample(
 ZH150_tautaulh = Sample(
     name = 'ZH150_tautaulh',
     path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_lh/ZH150_tautaulh.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+ZH100_tautaull = Sample(
+    name = 'ZH100_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH100_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+ZH105_tautaull = Sample(
+    name = 'ZH105_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH105_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+ZH110_tautaull = Sample(
+    name = 'ZH110_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH110_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+ZH115_tautaull = Sample(
+    name = 'ZH115_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH115_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+ZH120_tautaull = Sample(
+    name = 'ZH120_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH120_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+ZH125_tautaull = Sample(
+    name = 'ZH125_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH125_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+ZH130_tautaull = Sample(
+    name = 'ZH130_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH130_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+ZH135_tautaull = Sample(
+    name = 'ZH135_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH135_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+ZH140_tautaull = Sample(
+    name = 'ZH140_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH140_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
+
+ZH145_tautaull = Sample(
+    name = 'ZH145_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH145_tautaull.e1217_s1469_s1470_r3752_r3549_p1344.root')
+
+ZH150_tautaull = Sample(
+    name = 'ZH150_tautaull',
+    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH150_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
 
 ZeeNp0 = Sample(
     name = 'ZeeNp0',
@@ -1075,252 +1323,4 @@ ZtautauNp4_Auto = Sample(
 ZtautauNp5incl_Auto = Sample(
     name = 'ZtautauNp5incl_Auto',
     path = '/afs/cern.ch/work/i/ideal/v00-07/Z+Jets_Auto/ZtautauNp5incl.e1881_s1581_s1586_r3658_r3549_p1344.root')
-
-ggH100_tautaull = Sample(
-    name = 'ggH100_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH100_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-ggH105_tautaull = Sample(
-    name = 'ggH105_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH105_tautaull.e1222_s1469_s1470_r3752_r3549_p1344.root')
-
-ggH110_tautaull = Sample(
-    name = 'ggH110_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH110_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-ggH115_tautaull = Sample(
-    name = 'ggH115_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH115_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-ggH120_tautaull = Sample(
-    name = 'ggH120_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH120_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-ggH125_tautaull = Sample(
-    name = 'ggH125_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH125_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-ggH130_tautaull = Sample(
-    name = 'ggH130_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH130_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-ggH135_tautaull = Sample(
-    name = 'ggH135_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH135_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-ggH140_tautaull = Sample(
-    name = 'ggH140_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH140_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-ggH145_tautaull = Sample(
-    name = 'ggH145_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH145_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-ggH150_tautaull = Sample(
-    name = 'ggH150_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ggF_ll/ggH150_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-VBFH100_tautaull = Sample(
-    name = 'VBFH100_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH100_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-VBFH105_tautaull = Sample(
-    name = 'VBFH105_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH105_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-VBFH110_tautaull = Sample(
-    name = 'VBFH110_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH110_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-VBFH115_tautaull = Sample(
-    name = 'VBFH115_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH115_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-VBFH120_tautaull = Sample(
-    name = 'VBFH120_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH120_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-VBFH125_tautaull = Sample(
-    name = 'VBFH125_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH125_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-VBFH130_tautaull = Sample(
-    name = 'VBFH130_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH130_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-VBFH135_tautaull = Sample(
-    name = 'VBFH135_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH135_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-VBFH140_tautaull = Sample(
-    name = 'VBFH140_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH140_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-VBFH145_tautaull = Sample(
-    name = 'VBFH145_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH145_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-VBFH150_tautaull = Sample(
-    name = 'VBFH150_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/VBF_ll/VBFH150_tautaull.e1222_s1469_s1470_r3542_r3549_p1344.root')
-
-WH100_tautaull = Sample(
-    name = 'WH100_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH100_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-WH105_tautaull = Sample(
-    name = 'WH105_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH105_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-WH110_tautaull = Sample(
-    name = 'WH110_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH110_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-WH115_tautaull = Sample(
-    name = 'WH115_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH115_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-WH120_tautaull = Sample(
-    name = 'WH120_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH120_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-WH125_tautaull = Sample(
-    name = 'WH125_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH125_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-WH130_tautaull = Sample(
-    name = 'WH130_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH130_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-WH135_tautaull = Sample(
-    name = 'WH135_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH135_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-WH140_tautaull = Sample(
-    name = 'WH140_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH140_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-WH145_tautaull = Sample(
-    name = 'WH145_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH145_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-WH150_tautaull = Sample(
-    name = 'WH150_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/WH_ll/WH150_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-WenuNp0_AFII = Sample(
-    name = 'WenuNp0_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WenuNp0.e1855_a188_a171_r3549_p1344.root')
-
-WenuNp1_AFII = Sample(
-    name = 'WenuNp1_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WenuNp1.e1855_a188_a171_r3549_p1344.root')
-
-WenuNp2_AFII = Sample(
-    name = 'WenuNp2_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WenuNp2.e1855_a188_a171_r3549_p1344.root')
-
-WenuNp3_AFII = Sample(
-    name = 'WenuNp3_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WenuNp3.e1855_a188_a171_r3549_p1344.root')
-
-WenuNp4_AFII = Sample(
-    name = 'WenuNp4_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WenuNp4.e1855_a188_a171_r3549_p1344.root')
-
-WenuNp5incl_AFII = Sample(
-    name = 'WenuNp5incl_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WenuNp5incl.e1855_a188_a171_r3549_p1344.root')
-
-WmunuNp0_AFII = Sample(
-    name = 'WmunuNp0_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WmunuNp0.e1856_a188_a171_r3549_p1344.root')
-
-WmunuNp1_AFII = Sample(
-    name = 'WmunuNp1_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WmunuNp1.e1856_a188_a171_r3549_p1344.root')
-
-WmunuNp2_AFII = Sample(
-    name = 'WmunuNp2_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WmunuNp2.e1856_a188_a171_r3549_p1344.root')
-
-WmunuNp3_AFII = Sample(
-    name = 'WmunuNp3_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WmunuNp3.e1856_a188_a171_r3549_p1344.root')
-
-WmunuNp4_AFII = Sample(
-    name = 'WmunuNp4_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WmunuNp4.e1856_a188_a171_r3549_p1344.root')
-
-WmunuNp5incl_AFII = Sample(
-    name = 'WmunuNp5incl_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WmunuNp5incl.e1856_a188_a171_r3549_p1344.root')
-
-WtaunuNp0_AFII = Sample(
-    name = 'WtaunuNp0_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WtaunuNp0.e1857_a188_a171_r3549_p1344.root')
-
-WtaunuNp1_AFII = Sample(
-    name = 'WtaunuNp1_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WtaunuNp1.e1857_a188_a171_r3549_p1344.root')
-
-WtaunuNp2_AFII = Sample(
-    name = 'WtaunuNp2_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WtaunuNp2.e1857_a188_a171_r3549_p1344.root')
-
-WtaunuNp3_AFII = Sample(
-    name = 'WtaunuNp3_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WtaunuNp3.e1857_a188_a171_r3549_p1344.root')
-
-WtaunuNp4_AFII = Sample(
-    name = 'WtaunuNp4_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WtaunuNp4.e1857_a188_a171_r3549_p1344.root')
-
-WtaunuNp5incl_AFII = Sample(
-    name = 'WtaunuNp5incl_AFII',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/W+Jets_Auto_AFII/WtaunuNp5incl.e1857_a188_a171_r3549_p1344.root')
-
-ZH100_tautaull = Sample(
-    name = 'ZH100_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH100_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-ZH105_tautaull = Sample(
-    name = 'ZH105_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH105_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-ZH110_tautaull = Sample(
-    name = 'ZH110_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH110_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-ZH115_tautaull = Sample(
-    name = 'ZH115_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH115_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-ZH120_tautaull = Sample(
-    name = 'ZH120_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH120_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-ZH125_tautaull = Sample(
-    name = 'ZH125_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH125_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-ZH130_tautaull = Sample(
-    name = 'ZH130_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH130_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-ZH135_tautaull = Sample(
-    name = 'ZH135_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH135_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-ZH140_tautaull = Sample(
-    name = 'ZH140_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH140_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
-
-ZH145_tautaull = Sample(
-    name = 'ZH145_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH145_tautaull.e1217_s1469_s1470_r3752_r3549_p1344.root')
-
-ZH150_tautaull = Sample(
-    name = 'ZH150_tautaull',
-    path = '/afs/cern.ch/work/i/ideal/v00-07/ZH_ll/ZH150_tautaull.e1217_s1469_s1470_r3542_r3549_p1344.root')
 

@@ -502,7 +502,7 @@ class Histogram:
         style.style1D['points'].apply(self.ratio)
 
         self.ratio_pad.cd()
-        self.ratio.SetMinimum(0.01)
+        self.ratio.SetMinimum(0.01) 
         self.ratio.SetMaximum(1.99)
         self.ratio.Draw()
         
