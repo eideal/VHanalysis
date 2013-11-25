@@ -1,23 +1,6 @@
 import palette
 
 #############################################
-class PlottingInfo:
-    """
-    Constructor
-    """
-    def __init__(self,
-                 color,
-                 style,
-                 legendLabel,
-                 stack):
-
-        self.color = color
-        self.style = style
-        self.legendLabel = legendLabel
-        self.stack = stack
-                 
-
-#############################################
 class Group:
     """
     Constructor
@@ -26,10 +9,6 @@ class Group:
                  name = '',
                  samples = [],
                  factor = 1,
-                 color = palette.black,
-                 style = 'line',
-                 legendLabel = 'label',
-                 stack = False,
                  classification = 'BG'
                  ):
 
@@ -37,9 +16,6 @@ class Group:
         self.factor = factor
         self.samples = samples
         self.classification = classification
-        self.plotting = PlottingInfo(color,
-                                     style,
-                                     legendLabel,
-                                     stack)
+      
 
 
