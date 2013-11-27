@@ -226,7 +226,8 @@ class Histogram:
         Constructor
         """
 
-        self.name  = name
+        self.name   = name
+        self.suffix = ''
         self.testing = testing
         self.label = label
         self.factor = factor
@@ -257,6 +258,17 @@ class Histogram:
 
         ## Select a positioning object
         self.positioning = style.normal_positioning
+
+
+    ## -------------------------------------------- ##
+    def reset(self):
+        """
+        Resets the histogram content, reuse same name and binning, etc.
+        """
+        self.suffix = ''
+        self.n = -1
+        self.components = []
+        self.text_labels = []
         
 
     ## -------------------------------------------- ##
@@ -685,4 +697,4 @@ class Histogram:
                 
         
         ## Print to file
-        self.canvas.Print('%s%s.png' % (self.name, self.testing))
+        self.canvas.Print('%s%s%s.png' % (self.name, self.suffix, self.testing))

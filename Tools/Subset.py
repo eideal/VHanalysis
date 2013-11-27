@@ -130,7 +130,9 @@ class Subset(list):
             cut_strings = []
         
         for subset in self:
-            cut_strings.append(subset.string())
+            subset_string = subset.string()
+            if not (subset_string == ''):
+                cut_strings.append(subset.string())
 
         string = ''
         if self.logic == 'and':

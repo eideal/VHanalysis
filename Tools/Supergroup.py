@@ -1,4 +1,4 @@
-import palette
+import palette, Subset
 
 #############################################
 class Supergroup:
@@ -13,6 +13,7 @@ class Supergroup:
                  style = 'line',
                  legendLabel = 'label',
                  stack = False,
+                 subset = Subset.Subset('')
                  ):
 
         self.name = name
@@ -22,3 +23,4 @@ class Supergroup:
         self.style = style
         self.legendLabel = legendLabel
         self.stack = stack
+        self.subset = subset

@@ -12,7 +12,7 @@ plots.Add('evtsel_MET','_total', 30, 0, 300, 'evtsel_MET', 0.001, False)
 #plots.Add('evtsel_dR','_WHhh', 20, 0, 8, 'dR(tau1,tau2)', 1, False)
 
 plots.Add('evtsel_sum_tau_pt', '_total', 60, 0, 300, 'evtsel_sum_tau_pt', 0.001, False)
-plots.Add('evtsel_sum_lep_pt', '_total', 70, 50, 400, 'evtsel_sum_lep_pt', 0.001, False)
+#plots.Add('evtsel_sum_lep_pt', '_total', 70, 50, 400, 'evtsel_sum_lep_pt', 0.001, False)
 
 #plots.Add('evtsel_tau1_weight_medium', '_WHhh',10, 0,2, 'evtsel_tau1_weight_medium', 1, False)
 #plots.Add('evtsel_MET1', '_LH', 50,0,100, 'MET[GeV]', 0.001, False)
@@ -44,11 +44,11 @@ plots.Add('evtsel_transmass_lep1MET', '_total', 30, 0, 300, 'evtsel_transmass_le
 #plots.Add('evtsel_hlep1_pt', '_WHhh', 20,0,110, 'evtsel_hlep1_pt', 0.001, False)
 #plots.Add('evtsel_dphi', '_WHhh', 25, -4, 8, 'evtsel_dphi', 1, False)
 #plots.Add('evtsel_deta', '_WHhh', 25, -5, 10, 'evtsel_deta', 1, False)
-plots.Add('evtsel_vlep1_pt', '_total',30,0,300, 'evtsel_vlep1_pt', 0.001, False)
+#plots.Add('evtsel_vlep1_pt', '_total',30,0,300, 'evtsel_vlep1_pt', 0.001, False)
 # plots.Add('evtsel_vlep1_eta', '_WHhh', 15,-3.5,6, 'evtsel_vlep1_eta', 1, False)
 # plots.Add('evtsel_vlep1_phi', '_WHhh', 15,-4,8, 'evtsel_vlep1_phi', 1, False)
 
-plots.Add('evtsel_H_m_vis', '_total', 15,0,300, 'evtsel_H_m_vis', 0.001, False)
+#plots.Add('evtsel_H_m_vis', '_total', 15,0,300, 'evtsel_H_m_vis', 0.001, False)
 #plots.Add('evtsel_H_m_MMC', '_WHhh', 15,0,300, 'evtsel_H_m_MMC', 0.001, False)
 
 #plots.Add('evtsel_vlep2_pt', '_WHhh', 38,0,76, 'evtsel_vlep2_pt', 0.001, False)
@@ -58,14 +58,14 @@ plots.Add('evtsel_H_m_vis', '_total', 15,0,300, 'evtsel_H_m_vis', 0.001, False)
 #plots.Add('evtsel_nLooseTaus', 'WHhh', 5,0,5, 'evtsel_nLooseTaus', 1, False)
 #plots.Add('evtsel_nMediumTaus', 'WHhh', 5,0,5, 'evtsel_nMediumTaus', 1, False)
 
-plots.Add('evtsel_tau1_et', '_total', 40,0,200, 'evtsel_tau1_et', 0.001, False)
-plots.Add('evtsel_tau2_et', '_total', 40, 0, 200, 'evtsel_tau2_et', 0.001, False)
-plots.Add('evtsel_tau1_phi', '_total', 15,-4,8, 'evtsel_tau1_phi', 1, False)
+#plots.Add('evtsel_tau1_et', '_total', 40,0,200, 'evtsel_tau1_et', 0.001, False)
+#plots.Add('evtsel_tau2_et', '_total', 40, 0, 200, 'evtsel_tau2_et', 0.001, False)
+#plots.Add('evtsel_tau1_phi', '_total', 15,-4,8, 'evtsel_tau1_phi', 1, False)
 # plots.Add('evtsel_tau1_JetBDTScore', '_WHhh', 15,0.4,1.2, 'evtsel_tau1_JetBDTScore', 1, False)
 
 # plots.Add('evtsel_vlep1_etcone20', '', 50,0,200, 'evtsel_vlep1_etcone20', 0.001, False)
 
-plots.Add('evtsel_tau1_eta', '_total', 15,-3.5,6, 'evtsel_tau1_eta', 1, False)
+#plots.Add('evtsel_tau1_eta', '_total', 15,-3.5,6, 'evtsel_tau1_eta', 1, False)
 
 # plots.Add('evtsel_vlep1_ptcone40', '', 50,0,200, 'evtsel_vlep1_ptcone40', 0.001, False)
 #plots.Add('evtsel_vlep1_pt','_', 100, 0, 400, 'vlep_{1} p_{T}', 0.001, True)
