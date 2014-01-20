@@ -61,7 +61,7 @@ void runSig(const char* inFileName,
   bool doUncap            = 1; // uncap p0
   bool doInj              = 0; // setup the poi for injection study (zero is faster if you're not)
   bool doMedian           = 1; // compute median significance
-  bool isBlind            = 0; // Dont look at observed data
+  bool isBlind            = 1; // Dont look at observed data
   bool doConditional      = !isBlind; // do conditional expected data
   bool doObs              = !isBlind; // compute observed significance
 

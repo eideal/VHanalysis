@@ -90,6 +90,7 @@ if RQCD_studies:
 ###Subsets definition
 WH = Subsets.wh
 ZH = Subsets.zh
+ZHe = Subsets.zhe
 ZHistau = Subsets.zh + Subsets.istau
 TT = Subsets.tt_cr
 WJets = Subsets.w_cr
@@ -105,7 +106,8 @@ WHstudy = Subsets.whtest * Subsets.whtest2  #Dec3-5 study
 
 
 regions = [
-    [ZH, 0.0, []]
+    [ZH, 0.0, []],
+    [ZHe, 0.0, []]
     ]
 if RQCD_studies:
     regions = [

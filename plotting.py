@@ -14,7 +14,11 @@ plots = plotinfo_container()
 #plots.Add('evtsel_transmass_vlep1MET', '_totalTEST', 30, 0, 300, 'evtsel_transmass_lep1MET', 0.001, False)
 #plots.Add('evtsel_MET','_totalTEST', 20, 0, 200, 'evtsel_MET', 0.001, False)
 #plots.Add('evtsel_H_m_vis', '_totalTEST', 20,0,400, 'evtsel_H_m_vis', 0.001, False)
-plots.Add('evtsel_H_m_MMC', '_totalTEST', 20,0,400, 'evtsel_H_m_MMC', 0.001, False, True)
+
+
+#plots.Add('evtsel_H_m_MMC', '_totalTEST', 20,0,400, 'evtsel_H_m_MMC', 0.001, False, True)
+#plots.Add('evtsel_H_m_MMC', '_totalTEST', 5,25,225, 'evtsel_H_m_MMC', 0.001, False, True)
+plots.Add('evtsel_H_m_MMC', '_totalTEST', 1,0,250, 'evtsel_H_m_MMC', 0.001, False, True)
 
 #plots.Add('evtsel_vlep1_pt', '_totalTEST',30,0,300, 'evtsel_vlep1_pt', 0.001, False)
 #plots.Add('evtsel_tau2_et', '_totalTEST', 40, 0, 200, 'evtsel_tau2_et', 0.001, False)
