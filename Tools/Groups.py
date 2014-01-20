@@ -1,5 +1,6 @@
 from Group import Group
 from Samples import *
+from Subsets import *
 import palette
 
 Data_group = Group('Data',
@@ -8,12 +9,80 @@ Data_group = Group('Data',
               Muons],
               factor = 1.0,
               classification = 'DATA'
-              )
+              ) 
+Data_group_1AntiTau = Group('Data_1AntiTau', ##1 anti-tau + 1 selected tau, no extra jets in data event that could be an antitau
+                            [Egamma,
+                             JetTauEtmiss,
+                             Muons],
+                             factor = 1.0,
+                             classification = 'DATA',
+                             subset = antitau2 * antitau3
+                             )
+Data_group_2AntiTaus = Group('Data_2AntiTaus', #2 anti-taus, no extra jets in event that could be an anti-tau
+                             [Egamma,
+                              JetTauEtmiss,
+                              Muons],
+                              factor = -1.0,
+                              classification = 'DATA',
+                              subset = antitau
+                              )
+Data_group_1AntiTau_2 = Group('Data_1AntiTau_2', #1 anti-tau + 1 selected tau + 1 jet in the event that could also be the anti-tau
+                              [Egamma,
+                               JetTauEtmiss,
+                               Muons],
+                               factor = 0.5,
+                               classification = 'DATA',
+                               subset = antitau4 * antitau5
+                               )
+Data_group_2AntiTaus_2 = Group('Data_2AntiTaus_2', #2 anti-taus + 1 add. jet in the event that could also be an anti-tau
+                               [Egamma,
+                                JetTauEtmiss,
+                                Muons],
+                                factor = -.667,
+                                classification = 'DATA',
+                                subset = antitau6
+                                )
+Data_group_1AntiTau_3 = Group('Data_1AntiTau_3', #1 anti-tau + 1 selected tau + 2 add. jets in the event that could be anti-taus
+                              [Egamma,
+                               JetTauEtmiss,
+                               Muons],
+                               factor = 0.333,
+                               classification = 'DATA',
+                               subset = antitau8 * antitau9
+                               )
+Data_group_2AntiTaus_3 = Group('Data_2AntiTaus_3', #2 anti-taus + 2 add. jets in the event that could be anti-taus
+                               [Egamma,
+                               JetTauEtmiss,
+                               Muons],
+                               factor = -0.5,
+                               classification = 'DATA',
+                               subset = antitau7
+                               )
+Data_group_1AntiTau_4 = Group('Data_1AntiTau_4', #1 anti-tau + 1 selected tau + 3 add. jets in the event that could also be the anti-tau
+                              [Egamma,
+                               JetTauEtmiss,
+                               Muons],
+                               factor = 0.25,
+                               classification = 'DATA',
+                               subset = antitau10 * antitau11
+                               )
+Data_group_2AntiTaus_4 = Group('Data_2AntiTaus_4', #2 anti-taus + 3 add. jets in the event that could also be the anti-tau
+                              [Egamma,
+                               JetTauEtmiss,
+                               Muons],
+                               factor = -0.4,
+                               classification = 'DATA',
+                               subset = antitau12
+                               )
+
+                        
+
+
 DataSSS_group = Group('DataSSS',
                 [Egamma,
                  JetTauEtmiss,
                  Muons],
-                 factor = 2.0,
+                 factor = 1.0,
                  classification = 'DATA'
                  )
 WeJets_group = Group('WeJets',
@@ -35,7 +104,7 @@ SSSWeJets_group = Group('SSSWeJets',
                    WenuNp4_Auto,
                    WenuNp5incl_Auto,
                    ],
-                   factor = -2.0,
+                   factor = -1.0,
                    classification = 'BG'
                    )
 WmJets_group = Group('WmJets',
@@ -57,7 +126,7 @@ SSSWmJets_group = Group('SSSWmJets',
                 WmunuNp4_Auto,
                 WmunuNp5incl_Auto,
                 ],
-                factor = -2.0,
+                factor = -1.0,
                 classification = 'BG'
                 )
 WtJets_group = Group('WtJets',
@@ -79,7 +148,7 @@ SSSWtJets_group = Group('SSSWtJets',
                    WtaunuNp4_Auto,
                    WtaunuNp5incl_Auto,
                    ],
-                   factor = -2.0,
+                   factor = -1.0,
                    classification = 'BG'
                    )
 ZeeJets_group = Group('ZeeJets',
@@ -89,13 +158,18 @@ ZeeJets_group = Group('ZeeJets',
                  ZeeNp3_Auto,
                  ZeeNp4_Auto,
                  ZeeNp5incl_Auto,
-                 ZeeNp0Excl_Mll10to60,
-                 ZeeNp1Excl_Mll10to60,
-                 ZeeNp2Excl_Mll10to60,
-                 ZeeNp3Excl_Mll10to60,
-                 ZeeNp4Excl_Mll10to60,
-                 ZeeNp5Incl_Mll10to60,
-                 ],
+                 Filtered_ZeeNp0Excl_Mll10to60,
+                 Filtered_ZeeNp1Excl_Mll10to60,
+                 Filtered_ZeeNp2Excl_Mll10to60,
+                 Filtered_ZeeNp3Excl_Mll10to60,
+                 Filtered_ZeeNp4Excl_Mll10to60,
+#ZeeNp0Excl_Mll10to60,
+#                ZeeNp1Excl_Mll10to60,
+#                ZeeNp2Excl_Mll10to60,
+#                ZeeNp3Excl_Mll10to60,
+#                ZeeNp4Excl_Mll10to60,
+#                ZeeNp5Incl_Mll10to60,
+],
                  factor = 1.0,
                  classification = 'BG'
                  )
@@ -113,7 +187,7 @@ SSSZeeJets_group = Group('SSSZeeJets',
                     ZeeNp4Excl_Mll10to60,
                     ZeeNp5Incl_Mll10to60,
                     ],
-                    factor = -2.0,
+                    factor = -1.0,
                     classification = 'BG'
                     )
 ZmmJets_group = Group('ZmmJets',
@@ -123,12 +197,17 @@ ZmmJets_group = Group('ZmmJets',
                  ZmumuNp3_Auto,
                  ZmumuNp4_Auto,
                  ZmumuNp5incl_Auto,
-                 ZmumuNp0Excl_Mll10to60,
-                 ZmumuNp1Excl_Mll10to60,
-                 ZmumuNp2Excl_Mll10to60,
-                 ZmumuNp3Excl_Mll10to60,
-                 ZmumuNp4Excl_Mll10to60,
-                 ZmumuNp5Incl_Mll10to60,
+                 Filtered_ZmumuNp0Excl_Mll10to6,
+                 Filtered_ZmumuNp1Excl_Mll10to6,
+                 Filtered_ZmumuNp2Excl_Mll10to6,
+                 Filtered_ZmumuNp3Excl_Mll10to6,
+                 Filtered_ZmumuNp4Excl_Mll10to6,
+#ZmumuNp0Excl_Mll10to60,
+#                ZmumuNp1Excl_Mll10to60,
+#                ZmumuNp2Excl_Mll10to60,
+#                ZmumuNp3Excl_Mll10to60,
+#                ZmumuNp4Excl_Mll10to60,
+#                ZmumuNp5Incl_Mll10to60,
                  ],
                  factor = 1.0,
                  classification = 'BG'
@@ -147,16 +226,20 @@ SSSZmmJets_group = Group('SSSZmmJets',
                  ZmumuNp4Excl_Mll10to60,
                  ZmumuNp5Incl_Mll10to60,
                  ],
-                 factor = -2.0,
+                 factor = -1.0,
                  classification = 'BG'
                  )
 ZttJets_group = Group('ZttJets',
-                [ZtautauNp0Excl_Mll10to60,
-                 ZtautauNp1Excl_Mll10to60,
-                 ZtautauNp2Excl_Mll10to60,
-                 ZtautauNp3Excl_Mll10to60,
-                 ZtautauNp4Excl_Mll10to60,
-                 ZtautauNp5Incl_Mll10to60,
+[#ZtautauNp0Excl_Mll10to60,
+#               ZtautauNp1Excl_Mll10to60,
+#                ZtautauNp2Excl_Mll10to60,
+#                ZtautauNp3Excl_Mll10to60,
+#                ZtautauNp4Excl_Mll10to60,
+#                ZtautauNp5Incl_Mll10to60,
+Filtered_ZtautauNp0Excl_Mll10to60,
+Filtered_ZtautauNp1Excl_Mll10to60,
+Filtered_ZtautauNp2Excl_Mll10to60,
+Filtered_ZtautauNp3Excl_Mll10to60,
                  ZtautauNp0_Auto,
                  ZtautauNp1_Auto,
                  ZtautauNp2_Auto,
@@ -181,23 +264,22 @@ SSSZttJets_group = Group('SSSZttJets',
                  ZtautauNp4_Auto,
                  ZtautauNp5incl_Auto,
                  ],
-                 factor = -2.0,
+                 factor = -1.0,
                  classification = 'BG'
                  )
 tt_group = Group('tt',
-           [ttbar,
-            ttbar_allhad,
-#     ttbar_dilepton],
-],
+[#ttbar,
+ ttbar_allhad,
+ttbar_dilepton],
 factor = 1.0,
 classification = 'BG',
     )
 SSStt_group = Group('SSStt',
-           [ttbar,
+[ttbar,
             ttbar_allhad,
-#     ttbar_dilepton],
+# ttbar_dilepton],
 ],
-factor = -2.0,
+factor = -1.0,
 classification = 'BG',
     )
 SingleTop_group = Group('SingleTop',
@@ -221,7 +303,7 @@ SSSSingleTop_group = Group('SSSSingleTop',
                    singletop_tchan_mu,
                    singletop_tchan_tau
                    ],
-                   factor = -2.0,
+                   factor = -1.0,
                    classification = 'BG',
                    )
 ZZ_group = Group('ZZ',
@@ -251,7 +333,7 @@ SSSZZ_group = Group('SSSZZ',
             Powheg_ZZllnunu_tt_mll4,
             ],
             #ZZ],
-            factor = -2.0,
+            factor = -1.0,
             classification = 'BG',
             )
 WW_group = Group('WW',
@@ -307,7 +389,7 @@ SSSWW_group = Group('SSSWW',
             gg2WW0240_WpWmtaunumunu,
             gg2WW0240_WpWmtaunutaunu
             ],
-            factor = -2.0,
+            factor = -1.0,
             classification = 'BG',
             )
 WGamma_group = Group('WGamma',
@@ -333,7 +415,7 @@ SSSWGamma_group = Group('SSSWGamma',
                 MadGraph_lnuee_lt7,
                 MadGraph_lnumumu_lt7,
                 MadGraph_lnutautau_lt7],
-                factor = -2.0,
+                factor = -1.0,
                 classification = 'BG',
                 )
 WZ_group = Group('WZ',
@@ -381,19 +463,235 @@ SSSWZ_group = Group('SSSWZ',
             Powheg_WZ_Wm15Z15_mll3p804d0_2LeptonFilter5,
             ],
 #WZ],
-            factor = -2.0,
+            factor = -1.0,
             classification = 'BG',
-            )                                   
-WH_group = Group('WH',
+            )       
+##### WH Signals
+WH100_group = Group('WH100',
+                    [WH100_tautauhh],
+                    factor = 1.0,
+                    classification = 'SIG'
+                    )                    
+WH105_group = Group('WH105',
+           [WH105_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+WH110_group = Group('WH110',
+           [WH110_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+WH115_group = Group('WH115',
+           [WH115_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+#WH120_group = Group('WH120',
+#          [WH120_tautauhh],
+#          factor = 1.0,
+#          classification = 'SIG'
+#          )
+WH125_group = Group('WH125',
            [WH125_tautauhh],
-           factor = 10.0,
+           factor = 1.0,
            classification = 'SIG'
            )
-ZH_group = Group('ZH',
+WH130_group = Group('WH130',
+           [WH130_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+WH135_group = Group('WH135',
+           [WH135_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+WH140_group = Group('WH140',
+           [WH140_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+WH145_group = Group('WH145',
+           [WH145_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+WH150_group = Group('WH150',
+           [WH150_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+###### ZH Signals
+ZH100_group = Group('ZH100',
+           [ZH100_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ZH105_group = Group('ZH105',
+           [ZH105_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ZH110_group = Group('ZH110',
+           [ZH110_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ZH115_group = Group('ZH115',
+           [ZH115_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ZH120_group = Group('ZH120',
+           [ZH120_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ZH125_group = Group('ZH125',
            [ZH125_tautauhh],
-           factor = 10.0,
+           factor = 1.0,
            classification = 'SIG'
            )
+ZH130_group = Group('ZH130',
+           [ZH130_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ZH135_group = Group('ZH135',
+           [ZH135_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ZH140_group = Group('ZH140',
+           [ZH140_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ZH145_group = Group('ZH145',
+           [ZH145_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ZH150_group = Group('ZH150',
+           [ZH150_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+##### VBF hh Signals
+VBFH100_group = Group('VBFH100',
+           [VBFH100_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+VBFH105_group = Group('VBFH105',
+           [VBFH105_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+VBFH110_group = Group('VBFH110',
+           [VBFH110_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+VBFH115_group = Group('VBFH115',
+           [VBFH115_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+VBFH120_group = Group('VBFH120',
+           [VBFH120_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+VBFH125_group = Group('VBFH125',
+           [VBFH125_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+VBFH130_group = Group('VBFH130',
+           [VBFH130_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+VBFH135_group = Group('VBFH135',
+           [VBFH135_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+VBFH140_group = Group('VBFH140',
+           [VBFH140_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+VBFH145_group = Group('VBFH145',
+           [VBFH145_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+VBFH150_group = Group('VBFH150',
+           [VBFH150_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+
+##### ggF Signals
+ggH100_group = Group('ggH100',
+           [ggH100_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ggH105_group = Group('ggH105',
+           [ggH105_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ggH110_group = Group('ggH110',
+           [ggH110_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ggH115_group = Group('ggH115',
+           [ggH115_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ggH120_group = Group('ggH120',
+           [ggH120_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ggH125_group = Group('ggH125',
+           [ggH125_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ggH130_group = Group('ggH130',
+           [ggH130_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ggH135_group = Group('ggH135',
+           [ggH135_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ggH140_group = Group('ggH140',
+           [ggH140_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ggH145_group = Group('ggH145',
+           [ggH145_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+ggH150_group = Group('ggH150',
+           [ggH150_tautauhh],
+           factor = 1.0,
+           classification = 'SIG'
+           )
+
 
 
 

@@ -2,71 +2,250 @@
 from Subset import *
 import sys
 
-####### WH OS (signal region) #######
-wh_os = Subset('wh_sig')
-wh_os.cut('evtsel_is_tau')
-wh_os.cut('evtsel_is_WHhadhad')
-wh_os.cut('((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_tau29Ti_medium1_tau20Ti_medium1)')
-wh_os.cut('evtsel_tau1_charge*evtsel_tau2_charge', '==', -1)
-#wh_os.cut('evtsel_nMediumTaus', '==', 2)
-#wh_os.cut('evtsel_nLeptons', '==', 1)
-#wh_os.cut('evtsel_vlep1_etcone20/evtsel_vlep1_pt', '<', 0.06)
-#wh_os.cut('evtsel_vlep1_ptcone40/evtsel_vlep1_pt', '<', 0.06)
-#wh_os.cut('evtsel_sum_tau_pt', '>', 70000)
-#wh_os.cut('evtsel_transmass_lep1MET', '>', 20000)
-#wh_os.cut('evtsel_passes_bjet_veto')
+######## OS ####
+OS = Subset('OS')
+OS.cut('evtsel_tau1_charge*evtsel_tau2_charge', '==', -1)
+################################################
+
+##### SSS ###### FOR WH
+SSS = Subset('SSS')
+SSS.cut('evtsel_tau1_charge', '==', 'evtsel_tau2_charge')
+SSS.cut('evtsel_tau1_charge', '==', 'evtsel_vlep1_charge')
+################################################
+
+### SSSS_ZH ########
+SSSS_ZH = Subset('SSSS_ZH')
+SSSS_ZH.cut('evtsel_tau1_charge', '==', 'evtsel_tau2_charge')
+SSSS_ZH.cut('evtsel_vlep1_charge', '==', 'evtsel_vlep2_charge')
+##########################################
+
+#### OSS (lep opposite to 2 SS taus) #####
+OSS = Subset('OSS')
+OSS.cut('evtsel_tau1_charge', '==', 'evtsel_tau2_charge')
+OSS.cut('evtsel_tau1_charge*evtsel_vlep1_charge', '==', -1)
+################################################
+
+##### SS Taus for ZH #######
+SS = Subset('SS')
+SS.cut('evtsel_tau1_charge','==', 'evtsel_tau2_charge')
+#######################
+
+######## True taus backgrounds ###########
+truetaus = Subset('truetau')
+truetaus.cut('evtsel_tau1_matched', '==', 1)
+truetaus.cut('evtsel_tau2_matched', '==', 1)
+##############################
+
+######## 1 Fake tau background #1 #########
+onefaketau = Subset('onefake')
+onefaketau.cut('evtsel_tau1_matched', '==', 0)
+onefaketau.cut('evtsel_tau2_matched','==', 1)
+###############################
+######## 1 Fake tau background #2 ############
+onefaketau2 = Subset('onefake2')
+onefaketau2.cut('evtsel_tau1_matched', '==', 1)
+onefaketau2.cut('evtsel_tau2_matched', '==', 0)
+###############################
+
+######## 2 Fake tau background #########
+twofaketau = Subset('twofake')
+twofaketau.cut('evtsel_tau1_matched', '==', 0)
+twofaketau.cut('evtsel_tau2_matched', '==', 0)
+##############################
+
+####### Not anti-tau events ######
+istau = Subset('istau')
+istau.cut('evtsel_is_tau')
+##########################
+
+
+######## Anti-tau events #1 ########
+antitau = Subset('antitau')
+antitau.cut('!evtsel_is_tau')
+antitau.cut('evtsel_jets_num', '==', 0)
+antitau.cut('evtsel_nAntiTaus_Selected','==', 2)
+antitau.cut('evtsel_tau1_is_AntiTau','==',1)
+antitau.cut('evtsel_tau2_is_AntiTau', '==', 1)
+#################################
+####### Anti-tau events #2 #########
+antitau2 = Subset('antitau2')
+antitau2.cut('!evtsel_is_tau')
+antitau2.cut('evtsel_jets_num', '==', 0)
+antitau2.cut('evtsel_nAntiTaus_Selected','==',1)
+antitau2.cut('evtsel_tau1_is_AntiTau', '==',1)
+antitau2.cut('evtsel_tau2_is_AntiTau', '==', 0)
+#################################
+######## Anti-tau events #3 ########
+antitau3 = Subset('antitau3')
+antitau3.cut('!evtsel_is_tau')
+antitau3.cut('evtsel_jets_num', '==', 0)
+antitau3.cut('evtsel_nAntiTaus_Selected', '==', 1)
+antitau3.cut('evtsel_tau1_is_AntiTau', '==', 0)
+antitau3.cut('evtsel_tau2_is_AntiTau','==', 1)
+##############################
+####### Anti-tau events (3 objects) #####
+antitau4 = Subset('antitau4')
+antitau4.cut('!evtsel_is_tau')
+antitau4.cut('evtsel_jets_num','==', 1)
+antitau4.cut('evtsel_nAntiTaus_Selected', '==', 1)
+antitau4.cut('evtsel_tau1_is_AntiTau', '==', 0)
+antitau4.cut('evtsel_tau2_is_AntiTau', '==', 1)
+##############################
+####### Anti-tau events (3 objects) #####
+antitau5 = Subset('antitau5')
+antitau5.cut('!evtsel_is_tau')
+antitau5.cut('evtsel_jets_num','==', 1)
+antitau5.cut('evtsel_nAntiTaus_Selected', '==', 1)
+antitau5.cut('evtsel_tau1_is_AntiTau', '==', 1)
+antitau5.cut('evtsel_tau2_is_AntiTau', '==', 0)
+##############################
+####### Anti-tau events (3 objects) #####
+antitau6 = Subset('antitau6')
+antitau6.cut('!evtsel_is_tau')
+antitau6.cut('evtsel_jets_num','==', 1)
+antitau6.cut('evtsel_nAntiTaus_Selected', '==', 2)
+antitau6.cut('evtsel_tau1_is_AntiTau', '==', 1)
+antitau6.cut('evtsel_tau2_is_AntiTau', '==', 1)
+##############################
+####### Anti-tau events (4 objects) #####
+antitau7 = Subset('antitau7')
+antitau7.cut('!evtsel_is_tau')
+antitau7.cut('evtsel_jets_num','==', 2)
+antitau7.cut('evtsel_nAntiTaus_Selected', '==', 2)
+antitau7.cut('evtsel_tau1_is_AntiTau', '==', 1)
+antitau7.cut('evtsel_tau2_is_AntiTau', '==', 1)
+##############################
+####### Anti-tau events (4 objects) #####
+antitau8 = Subset('antitau8')
+antitau8.cut('!evtsel_is_tau')
+antitau8.cut('evtsel_jets_num','==', 2)
+antitau8.cut('evtsel_nAntiTaus_Selected', '==', 1)
+antitau8.cut('evtsel_tau1_is_AntiTau', '==', 0)
+antitau8.cut('evtsel_tau2_is_AntiTau', '==', 1)
+##############################
+####### Anti-tau events (4 objects) #####
+antitau9 = Subset('antitau9')
+antitau9.cut('!evtsel_is_tau')
+antitau9.cut('evtsel_jets_num','==', 2)
+antitau9.cut('evtsel_nAntiTaus_Selected', '==', 1)
+antitau9.cut('evtsel_tau1_is_AntiTau', '==', 1)
+antitau9.cut('evtsel_tau2_is_AntiTau', '==', 0)
+##############################
+###### Anti-tau events (5 objects) #####
+antitau10 = Subset('antitau10')
+antitau10.cut('!evtsel_is_tau')
+antitau10.cut('evtsel_jets_num','==', 3)
+antitau10.cut('evtsel_nAntiTaus_Selected', '==', 1)
+antitau10.cut('evtsel_tau1_is_AntiTau', '==', 1)
+antitau10.cut('evtsel_tau2_is_AntiTau', '==', 0)
+###############################
+###### Anti-tau events (5 objects) #####
+antitau11 = Subset('antitau11')
+antitau11.cut('!evtsel_is_tau')
+antitau11.cut('evtsel_jets_num','==', 3)
+antitau11.cut('evtsel_nAntiTaus_Selected', '==', 1)
+antitau11.cut('evtsel_tau1_is_AntiTau', '==', 0)
+antitau11.cut('evtsel_tau2_is_AntiTau', '==', 1)
+###############################
+###### Anti-tau events (5 objects) #####
+antitau12 = Subset('antitau12')
+antitau12.cut('!evtsel_is_tau')
+antitau12.cut('evtsel_jets_num','==', 3)
+antitau12.cut('evtsel_nAntiTaus_Selected', '==', 2)
+antitau12.cut('evtsel_tau1_is_AntiTau', '==', 1)
+antitau12.cut('evtsel_tau2_is_AntiTau', '==', 1)
+###############################
+
+
+###### ZH (signal region)--Z->muons #######
+zh = Subset('zh_mumu')
+#zh.cut('evtsel_is_tau')
+zh.cut('evtsel_is_ZHhadhad')
+zh.cut('((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13)')
+#zh.cut('(evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11)')
+zh.cut('evtsel_vlep1_flavour','==', 13)
+zh.cut('evtsel_vlep2_flavour','==', 13)
+zh.cut('evtsel_nMediumTaus', '==', 2)
+zh.cut('evtsel_nLeptons', '==', 2)
+#zh.cut('evtsel_tau1_charge*evtsel_tau2_charge', '==', -1)
+#zh.cut('evtsel_vlep1_charge*evtsel_vlep2_charge', '==', -1)
+#zh.cut('evtsel_vlep1_flavour==evtsel_vlep2_flavour')
+#zh.cut('evtsel_H_m_MMC', '>', 0)
+#zh.cut('evtsel_H_m_MMC', '<', 20000)
+#zh.cut('evtsel_vlep1_etcone20/evtsel_vlep1_pt', '<', 0.06)
+#zh.cut('evtsel_vlep1_ptcone40/evtsel_vlep1_pt', '<', 0.06)
+#zh.cut('evtsel_vlep2_etcone20/evtsel_vlep2_pt', '<', 0.06)
+#zh.cut('evtsel_vlep2_ptcone40/evtsel_vlep2_pt', '<', 0.06)
+#zh.cut('evtsel_Zll_mass', '<', 120000)
+#zh.cut('evtsel_Zll_mass', '>', 60000)
+#zh.cut('evtsel_sum_tau_pt', '>', 70000)
+#zh.cut('evtsel_passes_bjet_veto')
 #################################################
 
 
-####### WH SSS region ########
-wh_sss = Subset('wh_ss')
-wh_sss.cut('evtsel_is_tau')
-wh_sss.cut('evtsel_is_WHhadhad')
-wh_sss.cut('((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_tau29Ti_medium1_tau20Ti_medium1)')
-wh_sss.cut('evtsel_tau1_charge', '==', 'evtsel_tau2_charge')
-wh_sss.cut('evtsel_tau1_charge', '==', 'evtsel_vlep1_charge')
-#wh_sss.cut('evtsel_nMediumTaus', '==', 2)
-#wh_sss.cut('evtsel_nLeptons', '==', 1)
-#wh_sss.cut('evtsel_vlep1_etcone20/evtsel_vlep1_pt', '<', 0.06)
-#wh_sss.cut('evtsel_vlep1_ptcone40/evtsel_vlep1_pt', '<', 0.06)
-#wh_sss.cut('evtsel_sum_tau_pt', '>', 70000)
-#wh_sss.cut('evtsel_transmass_lep1MET', '>', 20000)
-#wh_sss.cut('evtsel_passes_bjet_veto')
+#### WH (signal region) ########
+wh = Subset('wh_sig')
+wh.cut('evtsel_is_tau')
+wh.cut('evtsel_is_WHhadhad')
+wh.cut('((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_tau29Ti_medium1_tau20Ti_medium1)')
+wh.cut('evtsel_nMediumTaus', '==', 2)
+wh.cut('evtsel_nLeptons', '==', 1)
+wh.cut('evtsel_vlep1_etcone20/evtsel_vlep1_pt', '<', 0.06)
+wh.cut('evtsel_vlep1_ptcone40/evtsel_vlep1_pt', '<', 0.06)
+wh.cut('evtsel_sum_tau_pt', '>', 70000)
+wh.cut('evtsel_transmass_lep1MET', '>', 20000)
+wh.cut('evtsel_passes_bjet_veto')
+################
+
+
+##### Observing WH but with only one tau fake, region 1 #####
+whtest = Subset('whtest')
+whtest.cut('evtsel_is_tau')
+whtest.cut('evtsel_is_WHhadhad')
+whtest.cut('((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_tau29Ti_medium1_tau20Ti_medium1)')
+whtest.cut('evtsel_nMediumTaus', '==', 2)
+whtest.cut('evtsel_vlep1_etcone20/evtsel_vlep1_pt', '<', 0.06)
+whtest.cut('evtsel_vlep1_ptcone40/evtsel_vlep1_pt', '<', 0.06)
+whtest.cut('evtsel_sum_tau_pt', '>', 70000)
+whtest.cut('evtsel_transmass_lep1MET', '>', 20000)
+whtest.cut('evtsel_tau1_charge', '==', 'evtsel_tau2_charge')
+whtest.cut('evtsel_passes_bjet_veto')
+whtest.cut('evtsel_tau1_matched', '==', 0)
+whtest.cut('evtsel_tau2_matched', '==', 1)
+whtest.cut('evtsel_tau1_charge', '==', 'evtsel_vlep1_charge')
 ##################################################
+
+###### Observing WH but with only one tau fake, region 2 ########
+whtest2 = Subset('whtest2')
+whtest2.cut('evtsel_is_tau')
+whtest2.cut('evtsel_is_WHhadhad')
+whtest2.cut('((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_tau29Ti_medium1_tau20Ti_medium1)')
+whtest2.cut('evtsel_nMediumTaus', '==', 2)
+whtest2.cut('evtsel_vlep1_etcone20/evtsel_vlep1_pt', '<', 0.06)
+whtest2.cut('evtsel_vlep1_ptcone40/evtsel_vlep1_pt', '<', 0.06)
+whtest2.cut('evtsel_sum_tau_pt', '>', 70000)
+whtest2.cut('evtsel_transmass_lep1MET', '>', 20000)
+whtest2.cut('evtsel_tau1_charge', '==', 'evtsel_tau2_charge')
+whtest2.cut('evtsel_passes_bjet_veto')
+whtest2.cut('evtsel_tau2_matched', '==', 0)
+whtest2.cut('evtsel_tau1_matched', '==', 1)
+whtest2.cut('evtsel_tau2_charge', '==', 'evtsel_vlep1_charge')
+##################################################
+
 
 
 ###### QCD-enriched data CR #######
 qcd = Subset('qcd_cr')
-#qcd.cut('evtsel_is_tau')
-#qcd.cut('evtsel_is_WHhadhad')
-#qcd.cut('((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_tau29Ti_medium1_tau20Ti_medium1)')
+qcd.cut('evtsel_is_WHhadhad')
 qcd.cut('evtsel_MET', '<', 15000)
 qcd.cut('evtsel_transmass_lep1MET', '<', 30000)
 #qcd.cut('evtsel_vlep1_etcone20/evtsel_vlep1_pt', '>', 0.06)
-#qcd.cut('evtsel_vlep1_ptcone40/evtsel_vlep1_pt', '>', 0.06)
+qcd.cut('evtsel_vlep1_ptcone40/evtsel_vlep1_pt', '>', 0.06)
 
 ##################################################
 
 
-###### ZH OS (signal region) #######
-zh_os = Subset('zh_sig')
-zh_os.cut('evtsel_is_tau')
-zh_os.cut('evtsel_is_ZHhadhad')
-zh_os.cut('(((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11))')
-zh_os.cut('evtsel_nMediumTaus', '==', 2)
-zh_os.cut('evtsel_tau1_charge*evtsel_tau2_charge', '==', -1)
-zh_os.cut('evtsel_nLeptons', '==', 2)
-zh_os.cut('evtsel_vlep1_charge*evtsel_vlep2_charge', '==', -1)
-zh_os.cut('evtsel_vlep1_flavour==evtsel_vlep2_flavour')
-zh_os.cut('evtsel_vlep1_etcone20/evtsel_vlep1_pt', '<', 0.06)
-zh_os.cut('evtsel_vlep1_ptcone40/evtsel_vlep1_pt', '<', 0.06)
-zh_os.cut('evtsel_vlep2_etcone20/evtsel_vlep2_pt', '<', 0.06)
-zh_os.cut('evtsel_vlep2_ptcone40/evtsel_vlep2_pt', '<', 0.06)
-zh_os.cut('evtsel_Zll_mass', '<', 120000)
-zh_os.cut('evtsel_Zll_mass', '>', 60000)
-zh_os.cut('evtsel_sum_tau_pt', '>', 70000)
-zh_os.cut('evtsel_passes_bjet_veto')
-#################################################
+
 
 
 ###### ttbar CR ########
@@ -88,12 +267,15 @@ z_cr = Subset('zjets_cr')
 z_cr.cut('evtsel_is_tau')
 z_cr.cut('evtsel_nLeptons', '==', 2)
 z_cr.cut('evtsel_passes_bjet_veto')
+#z_cr.cut('evtsel_vlep1_flavour','==',13)
+#z_cr.cut('evtsel_vlep2_flavour','==',13)
 z_cr.cut('TMath::Sqrt(2*evtsel_MET*evtsel_lep1_pt*(1-TMath::Cos(TVector2::Phi_mpi_pi((evtsel_MET_phi-evtsel_lep1_phi)))))', '<', 60000)
-z_cr.cut('evtsel_Zll_mass', '<', 120000)
-z_cr.cut('evtsel_Zll_mass', '>', 60000)
+#z_cr.cut('evtsel_Zll_mass', '<', 120000)
+#z_cr.cut('evtsel_Zll_mass', '>', 60000)
 z_cr.cut('evtsel_vlep1_etcone20/evtsel_vlep1_pt', '<', 0.06)
 z_cr.cut('evtsel_vlep1_ptcone40/evtsel_vlep1_pt', '<', 0.06)
-z_cr.cut('(((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11)')
+#z_cr.cut('(((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11)')
+z_cr.cut('((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13)')
 ##################################################
 
 
