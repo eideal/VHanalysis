@@ -262,7 +262,9 @@ for region in regions:
 										   supergroup.legendLabel,
 										   supergroup.color,
 										   supergroup.style,
-										   supergroup.stack)
+										   supergroup.stack,
+										   sys_name,
+										   sys_var)
                 if entry.rootfile:
                     h.add(region[0].name, region[0].name + '_' + sys_name + '_' + sys_var + '_' + supergroup.name, th1f_total)
 					
