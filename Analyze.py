@@ -9,12 +9,8 @@ from Tools.histo_container import HistoContainer
 import ROOT
 import math
 
-
-
 ## Setting up the ATLAS style
 root_functions = ROOT.gROOT.GetListOfFunctions()
-#ROOT.gSystem.Load('MyClass_C.so')
-#m = ROOT.MyClass()
 if not root_functions.Contains('ATLASLabel'):
     ROOT.gROOT.LoadMacro('AtlasStyle.C')
     ROOT.gROOT.LoadMacro('AtlasLabels.C')
@@ -24,45 +20,16 @@ RQCD_studies = False
 Make_workspace = True
 
 RQCD_supergroups = [#for RQCD plots
-Data_RQCD,
-AllMC_RQCD
+#Data_RQCD,
+#AllMC_RQCD
 ]
 
 Plots_supergroups = [
 Data,
 AntitauEvents,
-#AntiTauEvents_2AntiTau,
-#WeJets,
-#WmJets,
-#WtJets,
-#tt,
 WZ_zerofakes,
-#WZ_onefake,
-#WZ_twofakes,
 tt_zerofakes,
-#tt_onefake,
-#tt_twofakes,
-#SingleTop,
-WmJets_zerofakes,
-#WmJets_onefake,
-#WmJets_twofakes,
-ZttJets_zerofakes,
 ZZ_zerofakes,
-#ZZ_onefake,
-#ZZ_twofakes,
-#WW,
-#WGamma,
-#ZttJets_onefake,
-#ZttJets_twofakes,
-#ZeeJets,
-#ZmmJets,
-ZmmJets_zerofakes,
-#ZmmJets_onefake,
-#ZmmJets_twofakes,
-#ZttJets,
-#tt,
-#ZZ,
-#WZ,
 #QCD,
 # WH125,
 ZH125,
@@ -72,13 +39,94 @@ Limit_supergroups = [
 Data,
 AntitauEvents,
 ZH100,ZH105,ZH110,ZH115,ZH120,ZH125,ZH130,ZH135,ZH140,ZH145,ZH150,
-WH100,WH105,WH110,WH115,WH125,WH130,WH135,WH140,WH145,WH150, ### WH120
+WH100,WH105,WH110,WH115,WH120,WH125,WH130,WH135,WH140,WH145,WH150,
 VBFH100,VBFH105,VBFH110,VBFH115,VBFH120,VBFH125,VBFH130,VBFH135,VBFH140,VBFH145,VBFH150,
 ggH100,ggH105,ggH110,ggH115,ggH120,ggH125,ggH130,ggH135,ggH140,ggH145,ggH150,
 tt_zerofakes,
 ZZ_zerofakes,
 WZ_zerofakes
 ]
+
+list_of_systematics = [
+	('','','tau',True), #this is the nominal fitting histogram
+	
+	('ATLAS_MU_MS','DOWN','SystematicsDOWN/MuSys',True), 
+	('ATLAS_EL_ZEE','DOWN','SystematicsDOWN/ElES_Zee',True),
+	('ATLAS_EL_R12','DOWN','SystematicsDOWN/ElES_R12',True),
+	('ATLAS_EL_PS','DOWN','SystematicsDOWN/ElES_PS',True),  
+	('ATLAS_EL_LOWPT','DOWN','SystematicsDOWN/ElES_LowPt',True),
+	('ATLAS_EL_RES','DOWN','SystematicsDOWN/ElEnResSys',True),
+	('ATLAS_JER_2012','DOWN','SystematicsDOWN/JER',True),
+	('ATLAS_JES_2012_Statistical1','DOWN','SystematicsDOWN/JES_Statistical1',True),
+	('ATLAS_JES_2012_Modelling1','DOWN','SystematicsDOWN/JES_Modelling1',True),
+	('ATLAS_JES_2012_Detector1','DOWN','SystematicsDOWN/JES_Detector1',True), 
+	('ATLAS_JES_2012_EtaModelling','DOWN','SystematicsDOWN/JES_EtaModelling',True), 
+	('ATLAS_JES_2012_Eta_StatMethod','DOWN','SystematicsDOWN/JES_EtaMethod',True), 
+	('ATLAS_JES_2012_PileRho_TAU','DOWN','SystematicsDOWN/JES_PURho',True), 
+	('ATLAS_JES_NPV','DOWN','SystematicsDOWN/JES_PUNPV',True), 
+	('ATLAS_JES_Mu','DOWN','SystematicsDOWN/JES_PUMu',True), 
+	('ATLAS_JES_FlavComp_TAU','DOWN','SystematicsDOWN/JES_FlavComp',True), 
+	('ATLAS_JES_FlavResp','DOWN','SystematicsDOWN/JES_FlavResp',True), 
+	('ATLAS_JES_Flavb','DOWN','SystematicsDOWN/JES_BJet',True), 
+	('ATLAS_JVF_2012','DOWN','SystematicsDOWN/JVF',True), 
+	('ATLAS_TES_TRUE_2012','DOWN','SystematicsDOWN/TES',True), 
+	('ATLAS_MET_RESOSOFT','DOWN','SystematicsDOWN/METResSys',True),
+	('ATLAS_MET_SCALESOFT','DOWN','SystematicsDOWN/METScaleSys',True),
+	('ATLAS_MU_MS','UP','SystematicsUP/MuSys',True), 
+	('ATLAS_EL_ZEE','UP','SystematicsUP/ElES_Zee',True), 
+	('ATLAS_EL_R12','UP','SystematicsUP/ElES_R12',True), 
+	('ATLAS_EL_PS','UP','SystematicsUP/ElES_PS',True),
+	('ATLAS_EL_LOWPT','UP','SystematicsUP/ElES_LowPt',True),
+	('ATLAS_EL_RES','UP','SystematicsUP/ElEnResSys',True),
+	('ATLAS_JER_2012','UP','SystematicsUP/JER',True),
+	('ATLAS_JES_2012_Statistical1','UP','SystematicsUP/JES_Statistical1',True),
+	('ATLAS_JES_2012_Modelling1','UP','SystematicsUP/JES_Modelling1',True),
+	('ATLAS_JES_2012_Detector1','UP','SystematicsUP/JES_Detector1',True), 
+	('ATLAS_JES_2012_EtaModelling','UP','SystematicsUP/JES_EtaModelling',True), 
+	('ATLAS_JES_2012_Eta_StatMethod','UP','SystematicsUP/JES_EtaMethod',True), 
+	('ATLAS_JES_2012_PileRho_TAU','UP','SystematicsUP/JES_PURho',True), 
+	('ATLAS_JES_NPV','UP','SystematicsUP/JES_PUNPV',True), 
+	('ATLAS_JES_Mu','UP','SystematicsUP/JES_PUMu',True), 
+	('ATLAS_JES_FlavComp_TAU','UP','SystematicsUP/JES_FlavComp',True), 
+	('ATLAS_JES_FlavResp','UP','SystematicsUP/JES_FlavResp',True), 
+	('ATLAS_JES_Flavb','UP','SystematicsUP/JES_BJet',True), 
+	('ATLAS_JVF_2012','UP','SystematicsUP/JVF',True), 
+	('ATLAS_TES_TRUE_2012','UP','SystematicsUP/TES',True), 
+	('ATLAS_MET_RESOSOFT','UP','SystematicsUP/METResSys',True), 
+	('ATLAS_MET_SCALESOFT','UP','SystematicsUP/METScaleSys',True),
+#('ATLAS_BTag_BEFF','DOWN','evtsel_bjet_sys_b_down',False), 
+#	('ATLAS_BTag_BEFF','UP','evtsel_bjet_sys_b_up',False), 
+#	('ATLAS_BTag_CEFF','DOWN','evtsel_bjet_sys_c_down',False), 
+#	('ATLAS_BTag_CEFF','UP','evtsel_bjet_sys_c_up',False), 
+#	('ATLAS_BTag_LEFF','DOWN','evtsel_bjet_sys_m_down',False),
+#	('ATLAS_BTag_LEFF','UP','evtsel_bjet_sys_m_up',False), 
+	('ATLAS_PU_RESCALE_2012','DOWN','evtsel_sys_PU_rescaling_dn',False), 
+	('ATLAS_PU_RESCALE_2012','UP','evtsel_sys_PU_rescaling_up',False), 
+	('ATLAS_EL_ID','DOWN','evtsel_sys_sf_el_id_down',False),
+	('ATLAS_EL_ID','UP','evtsel_sys_sf_el_id_up',False),
+	('ATLAS_EL_ISO','DOWN','evtsel_sys_sf_el_iso_down',False),
+	('ATLAS_EL_ISO','UP','evtsel_sys_sf_el_iso_up',False),
+	('ATLAS_EL_TRIG','DOWN','evtsel_sys_sf_el_trig_down',False),
+	('ATLAS_EL_TRIG','UP','evtsel_sys_sf_el_trig_up',False),
+######('','DOWN','evtsel_sys_sf_electron_FF_down',False),
+######(,'UP','evtsel_sys_sf_electron_FF_UP',False),
+	('ATLAS_MU_ID','DOWN','evtsel_sys_sf_mu_id_down',False), 
+	('ATLAS_MU_ID','UP','evtsel_sys_sf_mu_id_up',False), 
+	('ATLAS_MU_ISO','DOWN','evtsel_sys_sf_mu_iso_down',False), 
+	('ATLAS_MU_ISO','UP','evtsel_sys_sf_mu_iso_up',False), 
+	('ATLAS_MU_TRIG','DOWN','evtsel_sys_sf_mu_trig_down',False), 
+	('ATLAS_MU_TRIG','UP','evtsel_sys_sf_mu_trig_up',False), 
+#######	('DOWN','evtsel_sys_sf_muon_FF_down',False),
+######	(,'UP','evtsel_sys_sf_muon_FF_up',False),
+######	('DOWN','evtsel_sys_sf_tau_FF_down',False),
+######	(,'UP','evtsel_sys_sf_tau_FF_up',False),
+	('ATLAS_TAU_EFAKE_2012','DOWN','evtsel_sys_sf_tau_el_down',False),
+	('ATLAS_TAU_EFAKE_2012','UP','evtsel_sys_sf_tau_el_up',False), 
+	('ATLAS_TAU_ID_2012','DOWN','evtsel_sys_sf_tau_id_down',False), 
+	('ATLAS_TAU_ID_2012','UP','evtsel_sys_sf_tau_id_up',False), 
+	('ATLAS_TAU_ID_STAT_2012','DOWN','evtsel_sys_sf_tau_id_stat_down',False), ### WHAT IS THIS?
+	('ATLAS_TAU_ID_STAT_2012','UP','evtsel_sys_sf_tau_id_stat_up',False), ## WHAT IS THIS?
+    ]
 
 list_of_supergroups = Plots_supergroups
 
@@ -104,10 +152,9 @@ QCD_OS = Subsets.qcd + Subsets.OS
 QCD_OS.name = 'OS'
 WHstudy = Subsets.whtest * Subsets.whtest2  #Dec3-5 study
 
-
 regions = [
     [ZH, 0.0, []],
-    [ZHe, 0.0, []]
+# [ZHe, 0.0, []]
     ]
 if RQCD_studies:
     regions = [
@@ -116,6 +163,7 @@ if RQCD_studies:
     ]
 
 h = HistoContainer('evtsel_H_m_MMC')
+
     
 ####Loop over regions
 for region in regions:
@@ -124,83 +172,100 @@ for region in regions:
 
     ###Loop over plots
     for entry in plots:
-        #if entry.rootfile:
-        #   h = HistoContainer(entry.variable)
-            
+                    
         QCD_histo = ROOT.TH1F('QCD_%s' % region[0].name, '', entry.nbins, entry.binlow, entry.binhigh)
         region[2].append(QCD_histo)
 
-        ##Loop over supergroups
-        for supergroup in list_of_supergroups:
-            print 'Plotting supergroup %s ...' % supergroup.name
-            th1f_total_name = '%s_%s_sg' % (entry.variable, supergroup.name)
-            th1f_total = ROOT.TH1F(th1f_total_name, supergroup.legendLabel, entry.nbins, entry.binlow, entry.binhigh)
-            th1f_total.Sumw2()
+        #Loop over systematics (this also includes the nominal histogram)
+        for sys in list_of_systematics:
+            sys_name = sys[0] ##ATLAS official name
+            sys_var = sys[1] ## <up,down>
+            sys_path = sys[2] ## branch or tree path
+            sys_is_tree = sys[3] ##bool if branch or if tree
+			
+            ##Loop over supergroups
+            for supergroup in list_of_supergroups:
+                print 'Plotting supergroup %s ...' % supergroup.name
+                th1f_total_name = '%s_%s_sg' % (entry.variable, supergroup.name)
+                th1f_total = ROOT.TH1F(th1f_total_name, supergroup.legendLabel, entry.nbins, entry.binlow, entry.binhigh)
+                th1f_total.Sumw2()
 
-            for group in supergroup.groups:
-                print 'Plotting group %s ...' % group.name
-                th1f_name = '%s_%s_g' % (entry.variable, group.name)
-                th1f = ROOT.TH1F(th1f_name, supergroup.legendLabel, entry.nbins, entry.binlow, entry.binhigh)
-                th1f.Sumw2()
+                for group in supergroup.groups:
+                    print 'Plotting group %s ...' % group.name
+                    th1f_name = '%s_%s_g' % (entry.variable, group.name)
+                    th1f = ROOT.TH1F(th1f_name, supergroup.legendLabel, entry.nbins, entry.binlow, entry.binhigh)
+                    th1f.Sumw2()
+					
+					#Instantiate TChain: depending on the type of systematic
+                    if sys_is_tree:
+                        chain = ROOT.TChain(sys_path)
+                    else:
+                        chain = ROOT.TChain('tau')
 
-                #Instantiate TChain
-                chain = ROOT.TChain('tau')
+                    for sample in group.samples:
+                        #print '    ', sample.path
+                        chain.Add(sample.path)
 
-                for sample in group.samples:
-                    #print '    ', sample.path
-                    chain.Add(sample.path)
- 
+                    if sys_is_tree:
+                        cut1 = 'evtsel_weight*0.02'
+                        if supergroup.name == 'AntitauEvents':
+                            cut1 = 'evtsel_weight_FF'
+                        if supergroup.name == 'Data':
+                            cut1 = 'evtsel_weight'
+                    else:
+                        cut1 = 'evtsel_weight*0.02*%s' % sys_path
+                        if supergroup.name == 'AntitauEvents':
+                            cut1 = 'evtsel_weight_FF'
+                        if supergroup.name == 'Data':
+                            cut1 = 'evtsel_weight'
+
+                        #if supergroup.name == 'QCD':
+						#    region[0] = region[0] + QCD_CR
+
                 
-                cut1 = 'evtsel_weight*0.02*evtsel_weight_tau_fakerate' #evtsel_bjet_weight
-                if supergroup.name == 'AntitauEvents':
-                    cut1 = 'evtsel_weight*evtsel_weight_FF'
-                if supergroup.name == 'Data':
-                    cut1 = 'evtsel_weight'
-                #if supergroup.name == 'QCD':
-                #    region[0] = region[0] + QCD_CR
+                    cut2 = cut1 + '*' + (region[0] + supergroup.subset + group.subset).string() 
 
-                
-                cut2 = cut1 + '*' + (region[0] + supergroup.subset + group.subset).string() 
+                    if (entry.variable == 'evtsel_dR'):
+                        chain.Draw('TMath::Sqrt(TMath::Power((evtsel_tau1_eta-evtsel_tau2_eta),2)+TMath::Power(TVector2::Phi_mpi_pi((evtsel_tau1_phi-evtsel_tau2_phi)),2))>>%s' % th1f_name,cut2)
+                        group_yield = th1f.GetSumOfWeights()
+                    else: 
+                        chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut2)
+                        group_yield = th1f.GetSumOfWeights()
+                        #group_yield = th1f.GetEntries()
 
-                if (entry.variable == 'evtsel_dR'):
-                    chain.Draw('TMath::Sqrt(TMath::Power((evtsel_tau1_eta-evtsel_tau2_eta),2)+TMath::Power(TVector2::Phi_mpi_pi((evtsel_tau1_phi-evtsel_tau2_phi)),2))>>%s' % th1f_name,cut2)
-                else: 
-                    chain.Draw('%s*%f>>%s' % (entry.variable, entry.factor, th1f_name), cut2)
-                group_yield = th1f.GetSumOfWeights()
-                #group_yield = th1f.GetEntries()
-
-                ## R_QCD stuff
-                region[1] += group_yield*group.factor*supergroup.factor
-                #QCD_histo.Add(th1f, sign)
-                QCD_histo.Add(th1f,group.factor*supergroup.factor)
-                
-                ##########print 'Weight Nentries passing cuts is %.3f' % (group_yield*group.factor*supergroup.factor)
-                th1f_total.Add(th1f,group.factor*supergroup.factor)
+                    ## R_QCD stuff
+                    region[1] += group_yield*group.factor*supergroup.factor
+                    #QCD_histo.Add(th1f, sign)
+                    QCD_histo.Add(th1f,group.factor*supergroup.factor)
+            
+					##########print 'Weight Nentries passing cuts is %.3f' % (group_yield*group.factor*supergroup.factor)
+                    th1f_total.Add(th1f,group.factor*supergroup.factor)
                
 
-            #Compute error on the supergroup
-            supergroup_raw_yield = th1f_total.GetEntries()
-            supergroup_raw_error = math.sqrt(supergroup_raw_yield)
-            #print 'Number of raw supergroup entries is %d' % (supergroup_raw_yield)
-            #print 'Raw error on the %s supergroup is %.3f' % (supergroup.name, supergroup_raw_error) 
-            supergroup_weighted_yield = th1f_total.GetSumOfWeights()
-            print 'Number of weighted %s supergroup entries is %.3f' % (supergroup.name,supergroup_weighted_yield)
-            nbins = th1f_total.GetNbinsX()
-            sum2errors = 0
-            for i in range(1,nbins+1):
-                sum2errors += th1f_total.GetBinError(i)**2
-            th1f_error = math.sqrt(sum2errors)
-            print 'Error on the %s supergroup is %.3f' % (supergroup.name,th1f_error)
+				#Compute error on the supergroup
+                supergroup_raw_yield = th1f_total.GetEntries()
+                supergroup_raw_error = math.sqrt(supergroup_raw_yield)
+                #print 'Number of raw supergroup entries is %d' % (supergroup_raw_yield)
+                #print 'Raw error on the %s supergroup is %.3f' % (supergroup.name, supergroup_raw_error) 
+                supergroup_weighted_yield = th1f_total.GetSumOfWeights()
+                print 'Number of weighted %s supergroup entries is %.3f' % (supergroup.name,supergroup_weighted_yield)
+                nbins = th1f_total.GetNbinsX()
+                sum2errors = 0
+                for i in range(1,nbins+1):
+                    sum2errors += th1f_total.GetBinError(i)**2
+                th1f_error = math.sqrt(sum2errors)
+                print 'Error on the %s supergroup is %.3f' % (supergroup.name,th1f_error)
 
 
-     ## Add TH1F to Histogram
-            entry.histogram.add_filled(th1f_total,
-                                       supergroup.legendLabel,
-                                       supergroup.color,
-                                       supergroup.style,
-                                       supergroup.stack)
-            if entry.rootfile:
-                h.add(region[0].name, region[0].name + '_' + supergroup.name, th1f_total)
+				## Add TH1F to Histogram
+                entry.histogram.add_filled(th1f_total,
+										   supergroup.legendLabel,
+										   supergroup.color,
+										   supergroup.style,
+										   supergroup.stack)
+                if entry.rootfile:
+                    h.add(region[0].name, region[0].name + '_' + sys_name + '_' + sys_var + '_' + supergroup.name, th1f_total)
+					
             
     ## Histogram.draw()
     if not Make_workspace: 

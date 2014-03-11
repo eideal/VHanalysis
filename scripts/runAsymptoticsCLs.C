@@ -19,7 +19,6 @@ Description: Script to run asymptotic CLs.
 -Added better output for unresolved fit failures
 -Improved retry loop for fit failures
 
-
 /////////////////////
 //////PREAMBLE///////
 /////////////////////

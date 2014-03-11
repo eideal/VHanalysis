@@ -58,103 +58,43 @@ istau = Subset('istau')
 istau.cut('evtsel_is_tau')
 ##########################
 
+##### Not anti-object events #####
+isreal = Subset('isreal')
+isreal.cut('evtsel_is_real')
+#####################
+
 
 ######## Anti-tau events #1 ########
 antitau = Subset('antitau')
-antitau.cut('!evtsel_is_tau')
-antitau.cut('evtsel_jets_num', '==', 0)
+#antitau.cut('!evtsel_is_tau')
+antitau.cut('!evtsel_is_real')
+antitau.cut('evtsel_nAntiElectrons_Selected', '==', 0)
+antitau.cut('evtsel_nAntiMuons_Selected', '==', 0)
 antitau.cut('evtsel_nAntiTaus_Selected','==', 2)
 antitau.cut('evtsel_tau1_is_AntiTau','==',1)
 antitau.cut('evtsel_tau2_is_AntiTau', '==', 1)
 #################################
 ####### Anti-tau events #2 #########
 antitau2 = Subset('antitau2')
-antitau2.cut('!evtsel_is_tau')
-antitau2.cut('evtsel_jets_num', '==', 0)
+#antitau2.cut('!evtsel_is_tau')
+antitau2.cut('!evtsel_is_real')
+antitau2.cut('evtsel_nAntiElectrons_Selected', '==', 0)
+antitau2.cut('evtsel_nAntiMuons_Selected', '==', 0)
 antitau2.cut('evtsel_nAntiTaus_Selected','==',1)
 antitau2.cut('evtsel_tau1_is_AntiTau', '==',1)
 antitau2.cut('evtsel_tau2_is_AntiTau', '==', 0)
 #################################
 ######## Anti-tau events #3 ########
 antitau3 = Subset('antitau3')
-antitau3.cut('!evtsel_is_tau')
-antitau3.cut('evtsel_jets_num', '==', 0)
+#antitau3.cut('!evtsel_is_tau')
+antitau3.cut('!evtsel_is_real')
+antitau3.cut('evtsel_nAntiElectrons_Selected', '==', 0)
+antitau3.cut('evtsel_nAntiMuons_Selected', '==', 0)
 antitau3.cut('evtsel_nAntiTaus_Selected', '==', 1)
 antitau3.cut('evtsel_tau1_is_AntiTau', '==', 0)
 antitau3.cut('evtsel_tau2_is_AntiTau','==', 1)
 ##############################
-####### Anti-tau events (3 objects) #####
-antitau4 = Subset('antitau4')
-antitau4.cut('!evtsel_is_tau')
-antitau4.cut('evtsel_jets_num','==', 1)
-antitau4.cut('evtsel_nAntiTaus_Selected', '==', 1)
-antitau4.cut('evtsel_tau1_is_AntiTau', '==', 0)
-antitau4.cut('evtsel_tau2_is_AntiTau', '==', 1)
-##############################
-####### Anti-tau events (3 objects) #####
-antitau5 = Subset('antitau5')
-antitau5.cut('!evtsel_is_tau')
-antitau5.cut('evtsel_jets_num','==', 1)
-antitau5.cut('evtsel_nAntiTaus_Selected', '==', 1)
-antitau5.cut('evtsel_tau1_is_AntiTau', '==', 1)
-antitau5.cut('evtsel_tau2_is_AntiTau', '==', 0)
-##############################
-####### Anti-tau events (3 objects) #####
-antitau6 = Subset('antitau6')
-antitau6.cut('!evtsel_is_tau')
-antitau6.cut('evtsel_jets_num','==', 1)
-antitau6.cut('evtsel_nAntiTaus_Selected', '==', 2)
-antitau6.cut('evtsel_tau1_is_AntiTau', '==', 1)
-antitau6.cut('evtsel_tau2_is_AntiTau', '==', 1)
-##############################
-####### Anti-tau events (4 objects) #####
-antitau7 = Subset('antitau7')
-antitau7.cut('!evtsel_is_tau')
-antitau7.cut('evtsel_jets_num','==', 2)
-antitau7.cut('evtsel_nAntiTaus_Selected', '==', 2)
-antitau7.cut('evtsel_tau1_is_AntiTau', '==', 1)
-antitau7.cut('evtsel_tau2_is_AntiTau', '==', 1)
-##############################
-####### Anti-tau events (4 objects) #####
-antitau8 = Subset('antitau8')
-antitau8.cut('!evtsel_is_tau')
-antitau8.cut('evtsel_jets_num','==', 2)
-antitau8.cut('evtsel_nAntiTaus_Selected', '==', 1)
-antitau8.cut('evtsel_tau1_is_AntiTau', '==', 0)
-antitau8.cut('evtsel_tau2_is_AntiTau', '==', 1)
-##############################
-####### Anti-tau events (4 objects) #####
-antitau9 = Subset('antitau9')
-antitau9.cut('!evtsel_is_tau')
-antitau9.cut('evtsel_jets_num','==', 2)
-antitau9.cut('evtsel_nAntiTaus_Selected', '==', 1)
-antitau9.cut('evtsel_tau1_is_AntiTau', '==', 1)
-antitau9.cut('evtsel_tau2_is_AntiTau', '==', 0)
-##############################
-###### Anti-tau events (5 objects) #####
-antitau10 = Subset('antitau10')
-antitau10.cut('!evtsel_is_tau')
-antitau10.cut('evtsel_jets_num','==', 3)
-antitau10.cut('evtsel_nAntiTaus_Selected', '==', 1)
-antitau10.cut('evtsel_tau1_is_AntiTau', '==', 1)
-antitau10.cut('evtsel_tau2_is_AntiTau', '==', 0)
-###############################
-###### Anti-tau events (5 objects) #####
-antitau11 = Subset('antitau11')
-antitau11.cut('!evtsel_is_tau')
-antitau11.cut('evtsel_jets_num','==', 3)
-antitau11.cut('evtsel_nAntiTaus_Selected', '==', 1)
-antitau11.cut('evtsel_tau1_is_AntiTau', '==', 0)
-antitau11.cut('evtsel_tau2_is_AntiTau', '==', 1)
-###############################
-###### Anti-tau events (5 objects) #####
-antitau12 = Subset('antitau12')
-antitau12.cut('!evtsel_is_tau')
-antitau12.cut('evtsel_jets_num','==', 3)
-antitau12.cut('evtsel_nAntiTaus_Selected', '==', 2)
-antitau12.cut('evtsel_tau1_is_AntiTau', '==', 1)
-antitau12.cut('evtsel_tau2_is_AntiTau', '==', 1)
-###############################
+
 
 
 ###### ZH (signal region)--Z->muons #######
@@ -252,8 +192,8 @@ whtest2.cut('evtsel_sum_tau_pt', '>', 70000)
 whtest2.cut('evtsel_transmass_lep1MET', '>', 20000)
 whtest2.cut('evtsel_tau1_charge', '==', 'evtsel_tau2_charge')
 whtest2.cut('evtsel_passes_bjet_veto')
-whtest2.cut('evtsel_tau2_matched', '==', 0)
 whtest2.cut('evtsel_tau1_matched', '==', 1)
+whtest2.cut('evtsel_tau2_matched', '==', 0)
 whtest2.cut('evtsel_tau2_charge', '==', 'evtsel_vlep1_charge')
 ##################################################
 
@@ -314,5 +254,3 @@ w_cr.cut('evtsel_vlep1_etcone20/evtsel_vlep1_pt', '<', 0.06)
 w_cr.cut('evtsel_vlep1_ptcone40/evtsel_vlep1_pt', '<', 0.06)
 w_cr.cut('(((evtsel_EF_mu24i_tight || evtsel_EF_mu36_tight) && evtsel_lep1_flavour==13) || (evtsel_EF_e24vhi_medium1 && evtsel_lep1_flavour==11) || (evtsel_EF_e60_medium1 && evtsel_lep1_flavour==11)')
 #################################################
-
-

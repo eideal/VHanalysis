@@ -1,11 +1,26 @@
 import ROOT
 
+## e.g. ZH125
 def is_signal(name):
     supergroup_name = name.split('_')[-1].lower()
     if 'wh' in supergroup_name: return True
     if 'zh' in supergroup_name: return True
     if 'ggh' in supergroup_name: return True
     if 'vbfh' in supergroup_name: return True
+    return False
+
+## e.g. ZZ_zerofakes
+def is_BG(name): 
+    supergroup_name = name.split('_')[-2].lower()
+    if 'zz' in supergroup_name: return True
+    if 'wz' in supergroup_name: return True
+    if 'tt' in supergroup_name: return True
+    return False
+
+## e.g. AntitauEvents
+def is_fakes(name):
+    supergroup_name = name.split('_')[-1].lower()
+    if 'antitauevents' in supergroup_name: return True
     return False
 
 class Region(list):
@@ -55,7 +70,7 @@ class HistoContainer(dict):
         """
 
         for mass in self.masses:
-
+    #goal: create a workspace by recording the structure of the analysis: channels, BGs, signals, and systematics. makes a root file that you feed to the scripts which give the limits and significances
             #Set up the combination measurement
             combination_measurement = ROOT.RooStats.HistFactory.Measurement('VHhh_%d' % mass, 'VHhh_%d' % mass)
             combination_measurement.SetOutputFilePrefix('./results/MEAS')
@@ -86,38 +101,129 @@ class HistoContainer(dict):
                     ## handle data
                     if 'data' in histogram_name.lower():
                         if has_data:
-                            raise ValueError, "There should only be one data histogram"
-                        channel.SetData(histogram_name, self.rootfile_name)
-                        has_data = True
+                            if not 'ATLAS' in histogram_name:
+                                raise ValueError, "There should only be one data histogram"
+                        if not 'ATLAS' in histogram_name:
+                            channel.SetData(histogram_name, self.rootfile_name)
+                            has_data = True
+
 
                     ## handle signal
                     else:
                         if is_signal(histogram_name):
                             if str(mass) in histogram_name:
-                                sample = ROOT.RooStats.HistFactory.Sample(histogram_name, histogram_name, self.rootfile_name)
+                                if not 'ATLAS' in histogram_name:
+                                    sample = ROOT.RooStats.HistFactory.Sample(histogram_name, histogram_name, self.rootfile_name)
+                                    
+                                supergroup_name = histogram_name.split('_')[-1]
+                                
                                 sample.AddNormFactor('SigXsecOverSM', 0.0, 0.0, 40.0)
+                                sample.AddOverallSys('ATLAS_LUMI_2012', 0.972, 1.028)
+
+                                # sample.AddHistoSys('ATLAS_EL_FF','%s_ATLAS_EL_FF_UP_%s' % (region.name, supergroup_name), self.rootfile_name, '', '%s_ATLAS_EL_FF_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name, '')
+                                sample.AddHistoSys('ATLAS_EL_ID','%s_ATLAS_EL_ID_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_EL_ID_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_EL_ISO','%s_ATLAS_EL_ISO_UP_%s' % (region.name, supergroup_name), self.rootfile_name, '', '%s_ATLAS_EL_ISO_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_EL_LOWPT','%s_ATLAS_EL_LOWPT_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_EL_LOWPT_DOWN_%s' % (region.name, supergroup_name),self.rootfile_name ,'')
+                                sample.AddHistoSys('ATLAS_EL_PS','%s_ATLAS_EL_PS_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_EL_PS_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name, '')
+                                sample.AddHistoSys('ATLAS_EL_R12','%s_ATLAS_EL_R12_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_EL_R12_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name, '')
+                                sample.AddHistoSys('ATLAS_EL_RES','%s_ATLAS_EL_RES_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_EL_RES_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_EL_TRIG','%s_ATLAS_EL_TRIG_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_EL_TRIG_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name ,'')
+                                sample.AddHistoSys('ATLAS_EL_ZEE','%s_ATLAS_EL_ZEE_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_EL_ZEE_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_JER_2012','%s_ATLAS_JER_2012_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JER_2012_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_JES_2012_Detector1','%s_ATLAS_JES_2012_Detector1_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_2012_Detector1_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_JES_2012_Eta_StatMethod','%s_ATLAS_JES_2012_Eta_StatMethod_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_2012_Eta_StatMethod_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_JES_2012_EtaModelling','%s_ATLAS_JES_2012_EtaModelling_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_2012_EtaModelling_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_JES_2012_Modelling1','%s_ATLAS_JES_2012_Modelling1_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_2012_Modelling1_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_JES_2012_PileRho_TAU','%s_ATLAS_JES_2012_PileRho_TAU_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_2012_PileRho_TAU_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_JES_2012_Statistical1','%s_ATLAS_JES_2012_Statistical1_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_2012_Statistical1_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_JES_FlavComp_TAU','%s_ATLAS_JES_FlavComp_TAU_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_FlavComp_TAU_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_JES_Flavb','%s_ATLAS_JES_Flavb_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_Flavb_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_JES_FlavResp','%s_ATLAS_JES_FlavResp_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_FlavResp_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_JES_Mu','%s_ATLAS_JES_Mu_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_Mu_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_JES_NPV','%s_ATLAS_JES_NPV_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_NPV_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_JVF_2012','%s_ATLAS_JVF_2012_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JVF_2012_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_MET_RESOSOFT','%s_ATLAS_MET_RESOSOFT_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_MET_RESOSOFT_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_MET_SCALESOFT','%s_ATLAS_MET_SCALESOFT_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_MET_SCALESOFT_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                #sample.AddHistoSys('ATLAS_MU_FF','%s_ATLAS_MU_FF_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_MU_FF_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_MU_ID','%s_ATLAS_MU_ID_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_MU_ID_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_MU_ISO','%s_ATLAS_MU_ISO_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_MU_ISO_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_MU_MS','%s_ATLAS_MU_MS_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_MU_MS_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_MU_TRIG','%s_ATLAS_MU_TRIG_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_MU_TRIG_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_PU_RESCALE_2012','%s_ATLAS_PU_RESCALE_2012_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_PU_RESCALE_2012_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_TAU_EFAKE_2012','%s_ATLAS_TAU_EFAKE_2012_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_TAU_EFAKE_2012_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                #sample.AddHistoSys('ATLAS_TAU_FF','%s_ATLAS_TAU_FF_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_TAU_FF_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_TAU_ID_2012','%s_ATLAS_TAU_ID_2012_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_TAU_ID_2012_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_TAU_ID_STAT_2012','%s_ATLAS_TAU_ID_STAT_2012_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_TAU_ID_STAT_2012_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                sample.AddHistoSys('ATLAS_TES_TRUE_2012','%s_ATLAS_TES_TRUE_2012_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_TES_TRUE_2012_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                                
 
                                 if 'ggh' in histogram_name.lower():
                                     sample.AddNormFactor('mu_XS8_ggH', 1.0, 0.0, 200.0)
 
-                                if 'vbfh' in histogram_name.lower():
+                                elif 'vbfh' in histogram_name.lower():
                                     sample.AddNormFactor('mu_XS8_VBF', 1.0, 0.0, 200.0)
 
-                                if 'wh' in histogram_name.lower():
+                                elif 'wh' in histogram_name.lower():
                                     sample.AddNormFactor('mu_XS8_WH', 1.0, 0.0, 200.0)
 
-                                if 'zh' in histogram_name.lower():
+                                elif 'zh' in histogram_name.lower():
                                     sample.AddNormFactor('mu_XS8_ZH', 1.0, 0.0, 200.0)
 
-                                sample.SetNormalizeByTheory(True)
+                                    
                             else:
                                 continue
 
                         ## handle backgrounds
+                        elif is_BG(histogram_name):
+                            if not 'ATLAS' in histogram_name:
+                                sample = ROOT.RooStats.HistFactory.Sample(histogram_name, histogram_name, self.rootfile_name)
+
+                            supergroup_name = histogram_name.split('_')[-2] + '_' + histogram_name.split('_')[-1]
+                            
+                            sample.ActivateStatError()
+                            sample.AddOverallSys('ATLAS_LUMI_2012', 0.972, 1.028)
+
+                            # sample.AddHistoSys('ATLAS_EL_FF','%s_ATLAS_EL_FF_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_EL_FF_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_EL_ID','%s_ATLAS_EL_ID_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_EL_ID_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_EL_ISO','%s_ATLAS_EL_ISO_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_EL_ISO_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_EL_LOWPT','%s_ATLAS_EL_LOWPT_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_EL_LOWPT_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_EL_PS','%s_ATLAS_EL_PS_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_EL_PS_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_EL_R12','%s_ATLAS_EL_R12_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_EL_R12_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_EL_RES','%s_ATLAS_EL_RES_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_EL_RES_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_EL_TRIG','%s_ATLAS_EL_TRIG_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_EL_TRIG_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_EL_ZEE','%s_ATLAS_EL_ZEE_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_EL_ZEE_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_JER_2012','%s_ATLAS_JER_2012_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JER_2012_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_JES_2012_Detector1','%s_ATLAS_JES_2012_Detector1_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_2012_Detector1_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_JES_2012_Eta_StatMethod','%s_ATLAS_JES_2012_Eta_StatMethod_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_2012_Eta_StatMethod_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_JES_2012_EtaModelling','%s_ATLAS_JES_2012_EtaModelling_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_2012_EtaModelling_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_JES_2012_Modelling1','%s_ATLAS_JES_2012_Modelling1_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_2012_Modelling1_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_JES_2012_PileRho_TAU','%s_ATLAS_JES_2012_PileRho_TAU_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_2012_PileRho_TAU_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_JES_2012_Statistical1','%s_ATLAS_JES_2012_Statistical1_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_2012_Statistical1_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_JES_FlavComp_TAU','%s_ATLAS_JES_FlavComp_TAU_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_FlavComp_TAU_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_JES_Flavb','%s_ATLAS_JES_Flavb_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_Flavb_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_JES_FlavResp','%s_ATLAS_JES_FlavResp_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_FlavResp_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_JES_Mu','%s_ATLAS_JES_Mu_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_Mu_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_JES_NPV','%s_ATLAS_JES_NPV_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JES_NPV_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_JVF_2012','%s_ATLAS_JVF_2012_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_JVF_2012_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_MET_RESOSOFT','%s_ATLAS_MET_RESOSOFT_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_MET_RESOSOFT_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_MET_SCALESOFT','%s_ATLAS_MET_SCALESOFT_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_MET_SCALESOFT_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            #sample.AddHistoSys('ATLAS_MU_FF','%s_ATLAS_MU_FF_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_MU_FF_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_MU_ID','%s_ATLAS_MU_ID_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_MU_ID_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_MU_ISO','%s_ATLAS_MU_ISO_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_MU_ISO_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_MU_MS','%s_ATLAS_MU_MS_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_MU_MS_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_MU_TRIG','%s_ATLAS_MU_TRIG_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_MU_TRIG_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_PU_RESCALE_2012','%s_ATLAS_PU_RESCALE_2012_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_PU_RESCALE_2012_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_TAU_EFAKE_2012','%s_ATLAS_TAU_EFAKE_2012_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_TAU_EFAKE_2012_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            #sample.AddHistoSys('ATLAS_TAU_FF','%s_ATLAS_TAU_FF_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_TAU_FF_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_TAU_ID_2012','%s_ATLAS_TAU_ID_2012_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_TAU_ID_2012_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_TAU_ID_STAT_2012','%s_ATLAS_TAU_ID_STAT_2012_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_TAU_ID_STAT_2012_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+                            sample.AddHistoSys('ATLAS_TES_TRUE_2012','%s_ATLAS_TES_TRUE_2012_UP_%s' % (region.name, supergroup_name), self.rootfile_name,'', '%s_ATLAS_TES_TRUE_2012_DOWN_%s' % (region.name, supergroup_name), self.rootfile_name,'')
+
+                                
+                                
                         else:
                             sample = ROOT.RooStats.HistFactory.Sample(histogram_name, histogram_name, self.rootfile_name)
                             sample.ActivateStatError()
-                            sample.SetNormalizeByTheory(False)
 
                         channel.AddSample(sample)
 

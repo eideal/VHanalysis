@@ -10,7 +10,8 @@ class Group:
                  samples = [],
                  factor = 1,
                  classification = 'BG',
-                 subset = Subset.Subset('')
+                 subset = Subset.Subset(''),
+        #weight = '1',
                  ):
 
         self.name = name
@@ -18,6 +19,7 @@ class Group:
         self.samples = samples
         self.classification = classification
         self.subset = subset
+        #self.weight = weight
       
 
 

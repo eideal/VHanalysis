@@ -2,29 +2,31 @@ from plotinfo_container import plotinfo_container
 
 plots = plotinfo_container()
 
-
-#plots.Add('evtsel_tau1_et', '_totalTEST', 20,0,200, 'evtsel_tau1_et', 0.001, False)
-#plots.Add('evtsel_Zll_mass', '_totalTEST', 20,0, 200, 'evtsel_Zll_mass', 0.001, False)
-#plots.Add('evtsel_dR','_totalTEST', 20, 0, 8, 'dR(tau1,tau2)', 1, False)
-#plots.Add('evtsel_sum_tau_pt', '_totalTEST', 30, 0, 300, 'evtsel_sum_tau_pt', 0.001, False)
+#plots.Add('evtsel_tau1_et', '_totalTEST', 10,0,200, 'evtsel_tau1_et', 0.001, False, False)
+#plots.Add('evtsel_weight_FF', '_totalTEST',40,0,0.1, 'evtsel_weight_FF', 1, False, False)
+#plots.Add('evtsel_Zll_m', '_totalTEST', 10,0, 200, 'evtsel_Zll_m', 0.001, False, False)
+#plots.Add('evtsel_dR','_totalTEST', 20, 0, 8, 'dR(tau1,tau2)', 1, False, False)
+#plots.Add('evtsel_sum_tau_pt', '_totalTEST', 10, 0, 300, 'evtsel_sum_tau_pt', 0.001, False, False)
 #plots.Add('evtsel_jets_num', '_totalTEST', 10, 0, 10, 'evtsel_jets_num', 1, False)
 
 
-#plots.Add('evtsel_sum_lep_pt', '_totalTEST', 30, 50, 400, 'evtsel_sum_lep_pt', 0.001, False)
+#plots.Add('evtsel_sum_lep_pt', '_totalTEST', 10, 50, 400, 'evtsel_sum_lep_pt', 0.001, False, False)
 #plots.Add('evtsel_transmass_vlep1MET', '_totalTEST', 30, 0, 300, 'evtsel_transmass_lep1MET', 0.001, False)
-#plots.Add('evtsel_MET','_totalTEST', 20, 0, 200, 'evtsel_MET', 0.001, False)
+#plots.Add('evtsel_MET','_totalTEST', 20, 0, 200, 'evtsel_MET', 0.001, False, False)
 #plots.Add('evtsel_H_m_vis', '_totalTEST', 20,0,400, 'evtsel_H_m_vis', 0.001, False)
 
 
-#plots.Add('evtsel_H_m_MMC', '_totalTEST', 20,0,400, 'evtsel_H_m_MMC', 0.001, False, True)
+#plots.Add('evtsel_H_m_MMC', '_totalTEST', 20,0,400, 'evtsel_H_m_MMC', 0.001, False, False)
 #plots.Add('evtsel_H_m_MMC', '_totalTEST', 5,25,225, 'evtsel_H_m_MMC', 0.001, False, True)
 plots.Add('evtsel_H_m_MMC', '_totalTEST', 1,0,250, 'evtsel_H_m_MMC', 0.001, False, True)
+#plots.Add('evtsel_M2T', '_totalTEST', 1, 0, 300, 'evtsel_M2T', 1, False, True)
 
-#plots.Add('evtsel_vlep1_pt', '_totalTEST',30,0,300, 'evtsel_vlep1_pt', 0.001, False)
-#plots.Add('evtsel_tau2_et', '_totalTEST', 40, 0, 200, 'evtsel_tau2_et', 0.001, False)
 
-#plots.Add('evtsel_tau1_phi', '_totalTEST', 15,-4,8, 'evtsel_tau1_phi', 1, False)
-#plots.Add('evtsel_tau1_eta', '_totalTEST', 18,-3.5,7, 'evtsel_tau1_eta', 1, False)
+#plots.Add('evtsel_vlep1_pt', '_totalTEST',10,0,300, 'evtsel_vlep1_pt', 0.001, False, False)
+#plots.Add('evtsel_tau2_et', '_totalTEST', 10, 0, 200, 'evtsel_tau2_et', 0.001, False, False)
+
+#plots.Add('evtsel_tau1_phi', '_totalTEST', 10,-4,8, 'evtsel_tau1_phi', 1, False, False)
+#plots.Add('evtsel_tau1_eta', '_totalTEST', 10,-3.5,7, 'evtsel_tau1_eta', 1, False, False)
 
 #plots.Add('evtsel_MET_OSMC','_OSMC', 30, 0, 300, 'evtsel_MET', 0.001, False)
 #plots.Add('evtsel_MET_SSSMC', '_SSSMC', 30,0,300, 'evtsel_MET', 0.001, False)
@@ -48,7 +50,7 @@ plots.Add('evtsel_H_m_MMC', '_totalTEST', 1,0,250, 'evtsel_H_m_MMC', 0.001, Fals
 
 #plots.Add('evtsel_lep3_pt', '', 20,0,50, 'evtsel_lep3_pt', 0.001, False)
 #plots.Add('evtsel_lep2_pt', '_WHhh', 38,0,76, 'evtsel_lep2_pt', 0.001, False)
-#plots.Add('evtsel_nLeptons', '_WHhh', 1,0,10, 'evtsel_nLeptons',1,False)
+#plots.Add('evtsel_nLeptons', '_WHhh', 1,0,10, 'evtsel_nLeptons',1,False, False)
 #plots.Add('evtsel_weight', 'WHhh125', 20, -10, 10, 'evtsel_weight', 1, False)
 #plots.Add('evtsel_lep2_flavour', '', 32, -16, 16, 'evtsel_lep2_flavour', 1, False)
 #plots.Add('evtsel_vlep1_z0', '_WHhh', 15,10, 100, 'evtsel_vlep1_z0', 1, False)
