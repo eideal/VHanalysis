@@ -21,8 +21,8 @@ class Component:
         self.index      = None
         self.label      = None
         self.binning    = None
-        self.shapesys   = None
-        self.overallsys = None
+        self.shapesys   = []
+        self.overallsys = []
 
         self.nbins    = None
         self.nominal  = None
@@ -300,32 +300,85 @@ class Histogram:
 
 
     ## -------------------------------------------- ##
-    def add_filled(self, th1f, name, color, sty, stack=True, sys_up={}, sys_down={}, overallsys=[]):
+    def add_filled(self, th1f, name, color, sty, stack=True, sys_name='', sys_direction=''):
         """
         Add a histogram which has already been filled
         User is responsible to make binning match with other histograms
         shape systematics must be a dictionary of the shape variations
         """
 
-        self.n += 1
+        if sys_name == '':
+            self.n += 1
 
-        new_component = Component(name)
-        new_component.index      = self.n
-        new_component.nominal    = th1f
-        new_component.color      = ROOT.TColor.GetColor(color)
-        new_component.style      = style.style1D[sty]
-        new_component.stack      = stack
-        new_component.label      = self.label
-        new_component.binning    = self.binning
-        new_component.sys_up     = sys_up
-        new_component.sys_down   = sys_down
-        new_component.overallsys = overallsys
+            new_component = Component(name)
+            new_component.index      = self.n
+            new_component.nominal    = th1f
+            new_component.color      = ROOT.TColor.GetColor(color)
+            new_component.style      = style.style1D[sty]
+            new_component.stack      = stack
+            new_component.label      = self.label
+            new_component.binning    = self.binning
+            new_component.sys_up     = sys_up
+            new_component.sys_down   = sys_down
+            new_component.overallsys = overallsys
 
-        new_component.initialize_filled()
+            new_component.initialize_filled()
 
-        self.components.append(new_component)
+            self.components.append(new_component)
 
-        return self.n
+            return self.n
+            
+        else:
+            ## First, locate the component to which a systematic variation will be added by name
+            the_component = None
+            for component in self.components:
+                if component.name = name:
+                    the_component = component
+                    
+            if the_component is None:
+                raise AttributeError('Tried to add a systematic variation to a component named %s that do not yet exist.' % name)
+                
+            ## Check that the systematic is included in the list, and if already there, check that it's already been included
+            ## from the opposite variation
+            if not sys_name in the_component.shapesys:
+                the_component.shapesys.append(sys_name)
+            else:
+                if sys_direction == 'UP':
+                    if not sys_name in the_component.sys_down.keys():
+                        raise AttributeError('Trying to Add an UP variation twice for %s' % sys_name)
+                        
+                if sys_direction == 'DOWN':
+                    if not sys_name in the_component.sys_up.keys():
+                        raise AttributeError('Trying to Add a DOWN variation twice for %s' % sys_name)
+                    
+                
+            if sys_direction == 'UP':
+                the_component.sys_up[sys_name] = th1f
+            elif sys_direction == 'DOWN':
+                the_component.sys_down[sys_name] = th1f
+            else:
+                raise AttributeError('sys_direction %s has no meaning. Use \'UP\' and \'DOWN\' only.' % sys_direction)
+                
+                
+                
+    ## -------------------------------------------- ##
+    def add_overall_sys_list_to(self, name, overallsys=[]):
+        """
+        Adds a list of overall systematics in the following format to the component of the given name:
+        [(sys1_down, sys1_up), (sys2_down, sys2_up), ...]
+        where sys1, sys2, etc. reprensent different systematics, and where the numbers provided are
+        taken as a percent variation around 1.0, just like in the workspace
+        """
+        
+        ## First, locate the component to which a systematic variation will be added by name
+        the_component = None
+        for component in self.components:
+            if component.name = name:
+                the_component = component
+                
+        the_component.overallsys = overallsys
+                
+            
 
 
     ## -------------------------------------------- ##
