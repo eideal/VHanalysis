@@ -318,9 +318,6 @@ class Histogram:
             new_component.stack      = stack
             new_component.label      = self.label
             new_component.binning    = self.binning
-            new_component.sys_up     = sys_up
-            new_component.sys_down   = sys_down
-            new_component.overallsys = overallsys
 
             new_component.initialize_filled()
 
