@@ -26,8 +26,8 @@ class Component:
 
         self.nbins    = None
         self.nominal  = None
-        self.sys_up   = None
-        self.sys_down = None
+        self.sys_up   = {}
+        self.sys_down = {}
 
         self.event_yield = 0.0
         self.product = 1.0
