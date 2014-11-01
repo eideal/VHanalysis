@@ -1,32 +1,51 @@
 from plotinfo_container import plotinfo_container
+from Tools import palette
+import math
 
 plots = plotinfo_container()
 
-#plots.Add('evtsel_tau1_et', '_totalTEST', 10,0,200, 'evtsel_tau1_et', 0.001, False, False)
-#plots.Add('evtsel_weight_FF', '_totalTEST',40,0,0.1, 'evtsel_weight_FF', 1, False, False)
-#plots.Add('evtsel_Zll_m', '_totalTEST', 10,0, 200, 'evtsel_Zll_m', 0.001, False, False)
-#plots.Add('evtsel_dR','_totalTEST', 20, 0, 8, 'dR(tau1,tau2)', 1, False, False)
-#plots.Add('evtsel_sum_tau_pt', '_totalTEST', 10, 0, 300, 'evtsel_sum_tau_pt', 0.001, False, False)
+#plots.Add('evtsel_weight_FF', '_totalTEST', 45, -0.04, 0.15, palette.green, 'fill', 'OldFakes', 'evtsel_weight_FF', 1, False, False)
+#plots.Add('newFF', '_totalTEST', 45, -0.04, 0.15, palette.blue, 'line', 'NewFakes','newFF', 1, False, False)
+
+#plots.Add('evtsel_nAntiTaus', '_totalTEST', 15,0, 15, palette.green, 'fill', 'nothing', 'evtsel_nAntiTaus', 1, False, False)
+#plots.Add('evtsel_trueHiggs_pt', '_totalTEST', 15, 0, 300, palette.green, 'fill', 'nothing', 'pT_Higgs', 1, False, False) 
+
+#plots.Add('evtsel_tau1_et', '_totalTEST', 16,20,100, palette.green, 'fill', 'nothing', 'tau1_et', 0.001, False, False)
+#plots.Add('evtsel_Zll_m', '_totalTEST', 15,0, 250, palette.green, 'fill', 'nothing', 'Zll_m', 0.001, False, False)
+#plots.Add('evtsel_dR','_totalTEST', 20, 0, 8, palette.green, 'fill', 'nothing', 'dR(tau1,tau2)', 1, False, False)
+#plots.Add('evtsel_V_pt','_totalTEST', 20, 0, 200, palette.green, 'fill','nothing', 'V_pt', 0.001, False, False)
+#plots.Add('evtsel_sum_tau_pt', '_totalTEST', 20, 40, 250, palette.green, 'fill', 'nothing', 'sum_tau_pt', 0.001, False, False)
 #plots.Add('evtsel_jets_num', '_totalTEST', 10, 0, 10, 'evtsel_jets_num', 1, False)
 
 
-#plots.Add('evtsel_sum_lep_pt', '_totalTEST', 10, 50, 400, 'evtsel_sum_lep_pt', 0.001, False, False)
-#plots.Add('evtsel_transmass_vlep1MET', '_totalTEST', 30, 0, 300, 'evtsel_transmass_lep1MET', 0.001, False)
-#plots.Add('evtsel_MET','_totalTEST', 20, 0, 200, 'evtsel_MET', 0.001, False, False)
-#plots.Add('evtsel_H_m_vis', '_totalTEST', 20,0,400, 'evtsel_H_m_vis', 0.001, False)
+#plots.Add('evtsel_sum_lep_pt', '_totalTEST', 10, 50, 400, 'sum_lep_pt', 0.001, False, False)
+#plots.Add('evtsel_transmass_vlep1MET', '_totalTEST', 20, 0, 200, palette.green, 'fill', 'nothing', 'transmass_vlep1MET', 0.001, False, False)
+#plots.Add('evtsel_transmass_tau1MET', '_totalTEST', 15, 0, 300, palette.green, 'fill', 'nothing', 'transmass_tau1MET', 0.001, False, False)
+#plots.Add('evtsel_transmass_tau2MET', '_totalTEST', 15, 0, 300, palette.green, 'fill', 'nothing', 'transmass_tau2MET', 0.001, False, False)
+#plots.Add('evtsel_MET','_totalTEST', 15, 0, 150, palette.green, 'fill','nothing', 'MET', 0.001, False, False)
+#plots.Add('evtsel_caloiso', '_WHhhcat', 30, -0.5, 1, palette.green, 'fill', 'nothing', 'calo_iso', 1, False, False)
+#plots.Add('evtsel_trackiso', '_WHhhcat', 30, -0.5, 1, palette.green, 'fill', 'nothing', 'track_iso', 1, False, False)
+#plots.Add('evtsel_MET_sig','_totalTEST', 20, 0, 400, palette.green, 'fill','nothing', 'MET_sig', 1, False, False)
+#plots.Add('evtsel_V_pt_vis','_totalTEST', 20, 0, 200, palette.green, 'fill','nothing', 'V_pt_vis', 0.001, False, False)
+#plots.Add('evtsel_H_m_vis', '_totalTEST', 7,25,200, palette.green, 'fill', 'nothing', 'H_m_vis', 0.001, False, True)
+#plots.Add('evtsel_nLeptons', '_WHhh', 1,0,10, palette.green, 'fill', 'nothing', 'nLeptons',1,False, False)
+#plots.Add('evtsel_MET_phi', '_total', 15, -math.pi, 2*math.pi, palette.green, 'fill', 'nothing', 'MET_phi', 1, False, False)
 
+#plots.Add('evtsel_H_m_MMC', '_totalTEST', 15,0,350, palette.green, 'fill', 'nothing', 'H_m_MMC', 0.001, False, False)
+#plots.Add('evtsel_H_m_MMC', '_totalTEST', 5,25,225, palette.green, 'fill', 'nothing', 'evtsel_H_m_MMC', 0.001, False, False)
+plots.Add('evtsel_H_m_MMC', '_totalTEST', 5,25,225, palette.green, 'fill', 'nothing', 'evtsel_H_m_MMC', 0.001, False, True)
+#plots.Add('evtsel_H_m_MMC', '_totalTEST', 1,25,225, 'evtsel_H_m_MMC', 0.001, False, True)
+#plots.Add('evtsel_M2T', '_totalTEST', 8, 25, 200, palette.green, 'fill', 'nothing', 'M2T', 1, False, True)
+#plots.Add('evtsel_M2T', '_totalTEST', 20, 0, 250, palette.green, 'fill', 'nothing', 'M2T', 1, False, False)
+#plots.Add('evtsel_vlep1_pt', '_totalTEST',15,20,150, palette.green, 'fill', 'nothing', 'vlep1_pt', 0.001, False, False)
+#plots.Add('evtsel_dPhi', '_totalTEST', 15, -math.pi , 2*math.pi, palette.green, 'fill', 'nothing', 'dPhi(tau1,tau2)', 1, False, False)
 
-#plots.Add('evtsel_H_m_MMC', '_totalTEST', 20,0,400, 'evtsel_H_m_MMC', 0.001, False, False)
-#plots.Add('evtsel_H_m_MMC', '_totalTEST', 5,25,225, 'evtsel_H_m_MMC', 0.001, False, True)
-plots.Add('evtsel_H_m_MMC', '_totalTEST', 1,0,250, 'evtsel_H_m_MMC', 0.001, False, True)
-#plots.Add('evtsel_M2T', '_totalTEST', 1, 0, 300, 'evtsel_M2T', 1, False, True)
-
-
-#plots.Add('evtsel_vlep1_pt', '_totalTEST',10,0,300, 'evtsel_vlep1_pt', 0.001, False, False)
-#plots.Add('evtsel_tau2_et', '_totalTEST', 10, 0, 200, 'evtsel_tau2_et', 0.001, False, False)
-
-#plots.Add('evtsel_tau1_phi', '_totalTEST', 10,-4,8, 'evtsel_tau1_phi', 1, False, False)
-#plots.Add('evtsel_tau1_eta', '_totalTEST', 10,-3.5,7, 'evtsel_tau1_eta', 1, False, False)
+#plots.Add('evtsel_hlep1_pt', '_totalTEST',20,0,200, palette.green, 'fill', 'nothing', 'hlep1_pt', 0.001, False, False)
+#plots.Add('evtsel_vlep2_pt', '_totalTEST',15,0,150, palette.green, 'fill', 'nothing', 'vlep2_pt', 0.001, False, False)
+#plots.Add('evtsel_tau2_et', '_totalTEST', 16, 20, 100, palette.green, 'fill', 'nothing', 'tau2_et', 0.001, False, False)
+#plots.Add('evtsel_dEta', '_totalTEST', 10, 0, 5, palette.green, 'fill', 'nothing', 'dEta(tau1,tau2)', 1, False, False)
+#plots.Add('evtsel_tau1_phi', '_totalTEST', 15, -math.pi, 2*math.pi, palette.green, 'fill', 'nothing', 'tau1_phi', 1, False, False)
+#plots.Add('evtsel_tau1_eta', '_totalTEST', 20,-5,5, palette.green, 'fill', 'nothing', 'tau1_eta', 1, False, False)
 
 #plots.Add('evtsel_MET_OSMC','_OSMC', 30, 0, 300, 'evtsel_MET', 0.001, False)
 #plots.Add('evtsel_MET_SSSMC', '_SSSMC', 30,0,300, 'evtsel_MET', 0.001, False)

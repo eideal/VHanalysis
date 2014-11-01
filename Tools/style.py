@@ -129,10 +129,10 @@ ratio_positioning.y_title_size = 0.07
 ratio_positioning.y_title_offset = 1.5
 
 ratio_positioning.x_label_size = 0.06
-ratio_positioning.x_title_size = 0.03
+ratio_positioning.x_title_size = 0.03 
 ratio_positioning.x_title_offset = 0.6
 
-ratio_positioning.legend_spacing = 0.03
+ratio_positioning.legend_spacing = 0.02 #0.02
 ratio_positioning.legend_xmax    = 0.87
 ratio_positioning.legend_ymax    = 0.79
 

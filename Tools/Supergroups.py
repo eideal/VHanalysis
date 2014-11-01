@@ -10,49 +10,219 @@ Data = Supergroup('Data',
                   style = 'points',
                   legendLabel = 'Data',
                   stack = False,
-                  subset = isreal #istau
+                  subset = isreal
                   )
 AntitauEvents = Supergroup('AntitauEvents',
-                           [Data_group_1AntiTau_1,
-                            Data_group_1AntiTau_2,
-                            Data_group_2AntiTaus,
-                            ],
+                           [Data_group_AntiTau,
+							              MCcorr_fakes_group,
+                            MCcorr_fakesttbar_group], 
+                           #this last group is to ensure I have all 3 ttbar samples in the MCcorr and am filtering out the dilepton from the lep_fil sample
                             factor = 1.0,
                             color = palette.green,
                             style = 'fill',
-                            legendLabel = 'Fake tau',
+                            legendLabel = 'Fakes',
                             stack = True,
                             )
+WHhh_AntitauEvents = Supergroup('WHhh_AntitauEvents',
+                           [Data_group_AntiTau,
+                            MCcorr_fakes_group_WHhh,
+                            MCcorr_fakesttbar_group], 
+                           #this last group is to ensure I have all 3 ttbar samples in the MCcorr and am filtering out the dilepton from the lep_fil sample
+                            factor = 1.0,
+                            color = palette.green,
+                            style = 'fill',
+                            legendLabel = 'Fakes',
+                            stack = True,
+                            )
+
 tt_zerofakes = Supergroup('tt_zerofakes',
-                          [tt_group],
-                          factor = 1.0,
-                          color = palette.pink,
-                          style = 'fill',
-                          legendLabel = 'tt(true)',
-                          stack = True,
-                          subset = isreal + truetaus #istau + truetaus
-                          )
+                          [ttbar_lepfil_group,
+                           ttbar_allhad_group,
+                           ttbar_dilepton_group],
+                           factor = 1.0,
+                           color = palette.pink,
+                           style = 'fill',
+                           legendLabel = 'tt',
+                           stack = True,
+                           subset = isreal + truetaus
+                           )
 ZZ_zerofakes = Supergroup('ZZ_zerofakes',
                           [ZZ_group],
                           factor = 1.0,
                           color = palette.orange,
                           style = 'fill',
-                          legendLabel = 'ZZ(true)',
+                          legendLabel = 'ZZ',
                           stack = True,
-                          subset = isreal + truetaus #istau + truetaus
+                          subset = isreal + truetaus
                           )
-
+WHhh_ZZ_zerofakes = Supergroup('WHhh_ZZ_zerofakes',
+                          [WHhh_ZZ_group],
+                          factor = 1.0,
+                          color = palette.orange,
+                          style = 'fill',
+                          legendLabel = 'ZZ',
+                          stack = True,
+                          subset = isreal + truetaus
+                          )
 WZ_zerofakes = Supergroup('WZ_zerofakes',
                           [WZ_group],
                           factor = 1.0,
                           color = palette.teal,
                           style = 'fill',
-                          legendLabel = 'WZ(true)',
+                          legendLabel = 'WZ',
                           stack = True,
-                          subset = isreal + truetaus #istau + truetaus
+                          subset = isreal + truetaus
                           )
+WHhh_WZ_zerofakes = Supergroup('WHhh_WZ_zerofakes',
+                          [WHhh_WZ_group],
+                          factor = 1.0,
+                          color = palette.teal,
+                          style = 'fill',
+                          legendLabel = 'WZ',
+                          stack = True,
+                          subset = isreal + truetaus
+                          )
+Triboson_zerofakes = Supergroup('Triboson_zerofakes',
+                                [Triboson_group],
+                                factor = 1.0,
+                                color = palette.red,
+                                style = 'fill',
+                                legendLabel = 'Triboson',
+                                stack = True,
+                                subset = isreal + truetaus
+                                )
+WW_zerofakes = Supergroup('WW_zerofakes',
+                          [WW_group],
+                          factor = 1.0,
+                          color = palette.indigo,
+                          style = 'fill',
+                          legendLabel = 'WW',
+                          stack = True,
+                          subset = isreal + truetaus
+                          )
+WHhh_WW_zerofakes = Supergroup('WHhh_WW_zerofakes',
+                                [WHhh_WW_group],
+                                factor = 1.0,
+                                color = palette.indigo, 
+                                style = 'fill',
+                                legendLabel = 'WW',
+                                stack = True,
+                                subset = isreal + truetaus
+                                )
+WGamma_zerofakes = Supergroup('WGamma_zerofakes',
+                              [WGamma_group],
+                              factor = 1.0,
+                              color = palette.grey,
+                              style = 'fill',
+                              legendLabel = 'WGamma',
+                              stack = True,
+                              subset = isreal + truetaus
+                              )
+
+SingleTop_zerofakes = Supergroup('SingleTop_zerofakes',
+                       [SingleTop_group],
+                       factor = 1.0,
+                       color = palette.darkpink,
+                       style = 'fill',
+                       legendLabel = 'SingleTop',
+                       stack = True,
+                       subset = isreal + truetaus
+                       )
+Ztautau_zerofakes = Supergroup('Ztautau_zerofakes',
+                               [ZttJets_group],
+                               factor = 1.0,
+                               color = palette.purple,
+                               style = 'fill',
+                               legendLabel = 'ZttJets',
+                               stack = True,
+                               subset = isreal + truetaus
+                               )
+
+#################
+WJets_zerofakes = Supergroup('WJets_zerofakes',
+				   [WJets_group],
+				   factor = 1.0,
+				   color = palette.teal,
+				   style = 'fill',
+				   legendLabel = 'WJets',
+				   stack = True,
+				   subset = isreal + truetaus
+				   )
+WeJets_zerofakes = Supergroup('WeJets_zerofakes',
+				   [WeJets_group],
+				   factor = 1.0,
+				   color = palette.blue,
+				   style = 'fill',
+				   legendLabel = 'WeJets',
+				   stack = True,
+				   subset = isreal + truetaus
+				   )
+WmJets_zerofakes = Supergroup('WmJets_zerofakes',
+				   [WmJets_group],
+				   factor = 1.0,
+				   color = palette.skyblue,
+				   style = 'fill',
+				   legendLabel = 'WmJets',
+				   stack = True,
+				   subset = isreal + truetaus
+				   )
+WtJets_zerofakes = Supergroup('WtJets_zerofakes',
+				   [WtJets_group],
+				   factor = 1.0,
+				   color = palette.beige,
+				   style = 'fill',
+				   legendLabel = 'WtJets',
+				   stack = True,
+				   subset = isreal + truetaus
+				   )
+
+ZeeJets_zerofakes = Supergroup('ZeeJets',
+					 [ZeeJets_group],
+					 factor = 1.0,
+					 color = palette.bandyellow,
+					 style = 'fill',
+					 legendLabel = 'ZeeJets',
+					 stack = True,
+					 subset = isreal + truetaus
+                     )
+ZmmJets_zerofakes = Supergroup('ZmmJets',
+					           [ZmmJets_group],
+                     factor = 1.0, ###k-factor
+#                     factor = 0.8,
+					 color = palette.bandgreen,
+					 style = 'fill',
+					 legendLabel = 'ZmmJets',
+					 stack = True,
+					 subset = isreal + truetaus
+                     )
 
 ##### SIGNAL ########### SIGNAL ############# SIGNAL ######
+
+######## Supergroups made to do the UE reweighting between CN and D3PD
+WH_inclusive = Supergroup('WH_inclusive',
+                          [WH125_group,
+                          WH125lh_group,
+                          WH125ll_group],
+                          factor = 1.0,
+                          color = palette.blue,
+                          style = 'line',
+                          legendLabel = 'WH_inclusive_CN',
+                          stack = True,
+                          subset = isreal)
+
+ZH_inclusive = Supergroup('ZH_inclusive',
+                          [ZH125_group,
+                          ZH125lh_group,
+                          ZH125ll_group],
+                          color = palette.blue,
+                          style = 'line',
+                          legendLabel = 'ZH_inclusive_CN',
+                          stack = True,
+                          subset = isreal)
+
+########
+
+
 WH100 = Supergroup('WH100',
                    [WH100_group],
                    factor = 1.0,
@@ -100,10 +270,10 @@ WH120 = Supergroup('WH120',
                    )
 WH125 = Supergroup('WH125',
                    [WH125_group],
-                   factor = 1.0,
+                   factor = 100.0,
                    color = palette.black,
                    style = 'line',
-                   legendLabel = 'WH125',
+                   legendLabel = 'WH125*100',
                    stack = False,
                    subset = isreal
                    )
@@ -207,6 +377,152 @@ ZH125 = Supergroup('ZH125',
                    stack = False,
                    subset = isreal
                    )
+
+##Some supergroups made to study pT Higgs dependence after making selection cuts
+ZH125_cat = Supergroup('ZH125_cat',
+                       [ZH125_group],
+                       factor = 0.4, #1.0
+                       color = palette.blue,
+                       style = 'line',
+                       legendLabel = 'ZH125_cat *0.4',
+                       stack = True,
+                       subset = isreal + ZHcat
+)
+ZH125_trig = Supergroup('ZH125_trig',
+                        [ZH125_group],
+                        factor = 2.0,#1.0
+                        color = palette.purple,
+                        style = 'line',
+                        legendLabel = 'ZH125_trig(x2)',
+                        stack = False,
+                        subset = isreal + ZHtrig
+                        )
+ZH125_flav = Supergroup('ZH125_flav',
+                        [ZH125_group],
+                        factor = 10.9,#1.0
+                        color = palette.orange,
+                        style = 'line',
+                        legendLabel = 'ZH125_flav *10.9',
+                        stack = True,
+                        subset = isreal + ZHflav
+                        )
+ZH125_charge = Supergroup('ZH125_charge',
+                          [ZH125_group],
+                          factor = 2.0,#1.0
+                          color = palette.pink,
+                          style = 'line',
+                          legendLabel = 'ZH125_charge (x2)',
+                          stack = False,
+                          subset = isreal + ZHcharge
+                          ) 
+ZH125_all = Supergroup('ZH125_all',
+                       [ZH125_group],
+                       factor = 1.0,#1.0
+                       color = palette.green,
+                       style = 'line',
+                       legendLabel = 'ZH125_all',
+                       stack = False,
+                       subset = isreal + ZHall
+                       )
+ZH125_lh = Supergroup('ZH125_lh',
+                      [ZH125lh_group],
+                      factor = 1.0,
+                      color = palette.black,
+                      style = 'line',
+                      legendLabel = 'ZH125lh',
+                      stack = True,
+                      subset = isreal
+                      )
+                
+ZH125_lh_cat = Supergroup('ZH125_lh_cat',
+                          [ZH125lh_group],
+                          factor = 1.0, #1.0
+                          color = palette.blue,
+                          style = 'line',
+                          legendLabel = 'ZH125lh_cat',
+                          stack = False,
+                          subset = isreal + ZHcat
+                          )
+ZH125_lh_all = Supergroup('ZH125_lh_all',
+                          [ZH125lh_group],
+                          factor = 1.0, #1.0
+                          color = palette.green,
+                          style = 'line',
+                          legendLabel = 'ZH125lh_allcuts',
+                          stack = False,
+                          subset = isreal + ZHall
+                          )
+WH125_lh = Supergroup('WH125_lh',
+                      [WH125lh_group],
+                      factor = 100.0,
+                      color = palette.black,
+                      style = 'line',
+                      legendLabel = 'WH125lh(*100)',
+                      stack = False,
+                      subset = isreal
+                      )
+WH125_lh_cat = Supergroup('WH125_lh_cat',
+                         [WH125lh_group],
+                         factor = 0.17,#1.0
+                         color = palette.blue,
+                         style = 'line',
+                         legendLabel = 'WH125lh_cat *0.17',
+                         stack = True,
+                         subset = isreal + WHcat
+                         ) 
+WH125_lh_presel = Supergroup('WH125_lh_presel',
+                             [WH125lh_group],
+                             factor = 1.0,#1.0
+                             color = palette.bandyellow,
+                             style = 'line',
+                             legendLabel = 'WH125lh_presel',
+                             stack = False,
+                             subset = isreal + WHpresel
+                             ) 
+
+WH125_lh_zmass = Supergroup('WH125_lh_zmass',
+                            [WH125lh_group],
+                            factor = 1.0,#1.0
+                            color = palette.orange,
+                            style = 'line',
+                            legendLabel = 'WH125lh_zmass',
+                            stack = False,
+                            subset = isreal + WHzmassveto
+                            ) 
+WH125_lh_all = Supergroup('WH125_lh_all',
+                          [WH125lh_group],
+                          factor = 1.0,
+                          color = palette.green,
+                          style = 'line',
+                          legendLabel = 'WH125lh_allcuts',
+                          stack = False,
+                          subset = isreal + WHall
+                          ) 
+
+############# END of supergroups made to study Higgs pT in VH channels, ref. July 23 2014
+
+### Studies of EWK reweighting ###
+ZH125hh_WithEWK = Supergroup('ZH125hh_WithEWK',
+                             [ZHhh_WithEWK],
+                             factor = 1.0,
+                             color = palette.blue,
+                             style = 'line',
+                             legendLabel = 'ZH125hh_EWK',
+                             stack = True,
+                             subset = isreal
+                             )
+ZH125hh_NoEWK = Supergroup('ZH125hh_NoEWK',
+                           [ZHhh_NoEWK],
+                           factor = 1.0,
+                           color = palette.black,
+                           style = 'line',
+                           legendLabel = 'ZH125hh_NoEWK',
+                           stack = False,
+                           subset = isreal
+                           )
+
+
+######################
 ZH130 = Supergroup('ZH130',
                    [ZH130_group],
                    factor = 1.0,
@@ -457,58 +773,60 @@ ggH150 = Supergroup('ggH150',
 
 #### EXTRAS EXTRAS EXTRAS EXTRAS EXTRAS EXTRAS EXTRAS
 ######################################################
-# QCD = Supergroup('QCD', #### FOR WH
-#                  [DataSSS_group,
-#                   SSSWeJets_group,
-#                   SSSWmJets_group,
-#                   SSSWtJets_group,
-#                   SSSZeeJets_group,
-#                   SSSZmmJets_group,
-#                   SSSZttJets_group,
-#                   SSStt_group,
-#                   SSSSingleTop_group,
-#                   SSSZZ_group,
-#                   SSSWW_group,
-#                   SSSWGamma_group,
-#                   SSSWZ_group,
-#                   ],
-#                   factor = 2.0, #from rQCD measurement
-#                   color = palette.blue,
-#                   style = 'fill',
-#                   legendLabel = 'QCD',
-#                   stack = True,
-#                   subset = SSS
-#                   )
-# AllMC_RQCD = Supergroup('AllMC_RQCD',
-#                    [WeJets_group,
-#                     WmJets_group,
-#                     WtJets_group,
-#                     ZeeJets_group,
-#                     ZmmJets_group,
-#                     ZttJets_group,
-#                     tt_group,
-#                     SingleTop_group,
-#                     ZZ_group,
-#                     WW_group,
-#                     WGamma_group,
-#                     WZ_group,
-#                     ],
-#                    factor = -1.0,
-#                    color = palette.yellow,
-#                    style = 'fill',
-#                    legendLabel = 'AllMC_RQCD',
-#                    stack = True,
-# #subset = ''
-#                    )
-# Data_RQCD = Supergroup('Data_RQCD',
-#                        [Data_group],
-#                        factor = 1.0,
-#                        color = palette.black,
-#                        style = 'line',
-#                        legendLabel = 'Data_RQCD',
-#                        stack = False,
-# #                      subset = ''
-#                        )
+QCD = Supergroup('QCD', #### FOR WH
+                  [DataSSS_group,
+                   SSSWeJets_group,
+                   SSSWmJets_group,
+                   SSSWtJets_group,
+                   SSSZeeJets_group,
+                   SSSZmmJets_group,
+                   SSSZttJets_group,
+                   SSStt_group,
+                   SSSSingleTop_group,
+                   SSSZZ_group,
+                   SSSWW_group,
+                   SSSWGamma_group,
+                   SSSWZ_group,
+                   ],
+                   factor = 2.0, #from rQCD measurement
+                   color = palette.blue,
+                   style = 'fill',
+                   legendLabel = 'QCD',
+                   stack = True,
+                   subset = SSS + isreal
+                   )
+AllMC_RQCD = Supergroup('AllMC_RQCD',
+                    [WeJets_group,
+                     WmJets_group,
+                     WtJets_group,
+                     ZeeJets_group,
+                     ZmmJets_group,
+                     ZttJets_group,
+                     tt_group,
+                     SingleTop_group,
+                     ZZ_group,
+                     WW_group,
+                     WGamma_group,
+                     WZ_group,
+                     ],
+                    factor = -1.0,
+                    color = palette.yellow,
+                    style = 'fill',
+                    legendLabel = 'AllMC_RQCD',
+                    stack = True,
+ #subset = ''
+                    )
+Data_RQCD = Supergroup('Data_RQCD',
+                        [Data_group],
+                        factor = 1.0,
+                        color = palette.black,
+                        style = 'line',
+                        legendLabel = 'Data_RQCD',
+                        stack = False,
+ #                      subset = ''
+                        )
+
+		
 # WeJets = Supergroup('WeJets',
 #                     [WeJets_group],
 #                     factor = 1.0,
@@ -563,24 +881,7 @@ ggH150 = Supergroup('ggH150',
 #                     stack = True,
 #                     subset = istau# + SS
 #                     )
-# ZeeJets = Supergroup('ZeeJets',
-#                      [ZeeJets_group],
-#                      factor = 1.0,
-#                      color = palette.bandyellow,
-#                      style = 'fill',
-#                      legendLabel = 'ZeeJets',
-#                      stack = True,
-#                      subset = istau# + SS
-#                      )
-# ZmmJets = Supergroup('ZmmJets',
-#                      [ZmmJets_group],
-#                      factor = 1.0, ###k-factor
-#                      color = palette.bandgreen,
-#                      style = 'fill',
-#                      legendLabel = 'ZmumuJets',
-#                      stack = True,
-#                      subset = istau #+ SS
-#                      )
+
 # ZmmJets_zerofakes = Supergroup('ZmmJets_zerofakes',
 #                      [ZmmJets_group],
 #                      factor = 1.0,
@@ -608,15 +909,7 @@ ggH150 = Supergroup('ggH150',
 #                      stack = True,
 #                      subset = twofaketau + istau
 #                      )
-# ZttJets = Supergroup('ZttJets',
-#                      [ZttJets_group],
-#                      factor = 1.0,
-#                      color = palette.purple,
-#                      style = 'fill',
-#                      legendLabel = 'ZtautauJets',
-#                      stack = True,
-#                      subset = istau #+ SS
-#                      )
+
 # ZttJets_zerofakes = Supergroup('ZttJets_zerofakes',
 #                      [ZttJets_group],
 #                      factor = 1.0,
@@ -644,6 +937,46 @@ ggH150 = Supergroup('ggH150',
 #                      stack = True,
 #                      subset = twofaketau + istau
 #                      )
+# AntitauEvents = Supergroup('AntitauEvents',
+# [#Data_group_1AntiTau_1,
+# #                          Data_group_1AntiTau_2,
+# #                           Data_group_2AntiTaus,
+# Data_group_ZH_AntiTau,
+# MCcorr_fakes_group,
+#                             ],
+#                             factor = 1.0,
+#                             color = palette.green,
+#                             style = 'fill',
+#                             legendLabel = 'Fake tau',
+#                             stack = True,
+#                             )
+#ttbar_dilep = Supergroup('tt_dilep_zerofakes',
+#                        [ttbar_dilepton_group],
+#factor = 1.0,
+                         #                        color = palette.grey,
+                         #style = 'fill',
+                         #legendLabel = 'tt dilep(true)',
+                         #stack = True,
+                         #subset = isreal + truetaus2#truetaus#truthObj#isreal + truetaus #istau + truetaus
+                         #)
+                         #ttbar_lepfil = Supergroup('tt_lepfil_zerofakes',
+                         #[ttbar_lepfil_group],
+                         #factor = 1.0,
+                         # color = palette.yellow,
+                         #style = 'fill',
+                         #legendLabel = 'tt lepfil(true)',
+                         #stack = True,
+                         #subset = isreal + truetaus2#truetaus#truthObj#isreal + truetaus #istau + truetaus
+                         #)
+                         #ttbar_allhad = Supergroup('tt_allhad_zerofakes',
+                         #[ttbar_allhad_group],
+                         #factor = 1.0,
+                         #color = palette.blue,
+                         #style = 'fill',
+                         #legendLabel = 'tt allhad(true)',
+                         #stack = True,
+                         #subset = isreal + truetaus2#truetaus#truthObj#isreal + truetaus #istau + truetaus
+                         #)
 tt = Supergroup('tt',
                 [tt_group],
                 factor = 1.0,
@@ -671,15 +1004,7 @@ tt_twofakes = Supergroup('tt_twofakes',
                 stack = True,
                 subset = istau + twofaketau
                 )
-SingleTop = Supergroup('SingleTop',
-                       [SingleTop_group],
-                       factor = 1.0,
-                       color = palette.red,
-                       style = 'fill',
-                       legendLabel = 'SingleTop',
-                       stack = True,
-                       subset = istau #+ SS
-                       )
+
 ZZ = Supergroup('ZZ',
                 [ZZ_group],
                 factor = 1.0,
@@ -707,24 +1032,7 @@ ZZ_twofakes = Supergroup('ZZ_twofakes',
                          stack = True,
                          subset = istau + twofaketau
                          )                        
-WW = Supergroup('WW',
-                [WW_group],
-                factor = 1.0,
-                color = palette.indigo,
-                style = 'fill',
-                legendLabel = 'WW',
-                stack = True,
-                subset = istau #+ SS
-                )
-WGamma = Supergroup('WGamma',
-                    [WGamma_group],
-                    factor = 1.0,
-                    color = palette.grey,
-                    style = 'fill',
-                    legendLabel = 'WGamma',
-                    stack = True,
-                    subset = istau# + SS
-                    )
+
 WZ = Supergroup('WZ',
                 [WZ_group],
                 factor = 1.0,

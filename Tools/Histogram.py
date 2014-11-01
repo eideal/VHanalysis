@@ -329,7 +329,7 @@ class Histogram:
             ## First, locate the component to which a systematic variation will be added by name
             the_component = None
             for component in self.components:
-                if component.name = name:
+                if component.name == name:
                     the_component = component
                     
             if the_component is None:
@@ -370,7 +370,7 @@ class Histogram:
         ## First, locate the component to which a systematic variation will be added by name
         the_component = None
         for component in self.components:
-            if component.name = name:
+            if component.name == name:
                 the_component = component
                 
         the_component.overallsys = overallsys
@@ -540,6 +540,12 @@ class Histogram:
         numerator   = self.components[self.numerator_index]
         denominator = self.error
 
+        #KSTest   = numerator.nominal.KolmogorovTest(denominator)
+        Chi2Test = numerator.nominal.Chi2Test(denominator, 'UW')
+                    
+        #print 'KS Test             : %.2f' % KSTest
+        print 'Chi2 Test (p-value) : %.2f' % Chi2Test
+
         ## Prepare ratio histogram
         self.ratio =  ROOT.TH1F('%s_ratio' % self.name,
                            '%s_ratio' % self.name,
@@ -595,7 +601,13 @@ class Histogram:
         self.ratio_pad.SetGridy(2)
         
         ## Draw the ratio points
+        latex = ROOT.TLatex()
+        latex.SetNDC()
         self.ratio.Draw('SAME %s' % style.style1D['points'].draw_options)
+        #latex.DrawLatex(0.5, 0.3, 'KS : %.2f' % KSTest)
+        latex.SetTextSize(0.09)
+        latex.DrawLatex(0.5, 0.43, '#chi^{2} p-value : %.3f' % Chi2Test)
+
         self.canvas.Update()
         self.canvas.cd()
 
@@ -605,11 +617,8 @@ class Histogram:
         box.DrawBox(0.12, 0.32, 0.20, 0.37)
 
         ## Place a new 0
-        latex = ROOT.TLatex()
-        latex.SetNDC()
         latex.SetTextSize(0.045)
         latex.DrawLatex(0.17, 0.33, '0')
-
 
     ## -------------------------------------------- ##
     def draw(self):
@@ -635,7 +644,8 @@ class Histogram:
         for component in self.components:
             if component.stack:
                 self.error = ROOT.TH1F('%s_error' % self.name,
-                                       'stat. + sys.',
+                #'stat. + sys.',
+                'stat.',
                                        component.nbins,
                                        array.array('d', component.plot_binning))
                 has_error = True
@@ -666,7 +676,6 @@ class Histogram:
                 else:
                     #               component_i.nominal.Draw('SAME %s' % component_i.style.draw_ratoptions)
                     component_i.nominal.Draw('SAME %s' % component_i.style.draw_options)
-
                     
         ## Then draw the error
         if has_error:
@@ -741,10 +750,50 @@ class Histogram:
             else:
                 latex.DrawLatex(x, y, lbl[0])
 
-
         ## Redraw the axis
         self.main_pad.RedrawAxis()
                 
         
         ## Print to file
         self.canvas.Print('%s%s%s.png' % (self.name, self.suffix, self.testing))
+
+    ## -------------------------------------------- ##
+    def save(self):
+        """
+        Save the Histogram to a ROOT File
+        """
+            
+        cwd = os.getcwd()
+            
+        ## Make destination directory
+        path = './root'
+        try:
+            os.makedirs(path)
+        except OSError:
+            pass
+            
+        ## Move to the new directory
+        os.chdir(path)
+            
+        ## Write everything to a ROOT file
+        f = ROOT.TFile('%s.root' % self.name, 'RECREATE')
+        f.cd()
+        for component in self.components:
+                
+            name = component.nominal.GetName()
+            print name, component.nominal.GetSumOfWeights()
+            if '#times' in name:
+                parts = name.split('#')
+                name = parts[0] + parts[1][8:]
+                    
+            component.nominal.Write(name)
+                    
+        self.error.Write()
+        self.legend.Write()
+        if self.do_ratio:
+            self.ratio.Write()
+        self.canvas.Write()
+        f.Close()
+                        
+        ## Move back to original directory
+        os.chdir(cwd)

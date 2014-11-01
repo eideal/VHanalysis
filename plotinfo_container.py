@@ -12,6 +12,9 @@ class Plotinfo:
                  nbins,
                  binlow,
                  binhigh,
+                 color, ##TEST
+                 style, ##TEST
+                 legendLabel,
                  axislabel,
                  factor,
                  logplot = False,
@@ -21,12 +24,15 @@ class Plotinfo:
         self.nbins = nbins
         self.binlow = binlow
         self.binhigh = binhigh
+        self.color = color ##TEST
+        self.style = style ##TEST
+        self.legendLabel = legendLabel
         self.axislabel = axislabel
         self.factor = factor
         self.logplot = logplot
         self.rootfile = rootfile
 
-        ## PLaceholder for histogram, because you want to keep the histogram along with the other
+        ## Placeholder for histogram, because you want to keep the histogram along with the other
         ## plotinfo parameters
         self.histogram = Histogram(self.variable,
                                    self.testing,
@@ -43,8 +49,8 @@ A class to keep track of variable distributions and each's plot information
 
 class plotinfo_container(list):
                 
-    def Add(self, variable, testing, nbins, binlow, binhigh, axislabel, factor, logplot, rootfile ):
-        self.append(Plotinfo(variable, testing, nbins, binlow, binhigh, axislabel, factor, logplot, rootfile))
+    def Add(self, variable, testing, nbins, binlow, binhigh, color, style, legendLabel, axislabel, factor, logplot, rootfile ):
+        self.append(Plotinfo(variable, testing, nbins, binlow, binhigh, color, style, legendLabel, axislabel, factor, logplot, rootfile))
     
                  
                  

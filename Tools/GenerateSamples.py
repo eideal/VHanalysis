@@ -5,7 +5,7 @@ import glob
 import sys
 from Sample import Sample
 
-PathToFiles = '/afs/cern.ch/user/i/ideal/eos/atlas/atlascerngroupdisk/phys-higgs/HSG4/VHtautau/commonNtuple/VHCNv01-00/'
+PathToFiles = '/afs/cern.ch/user/i/ideal/eos/atlas/atlascerngroupdisk/phys-higgs/HSG4/VHtautau/commonNtuple/VHCNv01-04Test_Emma/'
 #PathToFiles = '/afs/cern.ch/work/i/ideal/v01-00/'
 #PathToFiles = '/group/atlas/data/D3PD/ideal/VH/CommonNtuples/'
 dirs = os.listdir(PathToFiles)

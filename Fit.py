@@ -1,8 +1,10 @@
 import ROOT, multiprocessing
 
 masses = [100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150]
-combination = True#False
+#masses = [125]
+combination = False
 if combination:
+    #masses = [100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150]
     masses = [125]
 
 #############################################################
@@ -25,12 +27,15 @@ def runAsymptoticsCLs(datatype = 'asimovData'):
             name = 'VH_%d' % mass
             workspace_file = './combination/MEAS_combined_%s_model.root' % name
 
+
         ## create the process to derive the limit for this mass
         p = multiprocessing.Process(target=ROOT.runAsymptoticsCLs, args=(workspace_file,
                                                                          'combined',
                                                                          'ModelConfig',
                                                                          datatype,
                                                                          'asimovData_0',
+                                                                         #'conditionalGlobs_0',
+                                                                         #'nominalGlobs',
                                                                          name,
                                                                          str(mass),
                                                                          0.95))
@@ -65,7 +70,7 @@ def runAsymptoticsCLs(datatype = 'asimovData'):
         print '============================='
         print 'For %d GeV signal hypothesis:' % mass
         print '-----------------------------'
-        print 'Observed limit : %.2f x SM Higgs production cross-section' % observed
+        #print 'Observed limit : %.2f x SM Higgs production cross-section' % observed
         print 'Expected limit : %.2f x SM Higgs production cross-section' % median
         print 'Expected limit +2sigma : %.2f' % sigma_plus_2
         print 'Expected limit +1sigma : %.2f' % sigma_plus_1
@@ -96,14 +101,14 @@ def runSig(datatype = 'asimovData'):
 
         ## create the process to derive the limit for this mass
         p = multiprocessing.Process(target=ROOT.runSig, args=(workspace_file,
-                                                                         'combined',
-                                                                         'ModelConfig',
-                                                                         datatype,
-                                                                         'asimovData_1',
-                                                                         'conditionalGlobs_1',
-                                                                         'nominalGlobs',
-                                                                         str(mass),
-                                                                         name))
+                                                              'combined',
+                                                              'ModelConfig',
+                                                              datatype,
+                                                              'asimovData_1',
+                                                              'conditionalGlobs_1',
+                                                              'nominalGlobs',
+                                                              str(mass),
+                                                              name))
 
         processes.append(p)
 
@@ -139,4 +144,4 @@ def runSig(datatype = 'asimovData'):
 ################################################################
 ## Main programs
 runAsymptoticsCLs()
-runSig()
+#runSig()
