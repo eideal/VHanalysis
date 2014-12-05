@@ -234,8 +234,8 @@ class HistoContainer(dict):
                             if is_fakes(histogram_name):
                                 sample = ROOT.RooStats.HistFactory.Sample(histogram_name, histogram_name, self.rootfile_name)
                                 sample.ActivateStatError()
-                                #if Systematics:
-                                #sample.AddOverallSys('ATLAS_TAU_FF', 0.7, 1.3) 
+                                if Systematics:
+                                    sample.AddOverallSys('ATLAS_TAU_FF', 0.7, 1.3) 
 
                         channel.AddSample(sample)
 

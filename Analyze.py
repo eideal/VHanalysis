@@ -3,6 +3,7 @@ from Tools import Subsets
 from Tools.Supergroups import *
 #from Tools.Groups import *
 from Tools.Histogram import Histogram
+from plotinfo_container import plotinfo_container
 from plotting import plots #"from blank" where blank is the name of the python file blank.py and you can import anything that is defined with an equals sign. It can be a class or a variable
 from Tools import palette
 from Tools.histo_container import HistoContainer
@@ -19,7 +20,7 @@ if not root_functions.Contains('ATLASLabel'):
 RQCD_studies = False
 #Set Make_workspace to True to make the histogram container
 #and produce the workspace ROOT files
-Make_workspace = True
+Make_workspace = False
 
 #Set Systematics to True to assign systematics histos to the workspace 'samples'
 Systematics = False
@@ -50,7 +51,7 @@ ZmmJets_zerofakes,
 WeJets_zerofakes,
 WmJets_zerofakes,
 WtJets_zerofakes,
-#ZH125,
+ZH125,
 #ZH125_lh,
 #WH125_inclusive, #WH125_inclusive
 #WH125_inclusive_Up, #WH125_inclusive_Up
@@ -58,27 +59,28 @@ WtJets_zerofakes,
 #ZH125hh,
 #ZH125hh_Up,
 #ZH125hh_Down,
-#ZH125_inclusive,
-WH125,
+#ZH_inclusive,
+#WH125,
 ]
 
 Plots_supergroups_WHhh = [
-Data,
-WHhh_WZ_zerofakes,
-Ztautau_zerofakes,
-WHhh_ZZ_zerofakes,
-WHhh_AntitauEvents,
-tt_zerofakes,
-Triboson_zerofakes,
-WHhh_WW_zerofakes,
-SingleTop_zerofakes,
-WGamma_zerofakes,
-ZeeJets_zerofakes,
-ZmmJets_zerofakes,
-WeJets_zerofakes,
-WmJets_zerofakes,
-WtJets_zerofakes,
-WH125,
+#Data,
+#WHhh_WZ_zerofakes,
+#Ztautau_zerofakes,
+#WHhh_ZZ_zerofakes,
+#WHhh_AntitauEvents,
+#tt_zerofakes,
+#Triboson_zerofakes,
+#WHhh_WW_zerofakes,
+#SingleTop_zerofakes,
+#WGamma_zerofakes,
+#ZeeJets_zerofakes,
+#ZmmJets_zerofakes,
+#WeJets_zerofakes,
+#WmJets_zerofakes,
+#WtJets_zerofakes,
+#WH125,
+WH_inclusive,
 ]
 
 Limit_supergroups = [
@@ -86,18 +88,29 @@ Limit_supergroups = [
 AntitauEvents,
 ZH100,ZH105,ZH110,ZH115,ZH120,ZH125,ZH130,ZH135,ZH140,ZH145,ZH150,
 WH100,WH105,WH110,WH115,WH120,WH125,WH130,WH135,WH140,WH145,WH150,
-VBFH100,VBFH105,VBFH110,VBFH115,VBFH120,VBFH125,VBFH130,VBFH135,VBFH140,VBFH145,VBFH150,
-ggH100,ggH105,ggH110,ggH115,ggH120,ggH125,ggH130,ggH135,ggH140,ggH145,ggH150,
-tt_zerofakes,
+#VBFH100,VBFH105,VBFH110,VBFH115,VBFH120,VBFH125,VBFH130,VBFH135,VBFH140,VBFH145,VBFH150,
+#ggH100,ggH105,ggH110,ggH115,ggH120,ggH125,ggH130,ggH135,ggH140,ggH145,ggH150,
+MC_ZHhh,
+#tt_zerofakes,
 #Ztautau_zerofakes,
-#ZeeJets_zerofakes,
-#ZmmJets_zerofakes,
-#WeJets_zerofakes,
-#WmJets_zerofakes,
-#WtJets_zerofakes,
-ZZ_zerofakes,
-WZ_zerofakes,
-Triboson_zerofakes,
+#ZZ_zerofakes,
+#WZ_zerofakes,
+#Triboson_zerofakes,
+]
+
+Limit_supergroups_WHhh = [
+#Data,
+WHhh_AntitauEvents,
+ZH100,ZH105,ZH110,ZH115,ZH120,ZH125,ZH130,ZH135,ZH140,ZH145,ZH150,
+WH100,WH105,WH110,WH115,WH120,WH125,WH130,WH135,WH140,WH145,WH150,
+#VBFH100,VBFH105,VBFH110,VBFH115,VBFH120,VBFH125,VBFH130,VBFH135,VBFH140,VBFH145,VBFH150,
+#ggH100,ggH105,ggH110,ggH115,ggH120,ggH125,ggH130,ggH135,ggH140,ggH145,ggH150,
+MC_WHhh,
+#tt_zerofakes,
+#Ztautau_zerofakes,
+#WHhh_ZZ_zerofakes,
+#WHhh_WZ_zerofakes,
+#Triboson_zerofakes,
 ]
 
 Nominal_sys = [
@@ -107,76 +120,72 @@ Nominal_sys = [
 Sys_list = [
 	('','','tau',True), #this is the nominal fitting histogram
 	
-	('ATLAS_MU_MS','DOWN','SystematicsDOWN/MuSys',True), 
-	('ATLAS_EL_ZEE','DOWN','SystematicsDOWN/ElES_Zee',True),
-	('ATLAS_EL_R12','DOWN','SystematicsDOWN/ElES_R12',True),
-	('ATLAS_EL_PS','DOWN','SystematicsDOWN/ElES_PS',True),  
-	('ATLAS_EL_LOWPT','DOWN','SystematicsDOWN/ElES_LowPt',True),
+    ('ATLAS_TAU_FF','DOWN','evtsel_sys_sf_tau_FF_zh_down',False),
+    ('ATLAS_TAU_FF','UP','evtsel_sys_sf_tau_FF_zh_up',False),
+	('ATLAS_MU_MS','DOWN','SystematicsDOWN/MuSys',True), #Should it be called _SCALE (HSG4) or _MS (ATLAS)
+    ('ATLAS_MU_MS','UP','SystematicsUP/MuSys',True), #Should it be called _SCALE (HSG4) or _MS (ATLAS)
+	('ATLAS_EL_SCALE_ZEE','DOWN','SystematicsDOWN/ElES_Zee',True), # The next four will be combined in quadrature
+    ('ATLAS_EL_SCALE_ZEE','UP','SystematicsUP/ElES_Zee',True), # Next four are combined in quadrature
+	('ATLAS_EL_SCALE_R12','DOWN','SystematicsDOWN/ElES_R12',True),
+    ('ATLAS_EL_SCALE_R12','UP','SystematicsUP/ElES_R12',True), 
+	('ATLAS_EL_SCALE_PS','DOWN','SystematicsDOWN/ElES_PS',True),  
+    ('ATLAS_EL_SCALE_PS','UP','SystematicsUP/ElES_PS',True),
+    ('ATLAS_EL_SCALE_LOWPT','DOWN','SystematicsDOWN/ElES_LowPt',True),
+    ('ATLAS_EL_SCALE_LOWPT','UP','SystematicsUP/ElES_LowPt',True),
 	('ATLAS_EL_RES','DOWN','SystematicsDOWN/ElEnResSys',True),
+    ('ATLAS_EL_RES','UP','SystematicsUP/ElEnResSys',True),
+    ('ATLAS_EL_EFF_ID','DOWN','evtsel_sys_sf_el_id_down',False), # combined in quadrature
+    ('ATLAS_EL_EFF_ID','UP','evtsel_sys_sf_el_id_up',False),
+    ('ATLAS_EL_EFF_ISO','DOWN','evtsel_sys_sf_el_iso_down',False),
+    ('ATLAS_EL_EFF_ISO','UP','evtsel_sys_sf_el_iso_up',False),
+    ('ATLAS_EL_EFF_TRIG','DOWN','evtsel_sys_sf_el_trig_down',False),
+    ('ATLAS_EL_EFF_TRIG','UP','evtsel_sys_sf_el_trig_up',False),
+    ('ATLAS_MU_EFF_ID','DOWN','evtsel_sys_sf_mu_id_down',False), # combined in quadrature
+    ('ATLAS_MU_EFF_ID','UP','evtsel_sys_sf_mu_id_up',False), 
+    ('ATLAS_MU_EFF_ISO','DOWN','evtsel_sys_sf_mu_iso_down',False), 
+    ('ATLAS_MU_EFF_ISO','UP','evtsel_sys_sf_mu_iso_up',False), 
+    ('ATLAS_MU_EFF_TRIG','DOWN','evtsel_sys_sf_mu_trig_down',False), 
+    ('ATLAS_MU_EFF_TRIG','UP','evtsel_sys_sf_mu_trig_up',False), 
 	('ATLAS_JER_2012','DOWN','SystematicsDOWN/JER',True),
+    ('ATLAS_JER_2012','UP','SystematicsUP/JER',True),
 	('ATLAS_JES_2012_Statistical1','DOWN','SystematicsDOWN/JES_Statistical1',True),
+    ('ATLAS_JES_2012_Statistical1','UP','SystematicsUP/JES_Statistical1',True),
 	('ATLAS_JES_2012_Modelling1','DOWN','SystematicsDOWN/JES_Modelling1',True),
+    ('ATLAS_JES_2012_Modelling1','UP','SystematicsUP/JES_Modelling1',True),
 	('ATLAS_JES_2012_Detector1','DOWN','SystematicsDOWN/JES_Detector1',True), 
+    ('ATLAS_JES_2012_Detector1','UP','SystematicsUP/JES_Detector1',True), 
 	('ATLAS_JES_2012_EtaModelling','DOWN','SystematicsDOWN/JES_EtaModelling',True), 
-	('ATLAS_JES_2012_Eta_StatMethod','DOWN','SystematicsDOWN/JES_EtaMethod',True), 
+    ('ATLAS_JES_2012_EtaModelling','UP','SystematicsUP/JES_EtaModelling',True), 
+	('ATLAS_JES_2012_Eta_StatMethod','DOWN','SystematicsDOWN/JES_EtaMethod',True),
+    ('ATLAS_JES_2012_Eta_StatMethod','UP','SystematicsUP/JES_EtaMethod',True),  
 	('ATLAS_JES_2012_PileRho_TAU','DOWN','SystematicsDOWN/JES_PURho',True), 
+    ('ATLAS_JES_2012_PileRho_TAU','UP','SystematicsUP/JES_PURho',True), 
 	('ATLAS_JES_NPV','DOWN','SystematicsDOWN/JES_PUNPV',True), 
+    ('ATLAS_JES_NPV','UP','SystematicsUP/JES_PUNPV',True),
 	('ATLAS_JES_Mu','DOWN','SystematicsDOWN/JES_PUMu',True), 
+    ('ATLAS_JES_Mu','UP','SystematicsUP/JES_PUMu',True), 
 	('ATLAS_JES_FlavComp_TAU','DOWN','SystematicsDOWN/JES_FlavComp',True), 
+    ('ATLAS_JES_FlavComp_TAU','UP','SystematicsUP/JES_FlavComp',True),
 	('ATLAS_JES_FlavResp','DOWN','SystematicsDOWN/JES_FlavResp',True), 
+    ('ATLAS_JES_FlavResp','UP','SystematicsUP/JES_FlavResp',True), 
 	('ATLAS_JES_Flavb','DOWN','SystematicsDOWN/JES_BJet',True), 
+    ('ATLAS_JES_Flavb','UP','SystematicsUP/JES_BJet',True), 
 	('ATLAS_JVF_2012','DOWN','SystematicsDOWN/JVF',True), 
-	('ATLAS_TES_TRUE_2012','DOWN','SystematicsDOWN/TES',True), 
+    ('ATLAS_JVF_2012','UP','SystematicsUP/JVF',True), 
+	('ATLAS_TES_TRUE_2012','DOWN','SystematicsDOWN/TES_TOTAL',True), 
+    ('ATLAS_TES_TRUE_2012','UP','SystematicsUP/TES_TOTAL',True), 
 	('ATLAS_MET_RESOSOFT','DOWN','SystematicsDOWN/METResSys',True),
+    ('ATLAS_MET_RESOSOFT','UP','SystematicsUP/METResSys',True), 
 	('ATLAS_MET_SCALESOFT','DOWN','SystematicsDOWN/METScaleSys',True),
-	('ATLAS_MU_MS','UP','SystematicsUP/MuSys',True), 
-	('ATLAS_EL_ZEE','UP','SystematicsUP/ElES_Zee',True), 
-	('ATLAS_EL_R12','UP','SystematicsUP/ElES_R12',True), 
-	('ATLAS_EL_PS','UP','SystematicsUP/ElES_PS',True),
-	('ATLAS_EL_LOWPT','UP','SystematicsUP/ElES_LowPt',True),
-	('ATLAS_EL_RES','UP','SystematicsUP/ElEnResSys',True),
-	('ATLAS_JER_2012','UP','SystematicsUP/JER',True),
-	('ATLAS_JES_2012_Statistical1','UP','SystematicsUP/JES_Statistical1',True),
-	('ATLAS_JES_2012_Modelling1','UP','SystematicsUP/JES_Modelling1',True),
-	('ATLAS_JES_2012_Detector1','UP','SystematicsUP/JES_Detector1',True), 
-	('ATLAS_JES_2012_EtaModelling','UP','SystematicsUP/JES_EtaModelling',True), 
-	('ATLAS_JES_2012_Eta_StatMethod','UP','SystematicsUP/JES_EtaMethod',True), 
-	('ATLAS_JES_2012_PileRho_TAU','UP','SystematicsUP/JES_PURho',True), 
-	('ATLAS_JES_NPV','UP','SystematicsUP/JES_PUNPV',True), 
-	('ATLAS_JES_Mu','UP','SystematicsUP/JES_PUMu',True), 
-	('ATLAS_JES_FlavComp_TAU','UP','SystematicsUP/JES_FlavComp',True), 
-	('ATLAS_JES_FlavResp','UP','SystematicsUP/JES_FlavResp',True), 
-	('ATLAS_JES_Flavb','UP','SystematicsUP/JES_BJet',True), 
-	('ATLAS_JVF_2012','UP','SystematicsUP/JVF',True), 
-	('ATLAS_TES_TRUE_2012','UP','SystematicsUP/TES',True), 
-	('ATLAS_MET_RESOSOFT','UP','SystematicsUP/METResSys',True), 
 	('ATLAS_MET_SCALESOFT','UP','SystematicsUP/METScaleSys',True),
-#('ATLAS_BTag_BEFF','DOWN','evtsel_bjet_sys_b_down',False), 
-#	('ATLAS_BTag_BEFF','UP','evtsel_bjet_sys_b_up',False), 
-#	('ATLAS_BTag_CEFF','DOWN','evtsel_bjet_sys_c_down',False), 
-#	('ATLAS_BTag_CEFF','UP','evtsel_bjet_sys_c_up',False), 
-#	('ATLAS_BTag_LEFF','DOWN','evtsel_bjet_sys_m_down',False),
-#	('ATLAS_BTag_LEFF','UP','evtsel_bjet_sys_m_up',False), 
-#('ATLAS_PU_RESCALE_2012','DOWN','evtsel_sys_PU_rescaling_dn',False),  ### PROBLEM WITH NAN
-#	('ATLAS_PU_RESCALE_2012','UP','evtsel_sys_PU_rescaling_up',False), ### PROBLEM WITH NAN
-	('ATLAS_EL_ID','DOWN','evtsel_sys_sf_el_id_down',False),
-	('ATLAS_EL_ID','UP','evtsel_sys_sf_el_id_up',False),
-	('ATLAS_EL_ISO','DOWN','evtsel_sys_sf_el_iso_down',False),
-	('ATLAS_EL_ISO','UP','evtsel_sys_sf_el_iso_up',False),
-	('ATLAS_EL_TRIG','DOWN','evtsel_sys_sf_el_trig_down',False),
-	('ATLAS_EL_TRIG','UP','evtsel_sys_sf_el_trig_up',False),
-######('','DOWN','evtsel_sys_sf_electron_FF_down',False),
-######(,'UP','evtsel_sys_sf_electron_FF_UP',False),
-	('ATLAS_MU_ID','DOWN','evtsel_sys_sf_mu_id_down',False), 
-	('ATLAS_MU_ID','UP','evtsel_sys_sf_mu_id_up',False), 
-	('ATLAS_MU_ISO','DOWN','evtsel_sys_sf_mu_iso_down',False), 
-	('ATLAS_MU_ISO','UP','evtsel_sys_sf_mu_iso_up',False), 
-	('ATLAS_MU_TRIG','DOWN','evtsel_sys_sf_mu_trig_down',False), 
-	('ATLAS_MU_TRIG','UP','evtsel_sys_sf_mu_trig_up',False), 
-#######	('DOWN','evtsel_sys_sf_muon_FF_down',False),
-######	(,'UP','evtsel_sys_sf_muon_FF_up',False),
-######	('DOWN','evtsel_sys_sf_tau_FF_down',False),
-######	(,'UP','evtsel_sys_sf_tau_FF_up',False),
+    ('ATLAS_BTag_BEFF','DOWN','evtsel_sys_sf_bjet_b_down',False), 
+	('ATLAS_BTag_BEFF','UP','evtsel_sys_sf_bjet_b_up',False), 
+	('ATLAS_BTag_CEFF','DOWN','evtsel_sys_sf_bjet_c_down',False), 
+	('ATLAS_BTag_CEFF','UP','evtsel_sys_sf_bjet_c_up',False), 
+	('ATLAS_BTag_LEFF','DOWN','evtsel_sys_sf_bjet_m_down',False),
+	('ATLAS_BTag_LEFF','UP','evtsel_sys_sf_bjet_m_up',False), 
+    ('ATLAS_PU_RESCALE_2012','DOWN','evtsel_sys_sf_PU_rescaling_dn',False),  ### PROBLEM WITH NAN
+	('ATLAS_PU_RESCALE_2012','UP','evtsel_sys_sf_PU_rescaling_up',False), ### PROBLEM WITH NAN
 	('ATLAS_TAU_EFAKE_2012','DOWN','evtsel_sys_sf_tau_el_down',False),
 	('ATLAS_TAU_EFAKE_2012','UP','evtsel_sys_sf_tau_el_up',False), 
 	('ATLAS_TAU_ID_2012','DOWN','evtsel_sys_sf_tau_id_down',False), 
@@ -191,12 +200,11 @@ list_of_systematics = Nominal_sys #this is the nominal histograms, no up/down
 
 if Systematics:
     list_of_systematics = Sys_list
-if Make_workspace:
-    list_of_supergroups = Limit_supergroups
 if RQCD_studies:
     list_of_supergroups = RQCD_supergroups
 if WHhh_channel:
     list_of_supergroups = Plots_supergroups_WHhh
+
 
 ###Subsets definition
 WH = Subsets.wh
@@ -226,12 +234,12 @@ QCD_OS.name = 'OS'
 WHstudy = Subsets.whtest * Subsets.whtest2  #Dec3-5 study
 
 regions = [
-[ZH, 0.0, []],
+#[ZH, 0.0, []],
 #[ZHlh,0.0,[]],
-#[ZHSS,0.0,[]],
+[ZHSS,0.0,[]],
 #[ZHm,0.0,[]],
 #[ZHe,0.0,[]],
-#[ZHmmc, 0.0, []],
+[ZHmmc, 0.0, []],
 #[ZH2,0.0,[]],
 #[ZH3,0.0,[]]
 #[ZHe, 0.0, []]
@@ -250,12 +258,13 @@ if RQCD_studies:
     [QCD_SSS, 0.0, []],
     ]
 
-h = HistoContainer('evtsel_H_m_MMC')
+h = HistoContainer('workspaceAllMC')
+#h = HistoContainer('evtsel_H_m_MMC')
 #h = HistoContainer('evtsel_M2T')
 
 ### Histogram from ROOT files with Higgs pT straight from D3PD
-##f = ROOT.TFile('HiggsPt/histograms.ZH125_tautauhh.root') #ZH125_tautauhh, WH125_tautauhh, WH125_tautaulh, ZH125_tautaulh
-#f = ROOT.TFile('histograms.WH125.root') #histograms.ZH125.root, histograms.WH125.root
+#f = ROOT.TFile('HiggsPt/histograms.ZH125_tautauhh.root') #ZH125_tautauhh, WH125_tautauhh, WH125_tautaulh, ZH125_tautaulh
+#f = ROOT.TFile('histograms.WH125.root') #histograms.WH125.root, histograms.WH125.root
 #d3pd_hist = f.Get('higgs_pt')
 #d3pd_hist.Rebin(2)
 #scale = 1./d3pd_hist.Integral()
@@ -265,6 +274,20 @@ h = HistoContainer('evtsel_H_m_MMC')
     
 ####Loop over regions
 for region in regions:
+
+    if Make_workspace:
+        if region[0].name  == 'wh':
+            list_of_supergroups = Limit_supergroups_WHhh
+            plots = plotinfo_container()
+            #plots.Add('evtsel_M2T', '_totalTEST', 8, 25, 200, palette.green, 'fill', 'nothing', 'M2T', 1, False, True)
+            plots.Add('evtsel_M2T', '', 1000, 25, 200, palette.green, 'fill', 'nothing', 'M2T', 1, False, True)
+            
+        if region[0].name == 'zh':
+            list_of_supergroups = Limit_supergroups
+            plots = plotinfo_container()
+            #plots.Add('evtsel_H_m_MMC', '_totalTEST', 5,25,225, palette.green, 'fill', 'nothing', 'H_m_MMC', 0.001, False, True)
+            plots.Add('evtsel_H_m_MMC', '', 1000, 25, 225, palette.green, 'fill', 'nothing', 'MMC', 0.001, False, True)
+
 
     h.add_region(region[0].name)
 
@@ -316,16 +339,16 @@ for region in regions:
                         chain.Add(sample.path)
 
                     if sys_is_tree:
-                        cut1 = 'evtsel_weight*0.023'
+                        cut1 = 'evtsel_weight*0.0203'
                         if supergroup.name == 'WH125_inclusive_Up':
-                            cut1 = 'evtsel_weight*0.023*evtsel_sys_sf_HiggsPtBias_up'
+                            cut1 = 'evtsel_weight*0.0203*evtsel_sys_sf_HiggsPtBias_up'
                         if supergroup.name == 'WH125_inclusive_Down':
-                            cut1 = 'evtsel_weight*0.023*evtsel_sys_sf_HiggsPtBias_down'
-                        if supergroup.name == 'AntitauEvents':
+                            cut1 = 'evtsel_weight*0.0203*evtsel_sys_sf_HiggsPtBias_down'
+                        if supergroup.name == 'AntitauEvents' or supergroup.name == 'WHhh_AntitauEvents':
                             #cut1 = 'evtsel_weight'
                             #cut1 = 'evtsel_weight*evtsel_weight_FF'
-                            #cut1 = 'evtsel_weight*evtsel_weight_FF*evtsel_weight_tau_FF_zh/evtsel_weight_tau_FF'
-                            cut1 = 'evtsel_weight*evtsel_weight_FF'
+                            cut1 = 'evtsel_weight*evtsel_weight_FF*evtsel_weight_tau_FF_zh/evtsel_weight_tau_FF'
+                            #cut1 = 'evtsel_weight*evtsel_weight_FF'
                         if supergroup.name == 'Data':
                             #cut1 = 'evtsel_weight'
                             cut1 = '1'
@@ -333,13 +356,13 @@ for region in regions:
 							cut1 = 'evtsel_weight'
                                                         
                     else:
-                        cut1 = 'evtsel_weight*0.023*%s' % sys_path
-                        if supergroup.name == 'AntitauEvents':
+                        cut1 = 'evtsel_weight*0.0203*%s' % sys_path
+                        if supergroup.name == 'AntitauEvents' or supergroup.name == 'WHhh_AntitauEvents':
                             #cut1 = 'evtsel_weight'
                             #cut1 = 'evtsel_weight*evtsel_weight_FF'
-                            cut1 = 'evtsel_weight*evtsel_weight_FF*evtsel_weight_tau_FF_zh/evtsel_weight_tau_FF'
+                            cut1 = '(evtsel_weight*evtsel_weight_FF*evtsel_weight_tau_FF_zh/evtsel_weight_tau_FF)*%s' % sys_path
                         if supergroup.name == 'Data':
-                            cut1 = 'evtsel_weight'
+                            cut1 = '1'
                                                         
 
                         #if supergroup.name == 'QCD':
@@ -411,7 +434,7 @@ for region in regions:
                 ##Add TH1F to Histogram
                 #plotting Higgs pT from D3PD compared to CN
                 #entry.histogram.add_filled(d3pd_hist,
-                #                          'D3PD - no cuts',
+                #                          'D3PD_nocuts',
                 #                          palette.red,
                 #                          'line',
                 #                          False,
@@ -430,7 +453,10 @@ for region in regions:
                                            
                                                      
                 if entry.rootfile:
-                    h.add(region[0].name, region[0].name + '_' + sys_name + '_' + sys_var + '_' + supergroup.name, th1f_total)
+                    if sys_name:
+                        h.add(region[0].name, '_'.join([region[0].name, supergroup.name, sys_name, sys_var]), th1f_total)
+                    else:
+                        h.add(region[0].name, '_'.join([region[0].name, supergroup.name]), th1f_total)
 					
             
     ## Histogram.draw()
@@ -461,7 +487,7 @@ for region in regions:
 
 if Make_workspace:
     h.save()
-    h.make_workspace()
+    #h.make_workspace()
 
 
 #############################################################

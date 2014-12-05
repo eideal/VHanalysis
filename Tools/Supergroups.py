@@ -16,6 +16,7 @@ AntitauEvents = Supergroup('AntitauEvents',
                            [Data_group_AntiTau,
 							              MCcorr_fakes_group,
                             MCcorr_fakesttbar_group], 
+                            #],
                            #this last group is to ensure I have all 3 ttbar samples in the MCcorr and am filtering out the dilepton from the lep_fil sample
                             factor = 1.0,
                             color = palette.green,
@@ -27,6 +28,7 @@ WHhh_AntitauEvents = Supergroup('WHhh_AntitauEvents',
                            [Data_group_AntiTau,
                             MCcorr_fakes_group_WHhh,
                             MCcorr_fakesttbar_group], 
+                            #],
                            #this last group is to ensure I have all 3 ttbar samples in the MCcorr and am filtering out the dilepton from the lep_fil sample
                             factor = 1.0,
                             color = palette.green,
@@ -138,6 +140,38 @@ Ztautau_zerofakes = Supergroup('Ztautau_zerofakes',
                                subset = isreal + truetaus
                                )
 
+MC_ZHhh = Supergroup('MC_ZHhh',
+                      [ttbar_lepfil_group,
+                      ttbar_allhad_group,
+                      ttbar_dilepton_group,
+                      ZttJets_group,
+                      ZZ_group,
+                      WZ_group,
+                      Triboson_group],
+                      factor = 1.0,
+                      color = palette.red,
+                      style = 'fill',
+                      legendLabel = 'All_MC',
+                      stack = True,
+                      subset = isreal + truetaus
+                    )
+
+MC_WHhh = Supergroup('MC_WHhh',
+                    [ttbar_lepfil_group,
+                    ttbar_allhad_group,
+                    ttbar_dilepton_group,
+                    ZttJets_group,
+                    WHhh_ZZ_group,
+                    WHhh_WZ_group,
+                    Triboson_group],
+                    factor = 1.0,
+                    color = palette.red,
+                    style = 'fill',
+                    legendLabel = 'All_MC',
+                    stack = True,
+                    subset = isreal + truetaus
+                    )
+
 #################
 WJets_zerofakes = Supergroup('WJets_zerofakes',
 				   [WJets_group],
@@ -206,7 +240,7 @@ WH_inclusive = Supergroup('WH_inclusive',
                           factor = 1.0,
                           color = palette.blue,
                           style = 'line',
-                          legendLabel = 'WH_inclusive_CN',
+                          legendLabel = 'WH125_CN',
                           stack = True,
                           subset = isreal)
 
@@ -214,9 +248,10 @@ ZH_inclusive = Supergroup('ZH_inclusive',
                           [ZH125_group,
                           ZH125lh_group,
                           ZH125ll_group],
+                          factor = 1.0,
                           color = palette.blue,
                           style = 'line',
-                          legendLabel = 'ZH_inclusive_CN',
+                          legendLabel = 'ZH125_CN',
                           stack = True,
                           subset = isreal)
 
@@ -270,10 +305,10 @@ WH120 = Supergroup('WH120',
                    )
 WH125 = Supergroup('WH125',
                    [WH125_group],
-                   factor = 100.0,
+                   factor = 1.0,
                    color = palette.black,
                    style = 'line',
-                   legendLabel = 'WH125*100',
+                   legendLabel = 'WH125',
                    stack = False,
                    subset = isreal
                    )
@@ -370,10 +405,10 @@ ZH120 = Supergroup('ZH120',
                    )
 ZH125 = Supergroup('ZH125',
                    [ZH125_group],
-                   factor = 1.0,
+                   factor = 100.0,
                    color = palette.black,
                    style = 'line',
-                   legendLabel = 'ZH125',
+                   legendLabel = 'ZH125*100',
                    stack = False,
                    subset = isreal
                    )

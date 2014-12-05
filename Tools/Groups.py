@@ -19,9 +19,9 @@ Data_group_AntiTau = Group('Data_group_AntiTau',
                             classification = 'DATA',
 #                           subset = antitau, #THIS SEEMS TO BE THE SAME CUT AS the yesantitau
 #subset = yesantitau
-subset = antitau
+                            subset = antitau
 
-    )
+                            )
 
 MCcorr_fakes_group = Group('MCcorr_fakes_group',
                       [Powheg_ZZ_2e2mu_mll4_2pt5,
@@ -149,19 +149,19 @@ MCcorr_fakes_group = Group('MCcorr_fakes_group',
                        ZtautauNp4Excl_Mll10to60,
                        ZtautauNp5Incl_Mll10to60,
                        ],
-                       factor = -1.0 * 0.023, #times the lumi
+                       factor = -1.0 * 0.0203, #times the lumi
                        classification = 'BG',
                        subset = MCcorr,
                        )
 
 MCcorr_fakesttbar_group = Group('MCcorr_fakesttbar_group',
                                 [ttbar],
-                                factor = -1.0 * 0.023,
+                                factor = -1.0 * 0.0203,
                                 classification = 'BG',
                                 subset = dilep + MCcorr,
                                 )
 
-MCcorr_fakes_group_WHhh = Group('MCcorr_fakes_group',
+MCcorr_fakes_group_WHhh = Group('MCcorr_fakes_group_WHhh',
                       [ZZ,
                        WZ,
                        WpWmenuenu,
@@ -253,7 +253,7 @@ MCcorr_fakes_group_WHhh = Group('MCcorr_fakes_group',
                        ZtautauNp4Excl_Mll10to60,
                        ZtautauNp5Incl_Mll10to60,
                        ],
-                       factor = -1.0 * 0.023, #times the lumi
+                       factor = -1.0 * 0.0203, #times the lumi
                        classification = 'BG',
                        subset = MCcorr,
                        )
@@ -488,6 +488,12 @@ WJets_group = Group('WJets',
 
 
 ###### SIGNAL ####### SIGNAL ######## SIGNAL
+
+OtherHiggs = Group('OtherHiggs',
+                    [],
+                    factor = 1.0,
+                    classification = 'BG'
+)
 
 WH100_group = Group('WH100',
                     [WH100_tautauhh],
@@ -807,7 +813,7 @@ SSSWeJets_group = Group('SSSWeJets',
                          WenuNp4_Auto,
                          WenuNp5incl_Auto,
                          ],
-                         factor = -1.0 * 0.023,
+                         factor = -1.0 * 0.0203,
                          classification = 'BG'
                          )
 WmJets_group = Group('WmJets',
@@ -829,7 +835,7 @@ SSSWmJets_group = Group('SSSWmJets',
                  WmunuNp4_Auto,
                  WmunuNp5incl_Auto,
                  ],
-                 factor = -1.0 * 0.023,
+                 factor = -1.0 * 0.0203,
                  classification = 'BG'
                  )
 WtJets_group = Group('WtJets',
@@ -851,7 +857,7 @@ SSSWtJets_group = Group('SSSWtJets',
                     WtaunuNp4_Auto,
                     WtaunuNp5incl_Auto,
                     ],
-                    factor = -1.0 * 0.023,
+                    factor = -1.0 * 0.0203,
                     classification = 'BG'
                     )
 
@@ -886,7 +892,7 @@ SSSZeeJets_group = Group('SSSZeeJets',
 #                    ZeeNp4Excl_Mll10to60,
 #                    ZeeNp5Incl_Mll10to60,
                      ],
-                     factor = -1.0 * 0.023,
+                     factor = -1.0 * 0.0203,
                      classification = 'BG'
                      )
 
@@ -915,7 +921,7 @@ SSSZmmJets_group = Group('SSSZmmJets',
  #                ZmumuNp4Excl_Mll10to60,
  #                ZmumuNp5Incl_Mll10to60,
                   ],
-                  factor = -1.0 * 0.023,
+                  factor = -1.0 * 0.0203,
                   classification = 'BG'
                   )
 
@@ -934,7 +940,7 @@ ZtautauNp3_Auto,
 ZtautauNp4_Auto,
 ZtautauNp5incl_Auto,
 ],
-factor = -1.0 * 0.023,
+factor = -1.0 * 0.0203,
 classification = 'BG'
     )
 
@@ -942,7 +948,7 @@ SSStt_group = Group('SSStt',
                     [ttbar,
                      ttbar_allhad,
                      ttbar_dilepton],
-                     factor = -1.0 * 0.023,
+                     factor = -1.0 * 0.0203,
                      classification = 'BG',
                      )
 SingleTop_group = Group('SingleTop',
@@ -966,7 +972,7 @@ SSSSingleTop_group = Group('SSSSingleTop',
                    singletop_tchan_mu,
                    singletop_tchan_tau
                    ],
-                   factor = -1.0 * 0.023,
+                   factor = -1.0 * 0.0203,
                    classification = 'BG',
                    )
 
@@ -982,7 +988,7 @@ SSSZZ_group = Group('SSSZZ',
             Powheg_ZZllnunu_tt_mll4,
             ],
             #ZZ],
-            factor = -1.0 * 0.023,
+            factor = -1.0 * 0.0203,
             classification = 'BG',
             )
 
@@ -1011,7 +1017,7 @@ SSSWW_group = Group('SSSWW',
             gg2WW0240_WpWmtaunumunu,
             gg2WW0240_WpWmtaunutaunu
             ],
-            factor = -1.0 * 0.023,
+            factor = -1.0 * 0.0203,
             classification = 'BG',
             )
 WGamma_group = Group('WGamma',
@@ -1037,7 +1043,7 @@ SSSWGamma_group = Group('SSSWGamma',
                 MadGraph_lnuee_lt7,
                 MadGraph_lnumumu_lt7,
                 MadGraph_lnutautau_lt7],
-                factor = -1.0 * 0.023,
+                factor = -1.0 * 0.0203,
                 classification = 'BG',
                 )
 
@@ -1062,7 +1068,7 @@ SSSWZ_group = Group('SSSWZ',
             Powheg_WZ_Wm15Z15_mll3p804d0_2LeptonFilter5,
             ],
 #WZ],
-            factor = -1.0 * 0.023,
+            factor = -1.0 * 0.0203,
             classification = 'BG',
             )       
 
