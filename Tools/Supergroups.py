@@ -305,10 +305,10 @@ WH120 = Supergroup('WH120',
                    )
 WH125 = Supergroup('WH125',
                    [WH125_group],
-                   factor = 1.0,
+                   factor = 100.0,
                    color = palette.black,
                    style = 'line',
-                   legendLabel = 'WH125',
+                   legendLabel = 'WH125*100',
                    stack = False,
                    subset = isreal
                    )

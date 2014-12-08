@@ -64,23 +64,23 @@ ZH125,
 ]
 
 Plots_supergroups_WHhh = [
-#Data,
-#WHhh_WZ_zerofakes,
-#Ztautau_zerofakes,
-#WHhh_ZZ_zerofakes,
-#WHhh_AntitauEvents,
-#tt_zerofakes,
-#Triboson_zerofakes,
-#WHhh_WW_zerofakes,
-#SingleTop_zerofakes,
-#WGamma_zerofakes,
-#ZeeJets_zerofakes,
-#ZmmJets_zerofakes,
-#WeJets_zerofakes,
-#WmJets_zerofakes,
-#WtJets_zerofakes,
-#WH125,
-WH_inclusive,
+Data,
+WHhh_WZ_zerofakes,
+Ztautau_zerofakes,
+WHhh_ZZ_zerofakes,
+WHhh_AntitauEvents,
+tt_zerofakes,
+Triboson_zerofakes,
+WHhh_WW_zerofakes,
+SingleTop_zerofakes,
+WGamma_zerofakes,
+ZeeJets_zerofakes,
+ZmmJets_zerofakes,
+WeJets_zerofakes,
+WmJets_zerofakes,
+WtJets_zerofakes,
+WH125,
+#WH_inclusive,
 ]
 
 Limit_supergroups = [
@@ -234,12 +234,12 @@ QCD_OS.name = 'OS'
 WHstudy = Subsets.whtest * Subsets.whtest2  #Dec3-5 study
 
 regions = [
-#[ZH, 0.0, []],
+[ZH, 0.0, []],
 #[ZHlh,0.0,[]],
-[ZHSS,0.0,[]],
+#[ZHSS,0.0,[]],
 #[ZHm,0.0,[]],
 #[ZHe,0.0,[]],
-[ZHmmc, 0.0, []],
+#[ZHmmc, 0.0, []],
 #[ZH2,0.0,[]],
 #[ZH3,0.0,[]]
 #[ZHe, 0.0, []]
