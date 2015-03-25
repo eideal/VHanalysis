@@ -524,7 +524,8 @@ class Histogram:
                                          'LP')
         
         try:
-            self.legend.AddEntry(self.error, '', 'F')
+            pass
+            #self.legend.AddEntry(self.error, '', 'F') ### EMMA
         except AttributeError:
             pass
                 
@@ -681,7 +682,7 @@ class Histogram:
         if has_error:
             style.style1D['error'].apply(self.error)
             self.error.SetFillColor(ROOT.TColor.GetColor(palette.darkred))
-            self.error.Draw('SAME %s' % style.style1D['error'].draw_options) ###EMMA: EDITED OUT OF PLOTTING FOR NOW
+            # self.error.Draw('SAME %s' % style.style1D['error'].draw_options) ###EMMA: EDITED OUT OF PLOTTING FOR NOW
 
         bin_max = -1
         maximum = -1
@@ -716,6 +717,7 @@ class Histogram:
             first_component.nominal.SetMaximum(1000*maximum)
             first_component.nominal.SetMinimum(0.9)
         else:
+            first_component.nominal.SetMinimum(0.0)
             first_component.nominal.SetMaximum(1.4*maximum)
         self.canvas.Update()
 

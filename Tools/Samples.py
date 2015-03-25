@@ -428,6 +428,16 @@ VBFH125_WW2lep_EF_15_5 = Sample(
     name = 'VBFH125_WW2lep_EF_15_5',
     path = '/afs/cern.ch/user/i/ideal/eos/atlas/atlascerngroupdisk/phys-higgs/HSG4/VHtautau/commonNtuple/VHCNv01-05_Nominal/HiggsNotVHTauTau/VBFH125_WW2lep_EF_15_5.root')
 
+ggH125_WW2lep_EF_15_5 = Sample(
+    name = 'ggH125_WW2lep_EF_15_5',
+    path = '/afs/cern.ch/user/i/ideal/eos/atlas/atlascerngroupdisk/phys-higgs/HSG4/VHtautau/commonNtuple/VHCNv01-05_Nominal/HiggsNotVHTauTau/ggH125_WW2lep_EF_15_5.root'
+    )
+
+ggH125_ZZ4lep = Sample(
+    name = 'ggH125_ZZ4lep',
+    path = '/afs/cern.ch/user/i/ideal/eos/atlas/atlascerngroupdisk/phys-higgs/HSG4/VHtautau/commonNtuple/VHCNv01-05_Nominal/HiggsNotVHTauTau/ggH125_ZZ4lep.root'
+    )
+
 VBFH125_ZZ4lep = Sample(
     name = 'VBFH125_ZZ4lep',
     path = '/afs/cern.ch/user/i/ideal/eos/atlas/atlascerngroupdisk/phys-higgs/HSG4/VHtautau/commonNtuple/VHCNv01-05_Nominal/HiggsNotVHTauTau/VBFH125_ZZ4lep.root')

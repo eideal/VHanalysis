@@ -148,6 +148,14 @@ MCcorr_fakes_group = Group('MCcorr_fakes_group',
                        ZtautauNp3Excl_Mll10to60,
                        ZtautauNp4Excl_Mll10to60,
                        ZtautauNp5Incl_Mll10to60,
+                       VBFH125_WW2lep_EF_15_5,
+                       VBFH125_ZZ4lep,
+                       WH125_WW2lep,
+                       WH125_ZZ4lep,
+                       ZH125_WW2lep,
+                       ZH125_ZZ4lep,
+                       ggH125_WW2lep_EF_15_5,
+                       ggH125_ZZ4lep,
                        ],
                        factor = -1.0 * 0.0203, #times the lumi
                        classification = 'BG',
@@ -252,11 +260,70 @@ MCcorr_fakes_group_WHhh = Group('MCcorr_fakes_group_WHhh',
                        ZtautauNp3Excl_Mll10to60,
                        ZtautauNp4Excl_Mll10to60,
                        ZtautauNp5Incl_Mll10to60,
+                       VBFH125_WW2lep_EF_15_5,
+                       VBFH125_ZZ4lep,
+                       WH125_WW2lep,
+                       WH125_ZZ4lep,
+                       ZH125_WW2lep,
+                       ZH125_ZZ4lep,
+                       ggH125_WW2lep_EF_15_5,
+                       ggH125_ZZ4lep,
                        ],
                        factor = -1.0 * 0.0203, #times the lumi
                        classification = 'BG',
                        subset = MCcorr,
                        )
+
+HiggsNotVHtt_group = Group('HiggsNotVHtt',
+                      [VBFH125_WW2lep_EF_15_5,
+                      VBFH125_ZZ4lep,
+                      WH125_WW2lep,
+                      WH125_ZZ4lep,
+                      ZH125_WW2lep,
+                      ZH125_ZZ4lep,
+                      ggH125_WW2lep_EF_15_5,
+                      ggH125_ZZ4lep],
+                      factor = 1.0,
+                      classification = 'BG',
+                                              )
+
+HiggsNotVHtt1_group = Group('HiggsNotVHtt1_group',
+                      [VBFH125_WW2lep_EF_15_5],
+                      factor = 1.0,
+                      classification = 'BG')
+
+HiggsNotVHtt2_group = Group('HiggsNotVHtt2_group',
+                      [VBFH125_ZZ4lep],
+                      factor = 1.0,
+                      classification = 'BG')
+
+HiggsNotVHtt3_group = Group('HiggsNotVHtt3_group',
+                      [WH125_WW2lep],
+                      factor = 1.0,
+                      classification = 'BG')
+
+HiggsNotVHtt4_group = Group('HiggsNotVHtt4_group',
+                      [WH125_ZZ4lep],
+                      factor = 1.0,
+                      classification = 'BG')
+HiggsNotVHtt5_group = Group('HiggsNotVHtt5_group',
+                      [ZH125_WW2lep],
+                      factor = 1.0,
+                      classification = 'BG')
+HiggsNotVHtt6_group = Group('HiggsNotVHtt6_group',
+                      [ZH125_ZZ4lep],
+                      factor = 1.0,
+                      classification = 'BG')
+HiggsNotVHtt7_group = Group('HiggsNotVHtt7_group',
+                      [ggH125_WW2lep_EF_15_5],
+                      factor = 1.0,
+                      classification = 'BG')
+HiggsNotVHtt8_group = Group('HiggsNotVHtt8_group',
+                      [ggH125_ZZ4lep],
+                      factor = 1.0,
+                      classification = 'BG')
+
+
                   
 ZZ_group = Group('ZZ',
                  [Powheg_ZZ_2e2mu_mll4_2pt5,
@@ -270,6 +337,70 @@ ZZ_group = Group('ZZ',
                   Powheg_ZZllnunu_tt_mll4,
                   ],
 #ZZ,
+                  factor = 1.0,
+                  classification = 'BG',
+                  )
+
+ZZ_4e_group =  Group('ZZ_4e_group',
+                 [
+                  Powheg_ZZ_4e_mll4_2pt5,
+                                   ],
+                  factor = 1.0,
+                  classification = 'BG',
+                  )
+ZZ_4m_group = Group('ZZ_4m_group',
+                 [
+                  Powheg_ZZ_4mu_mll4_2pt5,
+                                   ],
+                  factor = 1.0,
+                  classification = 'BG',
+                  )
+ZZ_4t_group = Group('ZZ_4t_group',
+                 [
+                  Powheg_ZZ_4tau_mll4_2pt5,
+                                   ],
+                  factor = 1.0,
+                  classification = 'BG',
+                  )
+ZZ_2e2m_group = Group('ZZ_2e2m_group',
+                 [
+                  Powheg_ZZ_2e2mu_mll4_2pt5,
+                                   ],
+                  factor = 1.0,
+                  classification = 'BG',
+                  )
+ZZ_2e2t_group = Group('ZZ_2e2t_group',
+                 [
+                  Powheg_ZZ_2e2tau_mll4_2pt5,
+                                   ],
+                  factor = 1.0,
+                  classification = 'BG',
+                  )
+ZZ_2m2t_group = Group('ZZ_2m2t_group',
+                 [
+                  Powheg_ZZ_2mu2tau_mll4_2pt5,
+                                   ],
+                  factor = 1.0,
+                  classification = 'BG',
+                  )
+ZZllnunu_ee_group = Group('ZZllnunu_ee_group',
+                 [
+                  Powheg_ZZllnunu_ee_mll4,
+                                   ],
+                  factor = 1.0,
+                  classification = 'BG',
+                  )
+ZZllnunu_mm_group = Group('ZZllnunu_mm_group',
+                 [
+                  Powheg_ZZllnunu_mm_mll4,
+                                   ],
+                  factor = 1.0,
+                  classification = 'BG',
+                  )
+ZZllnunu_tt_group = Group('ZZllnunu_tt_group',
+                 [
+                  Powheg_ZZllnunu_tt_mll4,
+                                   ],
                   factor = 1.0,
                   classification = 'BG',
                   )

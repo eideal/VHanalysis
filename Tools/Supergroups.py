@@ -37,6 +37,75 @@ WHhh_AntitauEvents = Supergroup('WHhh_AntitauEvents',
                             stack = True,
                             )
 
+HiggsNotVHtt = Supergroup('HiggsNotVHtt',
+                    [HiggsNotVHtt_group],
+                    factor = 1.0,
+                    color = palette.brown,
+                    style = 'fill',
+                    legendLabel = 'NonVHtautau',
+                    stack = True,
+                    subset = isreal + truetaus
+                    )
+
+HiggsNotVHtt1 = Supergroup('HiggsNotVHtt1',
+                    [HiggsNotVHtt1_group],
+                    factor = 1.0,
+                    color = palette.brown,
+                    style = 'fill',
+                    legendLabel = 'VBFH125_WW2lep_EF_15_5',
+                    stack = True)
+HiggsNotVHtt2 = Supergroup('HiggsNotVHtt2',
+                    [HiggsNotVHtt2_group],
+                    factor = 1.0,
+                    color = palette.brown,
+                    style = 'fill',
+                    legendLabel = 'VBFH125_ZZ4lep',
+                    stack = True)
+HiggsNotVHtt3 = Supergroup('HiggsNotVHtt3',
+                    [HiggsNotVHtt3_group],
+                    factor = 1.0,
+                    color = palette.brown,
+                    style = 'fill',
+                    legendLabel = 'WH125_WW2lep',
+                    stack = True)
+HiggsNotVHtt4 = Supergroup('HiggsNotVHtt4',
+                    [HiggsNotVHtt4_group],
+                    factor = 1.0,
+                    color = palette.brown,
+                    style = 'fill',
+                    legendLabel = 'WH125_ZZ4lep',
+                    stack = True)
+HiggsNotVHtt5 = Supergroup('HiggsNotVHtt5',
+                    [HiggsNotVHtt5_group],
+                    factor = 1.0,
+                    color = palette.brown,
+                    style = 'fill',
+                    legendLabel = 'ZH125_WW2lep',
+                    stack = True)
+HiggsNotVHtt6 = Supergroup('HiggsNotVHtt6',
+                    [HiggsNotVHtt6_group],
+                    factor = 1.0,
+                    color = palette.brown,
+                    style = 'fill',
+                    legendLabel = 'ZH125_ZZ4lep',
+                    stack = True)
+HiggsNotVHtt7 = Supergroup('HiggsNotVHtt7',
+                    [HiggsNotVHtt7_group],
+                    factor = 1.0,
+                    color = palette.brown,
+                    style = 'fill',
+                    legendLabel = 'ggH125_WW2lep_EF_15_5',
+                    stack = True)
+HiggsNotVHtt8 = Supergroup('HiggsNotVHtt8',
+                    [HiggsNotVHtt8_group],
+                    factor = 1.0,
+                    color = palette.brown,
+                    style = 'fill',
+                    legendLabel = 'ggH125_ZZ4lep',
+                    stack = True)
+
+
+
 tt_zerofakes = Supergroup('tt_zerofakes',
                           [ttbar_lepfil_group,
                            ttbar_allhad_group,
@@ -46,7 +115,7 @@ tt_zerofakes = Supergroup('tt_zerofakes',
                            style = 'fill',
                            legendLabel = 'tt',
                            stack = True,
-                           subset = isreal + truetaus
+                           subset = isreal #+ truetaus
                            )
 ZZ_zerofakes = Supergroup('ZZ_zerofakes',
                           [ZZ_group],
@@ -55,7 +124,7 @@ ZZ_zerofakes = Supergroup('ZZ_zerofakes',
                           style = 'fill',
                           legendLabel = 'ZZ',
                           stack = True,
-                          subset = isreal + truetaus
+                          subset = isreal #+ truetaus
                           )
 WHhh_ZZ_zerofakes = Supergroup('WHhh_ZZ_zerofakes',
                           [WHhh_ZZ_group],
@@ -64,7 +133,7 @@ WHhh_ZZ_zerofakes = Supergroup('WHhh_ZZ_zerofakes',
                           style = 'fill',
                           legendLabel = 'ZZ',
                           stack = True,
-                          subset = isreal + truetaus
+                          subset = isreal #+ truetaus
                           )
 WZ_zerofakes = Supergroup('WZ_zerofakes',
                           [WZ_group],
@@ -73,7 +142,7 @@ WZ_zerofakes = Supergroup('WZ_zerofakes',
                           style = 'fill',
                           legendLabel = 'WZ',
                           stack = True,
-                          subset = isreal + truetaus
+                          subset = isreal #+ truetaus
                           )
 WHhh_WZ_zerofakes = Supergroup('WHhh_WZ_zerofakes',
                           [WHhh_WZ_group],
@@ -82,7 +151,7 @@ WHhh_WZ_zerofakes = Supergroup('WHhh_WZ_zerofakes',
                           style = 'fill',
                           legendLabel = 'WZ',
                           stack = True,
-                          subset = isreal + truetaus
+                          subset = isreal #+ truetaus
                           )
 Triboson_zerofakes = Supergroup('Triboson_zerofakes',
                                 [Triboson_group],
@@ -91,7 +160,7 @@ Triboson_zerofakes = Supergroup('Triboson_zerofakes',
                                 style = 'fill',
                                 legendLabel = 'Triboson',
                                 stack = True,
-                                subset = isreal + truetaus
+                                subset = isreal #+ truetaus
                                 )
 WW_zerofakes = Supergroup('WW_zerofakes',
                           [WW_group],
@@ -100,7 +169,7 @@ WW_zerofakes = Supergroup('WW_zerofakes',
                           style = 'fill',
                           legendLabel = 'WW',
                           stack = True,
-                          subset = isreal + truetaus
+                          subset = isreal #+ truetaus
                           )
 WHhh_WW_zerofakes = Supergroup('WHhh_WW_zerofakes',
                                 [WHhh_WW_group],
@@ -109,7 +178,7 @@ WHhh_WW_zerofakes = Supergroup('WHhh_WW_zerofakes',
                                 style = 'fill',
                                 legendLabel = 'WW',
                                 stack = True,
-                                subset = isreal + truetaus
+                                subset = isreal #+ truetaus
                                 )
 WGamma_zerofakes = Supergroup('WGamma_zerofakes',
                               [WGamma_group],
@@ -118,7 +187,7 @@ WGamma_zerofakes = Supergroup('WGamma_zerofakes',
                               style = 'fill',
                               legendLabel = 'WGamma',
                               stack = True,
-                              subset = isreal + truetaus
+                              subset = isreal# + truetaus
                               )
 
 SingleTop_zerofakes = Supergroup('SingleTop_zerofakes',
@@ -128,7 +197,7 @@ SingleTop_zerofakes = Supergroup('SingleTop_zerofakes',
                        style = 'fill',
                        legendLabel = 'SingleTop',
                        stack = True,
-                       subset = isreal + truetaus
+                       subset = isreal #+ truetaus
                        )
 Ztautau_zerofakes = Supergroup('Ztautau_zerofakes',
                                [ZttJets_group],
@@ -137,7 +206,7 @@ Ztautau_zerofakes = Supergroup('Ztautau_zerofakes',
                                style = 'fill',
                                legendLabel = 'ZttJets',
                                stack = True,
-                               subset = isreal + truetaus
+                               subset = isreal #+ truetaus
                                )
 
 MC_ZHhh = Supergroup('MC_ZHhh',
@@ -153,7 +222,7 @@ MC_ZHhh = Supergroup('MC_ZHhh',
                       style = 'fill',
                       legendLabel = 'All_MC',
                       stack = True,
-                      subset = isreal + truetaus
+                      subset = isreal #+ truetaus
                     )
 
 MC_WHhh = Supergroup('MC_WHhh',
@@ -169,7 +238,7 @@ MC_WHhh = Supergroup('MC_WHhh',
                     style = 'fill',
                     legendLabel = 'All_MC',
                     stack = True,
-                    subset = isreal + truetaus
+                    subset = isreal #+ truetaus
                     )
 
 #################
@@ -180,7 +249,7 @@ WJets_zerofakes = Supergroup('WJets_zerofakes',
 				   style = 'fill',
 				   legendLabel = 'WJets',
 				   stack = True,
-				   subset = isreal + truetaus
+				   subset = isreal #+ truetaus
 				   )
 WeJets_zerofakes = Supergroup('WeJets_zerofakes',
 				   [WeJets_group],
@@ -189,7 +258,7 @@ WeJets_zerofakes = Supergroup('WeJets_zerofakes',
 				   style = 'fill',
 				   legendLabel = 'WeJets',
 				   stack = True,
-				   subset = isreal + truetaus
+				   subset = isreal #+ truetaus
 				   )
 WmJets_zerofakes = Supergroup('WmJets_zerofakes',
 				   [WmJets_group],
@@ -198,7 +267,7 @@ WmJets_zerofakes = Supergroup('WmJets_zerofakes',
 				   style = 'fill',
 				   legendLabel = 'WmJets',
 				   stack = True,
-				   subset = isreal + truetaus
+				   subset = isreal #+ truetaus
 				   )
 WtJets_zerofakes = Supergroup('WtJets_zerofakes',
 				   [WtJets_group],
@@ -207,7 +276,7 @@ WtJets_zerofakes = Supergroup('WtJets_zerofakes',
 				   style = 'fill',
 				   legendLabel = 'WtJets',
 				   stack = True,
-				   subset = isreal + truetaus
+				   subset = isreal #+ truetaus
 				   )
 
 ZeeJets_zerofakes = Supergroup('ZeeJets',
@@ -217,7 +286,7 @@ ZeeJets_zerofakes = Supergroup('ZeeJets',
 					 style = 'fill',
 					 legendLabel = 'ZeeJets',
 					 stack = True,
-					 subset = isreal + truetaus
+					 subset = isreal #+ truetaus
                      )
 ZmmJets_zerofakes = Supergroup('ZmmJets',
 					           [ZmmJets_group],
@@ -227,8 +296,92 @@ ZmmJets_zerofakes = Supergroup('ZmmJets',
 					 style = 'fill',
 					 legendLabel = 'ZmmJets',
 					 stack = True,
-					 subset = isreal + truetaus
+					 subset = isreal #+ truetaus
                      )
+
+ZZ_4e = Supergroup('ZZ_4e',
+                     [ZZ_4e_group],
+                     factor = 1.0,
+           color = palette.peach,
+           style = 'fill',
+           legendLabel = 'ZZ_4e',
+           stack = True,
+           subset = isreal #+ truetaus
+                     )
+ZZ_4m = Supergroup('ZZ_4m',
+                     [ZZ_4m_group],
+                     factor = 1.0,
+           color = palette.green,
+           style = 'fill',
+           legendLabel = 'ZZ_4m',
+           stack = True,
+           subset = isreal #+ truetaus
+                     )
+ZZ_4t = Supergroup('ZZ_4t',
+                     [ZZ_4t_group],
+                     factor = 1.0,
+           color = palette.black,
+           style = 'fill',
+           legendLabel = 'ZZ_4t',
+           stack = True,
+           subset = isreal #+ truetaus
+                     )
+ZZ_2e2m = Supergroup('ZZ_2e2m',
+                     [ZZ_2e2m_group],
+                     factor = 1.0,
+           color = palette.slime,
+           style = 'fill',
+           legendLabel = 'ZZ_2e2m',
+           stack = True,
+           subset = isreal #+ truetaus
+                     )
+ZZ_2e2t =  Supergroup('ZZ_2e2t',
+                     [ZZ_2e2t_group],
+                     factor = 1.0,
+           color = palette.brown,
+           style = 'fill',
+           legendLabel = 'ZZ_2e2t',
+           stack = True,
+           subset = isreal #+ truetaus
+                     )
+ZZ_2m2t =  Supergroup('ZZ_2m2t',
+                     [ZZ_2m2t_group],
+                     factor = 1.0,
+           color = palette.grey,
+           style = 'fill',
+           legendLabel = 'ZZ_2m2t',
+           stack = True,
+           subset = isreal #+ truetaus
+                     )
+ZZllnunu_ee = Supergroup('ZZllnunu_ee',
+                     [ZZllnunu_ee_group],
+                     factor = 1.0,
+           color = palette.darkorange,
+           style = 'fill',
+           legendLabel = 'ZZllnunu_ee',
+           stack = True,
+           subset = isreal #+ truetaus
+                     )
+ZZllnunu_mm = Supergroup('ZZllnunu_mm',
+                     [ZZllnunu_mm_group],
+                     factor = 1.0,
+           color = palette.pink,
+           style = 'fill',
+           legendLabel = 'ZZllnunu_mm',
+           stack = True,
+           subset = isreal #+ truetaus
+                     )
+ZZllnunu_tt = Supergroup('ZZllnunu_tt',
+                     [ZZllnunu_tt_group],
+                     factor = 1.0,
+           color = palette.teal,
+           style = 'fill',
+           legendLabel = 'ZZllnunu_tt',
+           stack = True,
+           subset = isreal #+ truetaus
+                     )
+
+
 
 ##### SIGNAL ########### SIGNAL ############# SIGNAL ######
 
@@ -242,7 +395,8 @@ WH_inclusive = Supergroup('WH_inclusive',
                           style = 'line',
                           legendLabel = 'WH125_CN',
                           stack = True,
-                          subset = isreal)
+                          subset = isreal
+                          )
 
 ZH_inclusive = Supergroup('ZH_inclusive',
                           [ZH125_group,
@@ -253,7 +407,8 @@ ZH_inclusive = Supergroup('ZH_inclusive',
                           style = 'line',
                           legendLabel = 'ZH125_CN',
                           stack = True,
-                          subset = isreal)
+                          subset = isreal
+                          )
 
 ########
 
@@ -405,10 +560,10 @@ ZH120 = Supergroup('ZH120',
                    )
 ZH125 = Supergroup('ZH125',
                    [ZH125_group],
-                   factor = 100.0,
+                   factor = 1.0,
                    color = palette.black,
                    style = 'line',
-                   legendLabel = 'ZH125*100',
+                   legendLabel = 'ZH125',
                    stack = False,
                    subset = isreal
                    )

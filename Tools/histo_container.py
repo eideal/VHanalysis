@@ -125,6 +125,18 @@ class HistoContainer(dict):
                                 
                                 sample.AddNormFactor('SigXsecOverSM', 0.0, 0.0, 40.0)
                                 sample.AddOverallSys('ATLAS_LUMI_2012', 0.972, 1.028)
+                                #Theory uncertainties
+                                sample.AddOverallSys('ATLAS_EWK', 0.98, 1.02)
+                                sample.AddOverallSys('ATLAS_UE_VH', 0.98, 1.02)
+                                sample.AddOverallSys('ATLAS_PDFacc_VH', 0.99, 1.01)
+                                sample.AddOverallSys('ATLAS_QCDacc_VH', 0.99, 1.01)
+                                sample.AddOverallSys('ATLAS_BR_tautau', 0.943, 1.057)
+                                if 'wh' in supergroup_name:
+                                    sample.AddOverallSys('ATLAS_QCDxsec', 0.99, 1.01)
+                                    sample.AddOverallSys('ATLAS_PDFxsec', 0.977, 1.023)
+                                if 'zh' in supergroup_name:
+                                    sample.AddOverallSys('ATLAS_QCDxsec', 0.969, 1.031)
+                                    sample.AddOverallSys('ATLAS_PDFxsec', 0.975, 1.025)
 
                                 if Systematics:
                                     sample.AddOverallSys('ATLAS_LUMI_2012', 0.972, 1.028)
@@ -234,6 +246,8 @@ class HistoContainer(dict):
                             if is_fakes(histogram_name):
                                 sample = ROOT.RooStats.HistFactory.Sample(histogram_name, histogram_name, self.rootfile_name)
                                 sample.ActivateStatError()
+                                sample.AddOverallSys('ATLAS_TAU_FF', 0.7, 1.3) 
+                                
                                 if Systematics:
                                     sample.AddOverallSys('ATLAS_TAU_FF', 0.7, 1.3) 
 

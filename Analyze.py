@@ -1,10 +1,9 @@
 from Tools import Subsets
 #from Tools.Supergroups_UE import *
 from Tools.Supergroups import *
-#from Tools.Groups import *
 from Tools.Histogram import Histogram
 from plotinfo_container import plotinfo_container
-from plotting import plots #"from blank" where blank is the name of the python file blank.py and you can import anything that is defined with an equals sign. It can be a class or a variable
+from plotting import plots
 from Tools import palette
 from Tools.histo_container import HistoContainer
 import ROOT
@@ -25,21 +24,32 @@ Make_workspace = False
 #Set Systematics to True to assign systematics histos to the workspace 'samples'
 Systematics = False
 
-RQCD_supergroups = [#for RQCD plots
+#for RQCD plots
+RQCD_supergroups = [
 #Data_RQCD,
 #AllMC_RQCD
 ]
 
 #If plotmaking for WH hadhad (different diboson samples than for ZH)
-WHhh_channel = False
+WHhh_channel = True
 
 
 Plots_supergroups = [
-Data,
+#Data,
 Ztautau_zerofakes,
 ZZ_zerofakes,
+#ZZ_4e,
+#ZZ_4m,
+#ZZ_4t,
+#ZZ_2e2m,
+#ZZ_2e2t,
+#ZZ_2m2t,
+#ZZllnunu_ee,
+#ZZllnunu_mm,
+#ZZllnunu_tt,
 #QCD,
-AntitauEvents,
+#AntitauEvents,
+HiggsNotVHtt,
 WZ_zerofakes,
 tt_zerofakes,
 Triboson_zerofakes,
@@ -64,11 +74,12 @@ ZH125,
 ]
 
 Plots_supergroups_WHhh = [
-Data,
+#Data,
 WHhh_WZ_zerofakes,
+HiggsNotVHtt,
 Ztautau_zerofakes,
 WHhh_ZZ_zerofakes,
-WHhh_AntitauEvents,
+#WHhh_AntitauEvents,
 tt_zerofakes,
 Triboson_zerofakes,
 WHhh_WW_zerofakes,
@@ -80,11 +91,10 @@ WeJets_zerofakes,
 WmJets_zerofakes,
 WtJets_zerofakes,
 WH125,
-#WH_inclusive,
 ]
 
 Limit_supergroups = [
-#Data,
+Data,
 AntitauEvents,
 ZH100,ZH105,ZH110,ZH115,ZH120,ZH125,ZH130,ZH135,ZH140,ZH145,ZH150,
 WH100,WH105,WH110,WH115,WH120,WH125,WH130,WH135,WH140,WH145,WH150,
@@ -99,7 +109,7 @@ MC_ZHhh,
 ]
 
 Limit_supergroups_WHhh = [
-#Data,
+Data,
 WHhh_AntitauEvents,
 ZH100,ZH105,ZH110,ZH115,ZH120,ZH125,ZH130,ZH135,ZH140,ZH145,ZH150,
 WH100,WH105,WH110,WH115,WH120,WH125,WH130,WH135,WH140,WH145,WH150,
@@ -122,10 +132,10 @@ Sys_list = [
 	
     ('ATLAS_TAU_FF','DOWN','evtsel_sys_sf_tau_FF_zh_down',False),
     ('ATLAS_TAU_FF','UP','evtsel_sys_sf_tau_FF_zh_up',False),
-	('ATLAS_MU_MS','DOWN','SystematicsDOWN/MuSys',True), #Should it be called _SCALE (HSG4) or _MS (ATLAS)
-    ('ATLAS_MU_MS','UP','SystematicsUP/MuSys',True), #Should it be called _SCALE (HSG4) or _MS (ATLAS)
+	('ATLAS_MU_MS','DOWN','SystematicsDOWN/MuSys',True), #_SCALE (HSG4) or _MS (ATLAS)
+    ('ATLAS_MU_MS','UP','SystematicsUP/MuSys',True), #_SCALE (HSG4) or _MS (ATLAS)
 	('ATLAS_EL_SCALE_ZEE','DOWN','SystematicsDOWN/ElES_Zee',True), # The next four will be combined in quadrature
-    ('ATLAS_EL_SCALE_ZEE','UP','SystematicsUP/ElES_Zee',True), # Next four are combined in quadrature
+    ('ATLAS_EL_SCALE_ZEE','UP','SystematicsUP/ElES_Zee',True),
 	('ATLAS_EL_SCALE_R12','DOWN','SystematicsDOWN/ElES_R12',True),
     ('ATLAS_EL_SCALE_R12','UP','SystematicsUP/ElES_R12',True), 
 	('ATLAS_EL_SCALE_PS','DOWN','SystematicsDOWN/ElES_PS',True),  
@@ -184,19 +194,19 @@ Sys_list = [
 	('ATLAS_BTag_CEFF','UP','evtsel_sys_sf_bjet_c_up',False), 
 	('ATLAS_BTag_LEFF','DOWN','evtsel_sys_sf_bjet_m_down',False),
 	('ATLAS_BTag_LEFF','UP','evtsel_sys_sf_bjet_m_up',False), 
-    ('ATLAS_PU_RESCALE_2012','DOWN','evtsel_sys_sf_PU_rescaling_dn',False),  ### PROBLEM WITH NAN
-	('ATLAS_PU_RESCALE_2012','UP','evtsel_sys_sf_PU_rescaling_up',False), ### PROBLEM WITH NAN
+    ('ATLAS_PU_RESCALE_2012','DOWN','evtsel_sys_sf_PU_rescaling_dn',False),
+	('ATLAS_PU_RESCALE_2012','UP','evtsel_sys_sf_PU_rescaling_up',False),
 	('ATLAS_TAU_EFAKE_2012','DOWN','evtsel_sys_sf_tau_el_down',False),
 	('ATLAS_TAU_EFAKE_2012','UP','evtsel_sys_sf_tau_el_up',False), 
 	('ATLAS_TAU_ID_2012','DOWN','evtsel_sys_sf_tau_id_down',False), 
 	('ATLAS_TAU_ID_2012','UP','evtsel_sys_sf_tau_id_up',False), 
-	('ATLAS_TAU_ID_STAT_2012','DOWN','evtsel_sys_sf_tau_id_stat_down',False), ### WHAT IS THIS?
-	('ATLAS_TAU_ID_STAT_2012','UP','evtsel_sys_sf_tau_id_stat_up',False), ## WHAT IS THIS?
+	('ATLAS_TAU_ID_STAT_2012','DOWN','evtsel_sys_sf_tau_id_stat_down',False), 
+	('ATLAS_TAU_ID_STAT_2012','UP','evtsel_sys_sf_tau_id_stat_up',False), 
     ]
 
 
 list_of_supergroups = Plots_supergroups
-list_of_systematics = Nominal_sys #this is the nominal histograms, no up/down
+list_of_systematics = Nominal_sys # nominal histograms, no up/down
 
 if Systematics:
     list_of_systematics = Sys_list
@@ -231,10 +241,11 @@ QCD_SSS = Subsets.qcd + Subsets.SSS
 QCD_SSS.name = 'SSS'
 QCD_OS = Subsets.qcd + Subsets.OS
 QCD_OS.name = 'OS'
-WHstudy = Subsets.whtest * Subsets.whtest2  #Dec3-5 study
+WHstudy = Subsets.whtest * Subsets.whtest2 
 
 regions = [
-[ZH, 0.0, []],
+#[WH, 0.0, []],
+#[ZH, 0.0, []],
 #[ZHlh,0.0,[]],
 #[ZHSS,0.0,[]],
 #[ZHm,0.0,[]],
@@ -246,10 +257,9 @@ regions = [
 #[ZJets, 0.0, []],
 #[WJets,0.0,[]],
 #[TT, 0.0, []],
-#[WH, 0.0, []],
 #[WHlh,0.0,[]],
 #[QCD,0.0,[]]
-#[M2T,0.0,[]],
+[M2T,0.0,[]],
 #[SSTaus,0.0,[]]
     ]
 if RQCD_studies:
@@ -258,11 +268,9 @@ if RQCD_studies:
     [QCD_SSS, 0.0, []],
     ]
 
-h = HistoContainer('workspaceAllMC')
-#h = HistoContainer('evtsel_H_m_MMC')
-#h = HistoContainer('evtsel_M2T')
+h = HistoContainer('workspace20Feb')
 
-### Histogram from ROOT files with Higgs pT straight from D3PD
+### Histogram from ROOT files with Higgs pT from D3PD
 #f = ROOT.TFile('HiggsPt/histograms.ZH125_tautauhh.root') #ZH125_tautauhh, WH125_tautauhh, WH125_tautaulh, ZH125_tautaulh
 #f = ROOT.TFile('histograms.WH125.root') #histograms.WH125.root, histograms.WH125.root
 #d3pd_hist = f.Get('higgs_pt')
@@ -279,14 +287,12 @@ for region in regions:
         if region[0].name  == 'wh':
             list_of_supergroups = Limit_supergroups_WHhh
             plots = plotinfo_container()
-            #plots.Add('evtsel_M2T', '_totalTEST', 8, 25, 200, palette.green, 'fill', 'nothing', 'M2T', 1, False, True)
-            plots.Add('evtsel_M2T', '', 1000, 25, 200, palette.green, 'fill', 'nothing', 'M2T', 1, False, True)
+            plots.Add('evtsel_M2T', '', 8, 25, 200, palette.green, 'fill', 'nothing', 'M_{2T} [GeV]', 1, False, True)
             
         if region[0].name == 'zh':
             list_of_supergroups = Limit_supergroups
             plots = plotinfo_container()
-            #plots.Add('evtsel_H_m_MMC', '_totalTEST', 5,25,225, palette.green, 'fill', 'nothing', 'H_m_MMC', 0.001, False, True)
-            plots.Add('evtsel_H_m_MMC', '', 1000, 25, 225, palette.green, 'fill', 'nothing', 'MMC', 0.001, False, True)
+            plots.Add('evtsel_H_m_MMC', '', 5, 25, 225, palette.green, 'fill', 'nothing', 'm_{MMC} [GeV]', 0.001, False, True)
 
 
     h.add_region(region[0].name)
@@ -335,7 +341,7 @@ for region in regions:
                         chain = ROOT.TChain('tau')
 
                     for sample in group.samples:
-                        #print '    ', sample.path
+                        #print '    ', sample.name, sample.path
                         chain.Add(sample.path)
 
                     if sys_is_tree:
@@ -345,8 +351,6 @@ for region in regions:
                         if supergroup.name == 'WH125_inclusive_Down':
                             cut1 = 'evtsel_weight*0.0203*evtsel_sys_sf_HiggsPtBias_down'
                         if supergroup.name == 'AntitauEvents' or supergroup.name == 'WHhh_AntitauEvents':
-                            #cut1 = 'evtsel_weight'
-                            #cut1 = 'evtsel_weight*evtsel_weight_FF'
                             cut1 = 'evtsel_weight*evtsel_weight_FF*evtsel_weight_tau_FF_zh/evtsel_weight_tau_FF'
                             #cut1 = 'evtsel_weight*evtsel_weight_FF'
                         if supergroup.name == 'Data':
@@ -358,7 +362,6 @@ for region in regions:
                     else:
                         cut1 = 'evtsel_weight*0.0203*%s' % sys_path
                         if supergroup.name == 'AntitauEvents' or supergroup.name == 'WHhh_AntitauEvents':
-                            #cut1 = 'evtsel_weight'
                             #cut1 = 'evtsel_weight*evtsel_weight_FF'
                             cut1 = '(evtsel_weight*evtsel_weight_FF*evtsel_weight_tau_FF_zh/evtsel_weight_tau_FF)*%s' % sys_path
                         if supergroup.name == 'Data':
@@ -398,7 +401,7 @@ for region in regions:
                         #group_yield = th1f.GetEntries()
 
                          
-                    ## R_QCD stuff
+                    ## R_QCD computation
                     region[1] += group_yield*group.factor*supergroup.factor
                     #QCD_histo.Add(th1f, sign)
                     QCD_histo.Add(th1f,group.factor*supergroup.factor)
@@ -480,14 +483,14 @@ for region in regions:
             entry.histogram.ylog = entry.logplot
             
             entry.histogram.show_yields = True
-            entry.histogram.make_ratio(0)
+            #entry.histogram.make_ratio(0)
             entry.histogram.draw()
             entry.histogram.save()
             entry.histogram.reset()
 
 if Make_workspace:
     h.save()
-    #h.make_workspace()
+    h.make_workspace()
 
 
 #############################################################

@@ -1,6 +1,6 @@
 import ROOT, multiprocessing
 
-masses = [100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150]
+masses = [100, 105, 110, 120, 125, 130, 135, 140, 145, 150] # 115 missing because it's not in VHCN01-05
 #masses = [125]
 combination = False
 if combination:
